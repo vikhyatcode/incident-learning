@@ -206,6 +206,30 @@ class CollectionTests(unittest.TestCase):
 
 
 class BuildTests(unittest.TestCase):
+    def test_static_library_is_latest_with_date_fallback_and_sort_metadata(self):
+        records, health = p.collect([], {}, NOW, CollectionTests().fetch)
+        base = records[0]
+        entries = [
+            dict(base, id="historical", historical=True, incident_date="2018-10-21T22:52:00Z"),
+            dict(base, id="newer", incident_date=None, published_at="2026-11-17T10:00:00Z"),
+            dict(base, id="older", incident_date="2026-11-17T09:00:00Z",
+                 published_at="2026-11-18T10:00:00Z"),
+        ]
+        entries[0]["lessons"] = [" First lesson ", "first   LESSON", "Second lesson"]
+        with tempfile.TemporaryDirectory() as folder:
+            p.build(entries[1:], entries[:1], health, Path(folder))
+            page = (Path(folder) / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(re.findall(r'<article[^>]+id="([^"]+)"', page),
+                         ["newer", "older", "historical"])
+        historical = re.search(r'<article[^>]+id="historical"[^>]+>', page).group()
+        self.assertIn('data-learning-tier="2"', historical)
+        self.assertIn('data-lesson-count="2"', historical)
+        feed = re.search(r'<article[^>]+id="newer"[^>]+>', page).group()
+        self.assertIn('data-lesson-count="0"', feed)
+        self.assertIn('data-order-date="2026-11-17T10:00:00Z"', feed)
+        self.assertIn('<option value="latest">Latest</option>', page)
+        self.assertIn('<option value="learnings">Most learnings</option>', page)
+
     def test_template_tokens_from_feed_remain_literal_text(self):
         records, health = p.collect([], {}, NOW, CollectionTests().fetch)
         records[0]["title"] = "{{CASE_LINKS}}"

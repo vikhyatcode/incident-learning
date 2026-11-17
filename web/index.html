@@ -48,9 +48,11 @@
         <label>Underlying cause<select id="cause" name="cause"><option value="">All causes</option>{{CAUSE_OPTIONS}}</select></label>
         <label>Collection<select id="kind" name="kind"><option value="">All entries</option><option value="live">Collected reports</option><option value="historical">Historical studies</option></select></label>
         <label>Date from<input id="from" name="from" type="date"></label><label>Date to<input id="to" name="to" type="date"></label>
+        <label>Sort by<select id="sort" name="sort" aria-describedby="sort-help"><option value="latest">Latest</option><option value="learnings">Most learnings</option></select></label>
         <button type="reset" class="reset">Reset filters</button>
       </form>
-      <noscript><p class="warning">JavaScript is off. All incidents and expandable lessons remain available; filters need JavaScript.</p></noscript>
+      <p id="sort-help" class="library-note">Latest: newest incident date, or publication date if unknown. Most learnings: reviewed deep dives first, then provider timelines, then feed-only reports; within each group, more distinct engineering lessons first, then latest. A browsing heuristic, not an objective measure of educational value.</p>
+      <noscript><p class="warning">JavaScript is off. All incidents and expandable lessons remain available, latest first; filters and changing sort order need JavaScript.</p></noscript>
       <div class="results-line"><p id="result-count" role="status" aria-live="polite">Browse all entries below</p><span>Incident date when known; otherwise publication date. All times UTC.</span></div>
       <p id="empty-results" class="empty" hidden>No incidents match these filters. Try another cause or date range.</p>
       <div class="incident-list">{{CARDS}}</div>

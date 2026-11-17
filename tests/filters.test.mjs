@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { matches } from "../web/app.mjs";
+import { matches, compareIncidents } from "../web/app.mjs";
 
 const record = {
   search: "GitHub Database failover", type: "outage", cause: "dependency",
@@ -20,4 +20,36 @@ test("date range is inclusive and excludes out-of-range or reversed bounds", () 
   assert.equal(matches(record, { from: "2018-10-22" }), false);
   assert.equal(matches(record, { to: "2018-10-20" }), false);
   assert.equal(matches(record, { from: "2019-01-01", to: "2018-01-01" }), false);
+});
+
+const sortable = (id, orderDate, learningTier = "0", lessonCount = "0") => ({
+  ...record, id, orderDate, learningTier, lessonCount,
+});
+
+test("latest uses full timestamps and deterministic identity ties without pinning studies", () => {
+  const entries = [
+    sortable("old-study", "2018-10-21T22:52:00Z", "2", "3"),
+    sortable("z", "2026-11-17T10:00:00Z"),
+    sortable("earlier", "2026-11-17T09:00:00Z"),
+    sortable("a", "2026-11-17T10:00:00Z"),
+  ];
+  assert.deepEqual(entries.sort(compareIncidents).map(r => r.id),
+    ["a", "z", "earlier", "old-study"]);
+});
+
+test("most learnings orders explanation depth, distinct lesson counts, recency, then identity", () => {
+  const entries = [
+    sortable("feed", "2026-11-17T00:00:00Z", "0", "0"),
+    sortable("timeline", "2026-11-17T00:00:00Z", "1", "4"),
+    sortable("fewer", "2026-11-17T00:00:00Z", "2", "2"),
+    sortable("old-study", "2018-10-21T00:00:00Z", "2", "3"),
+    sortable("z", "2026-11-17T00:00:00Z", "2", "3"),
+    sortable("a", "2026-11-17T00:00:00Z", "2", "3"),
+  ];
+  assert.deepEqual(entries.sort((a, b) => compareIncidents(a, b, "learnings")).map(r => r.id),
+    ["a", "z", "old-study", "fewer", "timeline", "feed"]);
+  const filtered = entries.filter(r => matches(r, {q: "database", cause: "dependency"}));
+  assert.deepEqual(filtered.sort((a, b) => compareIncidents(a, b, "learnings")),
+    entries);
+  assert.equal(entries.filter(r => matches(r, {type: "security"})).length, 0);
 });

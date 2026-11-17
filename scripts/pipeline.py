@@ -350,12 +350,23 @@ def source_link(url, label):
     return f'<a href="{esc(clean)}" rel="noopener noreferrer">{esc(label)} <span aria-hidden="true">&nearr;</span></a>' if clean else "<span>Source link unavailable (unsafe URL rejected)</span>"
 
 
+def ordering(record):
+    value = record.get("incident_date") or record["published_at"]
+    timestamp = stamp(date(value + "T00:00:00Z" if len(value) == 10 else value))
+    tier = 2 if record["historical"] or record.get("explanation_status") == "reviewed" else (
+        1 if record.get("explanation_status") == "timeline" else 0)
+    lessons = len({" ".join(lesson.split()).casefold() for lesson in record["lessons"]
+                   if lesson.strip()}) if tier else 0
+    return timestamp, tier, lessons
+
+
 def render_card(record):
     r = record
     cause = CAUSES[r["cause"]]
     historical = r["historical"]
     label = "Historical case study" if historical else "Collected report"
     display_date = (r.get("incident_date") or r["published_at"])[:10]
+    order_date, learning_tier, lesson_count = ordering(r)
     date_label = "Incident" if r.get("incident_date") else "Published; incident date unconfirmed"
     evidence = "".join(
         f'<blockquote><p>{esc(e["text"])}</p><cite>{esc(r["source_name"])} &middot; {esc(e["at"])}</cite></blockquote>'
@@ -379,7 +390,8 @@ def render_card(record):
     return f"""
     <article class="incident-card {'case-study' if historical else ''}" id="{esc(r['id'])}"
       data-type="{esc(r['type'])}" data-cause="{esc(r['cause'])}"
-      data-kind="{'historical' if historical else 'live'}" data-date="{esc(display_date)}" data-search="{esc(search.lower())}">
+      data-kind="{'historical' if historical else 'live'}" data-date="{esc(display_date)}" data-search="{esc(search.lower())}"
+      data-id="{esc(r['id'])}" data-order-date="{esc(order_date)}" data-learning-tier="{learning_tier}" data-lesson-count="{lesson_count}">
       <div class="card-top"><span class="eyebrow">{esc(label)}</span><span class="status">{esc(r['status'].replace('_', ' '))}</span></div>
       <h3>{esc(r['title'])}</h3>
       <p class="card-summary">{esc(r['summary'])}</p>
@@ -419,6 +431,8 @@ def build(archive, cases, health, output):
         seen.add(record["id"])
         if record["cause"] not in CAUSES or record["type"] not in {"security", "outage"}:
             raise ValueError("Unsupported cause or incident type")
+    records.sort(key=lambda r: r["id"])
+    records.sort(key=lambda r: ordering(r)[0], reverse=True)
     output.mkdir(parents=True, exist_ok=True)
     template = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
     source_rows = []

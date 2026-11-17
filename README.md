@@ -14,6 +14,23 @@ Barracuda, Microsoft 365, Fandango, and FaceStealer reports collected in Novembe
 2026. No login, paid service,
 API key, or external secret is required.
 
+## Library ordering
+
+**Sort by** offers **Latest** (the default, including without JavaScript) and
+**Most learnings**. Latest sorts the entire library newest first by known incident
+timestamp, falling back to source publication timestamp. Date-only values use
+midnight UTC; historical studies are not pinned above current reports.
+
+Most learnings puts reviewed current explanations and historical deep dives
+first, automated provider timelines second, and feed-only reports last. Within
+each group it sorts by distinct nonblank engineering lesson count descending
+(case/whitespace-insensitive), then latest timestamp, then record ID ascending
+for deterministic ties. Feed-only placeholders contribute zero lessons.
+This is a simple browsing heuristic, not an objective educational-value score.
+Both orders work with all filters/search and preserve expanded details.
+Reset filters restores Latest. The featured historical studies remain available
+separately in Start here.
+
 ## Daily operation
 
 `.github/workflows/daily.yml` runs **every day at 08:37 UTC**

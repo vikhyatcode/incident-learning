@@ -8,13 +8,26 @@ export function matches(record, filters) {
     && (!filters.to || record.date <= filters.to);
 }
 
+export function compareIncidents(a, b, order = "latest") {
+  if (order === "learnings") {
+    const depth = Number(b.learningTier) - Number(a.learningTier);
+    const lessons = Number(b.lessonCount) - Number(a.lessonCount);
+    if (depth || lessons) return depth || lessons;
+  }
+  if (a.orderDate !== b.orderDate) return a.orderDate > b.orderDate ? -1 : 1;
+  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+}
+
 if (typeof document !== "undefined") {
   const form = document.querySelector("#filters");
   const cards = [...document.querySelectorAll(".incident-card")];
+  const list = document.querySelector(".incident-list");
   const count = document.querySelector("#result-count");
   const empty = document.querySelector("#empty-results");
   const filter = () => {
     const values = Object.fromEntries(new FormData(form));
+    cards.sort((a, b) => compareIncidents(a.dataset, b.dataset, values.sort));
+    list.append(...cards);
     let visible = 0;
     for (const card of cards) {
       card.hidden = !matches(card.dataset, values);
@@ -32,7 +45,7 @@ if (typeof document !== "undefined") {
     if (card?.classList.contains("incident-card")) {
       form.reset();
       for (const element of form.elements) {
-        if (element.name) element.value = "";
+        if (element.name) element.value = element.name === "sort" ? "latest" : "";
       }
       filter();
       card.querySelector("details.lesson").open = true;
