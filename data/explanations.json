@@ -49,7 +49,7 @@
       "fingerprint": "ce370b3fa0922065ff90d3620c794843886101154e3e12a81b1e2b041515e748",
       "source_hash": "5c0093f8a0b3bc97302bbadc801fe8ee59f7aa7dda6cec7f8469eb93d0f7f6a5",
       "explanation_revision": "bffb335c03f2909f40068701ae32313fc1c96ef56328329d345ed9b25649d735",
-      "checked_at": "2026-11-17T09:14:46Z",
+      "checked_at": "2026-11-17T20:48:47Z",
       "explanation": {
         "summary": "Microsoft's preliminary account links the Microsoft 365 outage to a latent gateway defect activated by changed traffic and reduced capacity. Routing around failed servers amplified the load on survivors; restoring processes alone did not remove the failure condition.",
         "what_happened": {
@@ -93,7 +93,7 @@
       "fingerprint": "bfde25d924b6eef488e8227e4d49ae3cd05db7fe6ffe721b0e15e5c9c6de1fc6",
       "source_hash": "2bdaaa64397b2365f9ae374ef510def566d8b5495b13379083faccd383b717f8",
       "explanation_revision": "430768b473c1eccdc99e0db872cad997d86829f1de0814dcc5dcd12b43493d21",
-      "checked_at": "2026-11-17T09:14:46Z",
+      "checked_at": "2026-11-17T20:48:47Z",
       "explanation": {
         "summary": "Barracuda says a cloud key left active after a vendor project enabled intrusion into its cloud environment. The important engineering failure is the lifetime and reach of delegated credentials, not simply the reported use of an AI hacking tool.",
         "what_happened": {
@@ -137,7 +137,7 @@
       "fingerprint": "38e8fc3fcafe392208a186ceff7e14576cee2e03dd0bfbd4cbde95a99e7e7a3a",
       "source_hash": "41aeca0116ca94c12136b7098194ba406e9787063974d9615f487f696f356068",
       "explanation_revision": "51779f2c2b82ff2631cfd15f3f28f422d4eb444cc2dd1203fb25502e833062c6",
-      "checked_at": "2026-11-17T09:14:46Z",
+      "checked_at": "2026-11-17T20:48:47Z",
       "explanation": {
         "summary": "Fandango reported a checkout-page compromise that could expose payment data while a purchase was being entered. This illustrates why protecting stored payment data is not sufficient when the browser's live input path is compromised.",
         "what_happened": {
@@ -181,7 +181,7 @@
       "fingerprint": "cf37f6054369ea0761d447fc4c19db9cf939e7d58698f43d07fe6cdc52f1aa06",
       "source_hash": "dc1947f57ad3f8357826e79fc762889c4557f811bf0cb50f5836a2f8b154b4a8",
       "explanation_revision": "fa1d89c886adfccbc140bb8aafcb7c2782ae5979f9315e6523273f53fab8c0dd",
-      "checked_at": "2026-11-17T09:14:46Z",
+      "checked_at": "2026-11-17T20:48:47Z",
       "explanation": {
         "summary": "The Hacker News reports an FBI account of cryptocurrency theft through impersonated video meetings and fake technical fixes. The trust boundary failed when a convincing meeting became a reason to run untrusted software, not merely when a fake face appeared.",
         "what_happened": {
@@ -223,15 +223,17 @@
     }
   },
   "health": {
-    "checked_at": "2026-11-17T09:14:46Z",
-    "status": "ok",
+    "checked_at": "2026-11-17T20:48:47Z",
+    "status": "partial",
     "attempted": 5,
-    "explained": 5,
-    "pending": 0,
+    "explained": 4,
+    "pending": 1,
     "total": 19,
     "timelines": 14,
     "unreviewed": 0
   },
-  "errors": {},
+  "errors": {
+    "report:b6e25351df538f83532c": "ValueError: Source article changed since review; explanation needs re-review."
+  },
   "reviewed_at": "2026-11-17T09:12:00Z"
 }
