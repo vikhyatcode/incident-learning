@@ -18,6 +18,8 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
+if __name__ == "__main__" and not __package__:
+    sys.path.insert(0, str(ROOT))
 SOURCES = [
     {"id": "github", "name": "GitHub Status", "kind": "statuspage",
      "url": "https://www.githubstatus.com/api/v2/incidents.json"},
@@ -358,6 +360,11 @@ def render_card(record):
     evidence = "".join(
         f'<blockquote><p>{esc(e["text"])}</p><cite>{esc(r["source_name"])} &middot; {esc(e["at"])}</cite></blockquote>'
         for e in r.get("evidence", []))
+    citations = "".join(
+        f'<li><strong>{esc(c["section"].replace("_", " ").title())}</strong>: '
+        f'&ldquo;{esc(c["text"])}&rdquo; '
+        f'{source_link(c["url"], r["source_name"])}</li>'
+        for c in r.get("citations", []))
     lessons = "".join(f"<li>{esc(v)}</li>" for v in r["lessons"])
     questions = "".join(f"<li>{esc(v)}</li>" for v in r["questions"])
     references = "".join("<li>" + source_link(s["url"], s["name"]) + "</li>" for s in r.get("references", []))
@@ -381,6 +388,7 @@ def render_card(record):
       <details class="lesson"><summary>Explore the incident <span aria-hidden="true">+</span></summary>
         <div class="lesson-content">
           <p class="evidence-note">{esc(r.get('explanation_note', 'Originally written case study, based on the linked postmortem. Facts and general lessons are separated below.'))}</p>
+          {('<p class="warning">Explanation update unavailable: ' + esc(r["enrichment_error"]) + '</p>') if r.get("enrichment_error") else ''}
           <div class="fact-grid">
             <section><h4>01 &nbsp; What happened</h4><p>{esc(r['what_happened'])}</p></section>
             <section><h4>02 &nbsp; Impact</h4><p>{esc(r['impact'])}</p></section>
@@ -388,6 +396,7 @@ def render_card(record):
             <section><h4>04 &nbsp; Response &amp; recovery</h4><p>{esc(r['response'])}</p></section>
           </div>
           {('<section><h4>Source evidence &mdash; short attributed extracts</h4>' + evidence + '</section>') if evidence else ''}
+          {('<section><h4>Source citations by section</h4><ul>' + citations + '</ul></section>') if citations else ''}
           <section class="study-panel"><h4>Engineering lessons <span>General practice, not additional incident facts</span></h4><ul>{lessons}</ul>
             <h4>Pause &amp; reflect</h4><ol>{questions}</ol></section>
           <div class="provenance"><p>{source_link(r['url'], r['source_name'])}</p>
@@ -425,6 +434,13 @@ def build(archive, cases, health, output):
         "HEALTH_LABEL": "Partial source failure" if health.get("status") == "partial" else ("Sources healthy" if health.get("status") == "ok" else "Awaiting collection"),
         "LIVE_COUNT": str(len(archive)),
         "CASE_COUNT": str(len(cases)),
+        "EXPLANATION_HEALTH": esc(
+            f'{health["explanations"]["explained"]} of {health["explanations"]["total"]} current reports explained '
+            f'with source-reviewed analysis; {health["explanations"].get("timelines", 0)} automated provider timelines. '
+            f'Explanation status: {health["explanations"]["status"]}. '
+            f'Checked: {health["explanations"]["checked_at"]}. '
+            'Other reports retain clearly labeled feed-only evidence.'
+        ) if health.get("explanations") else "Current explanation checks have not run yet.",
         "CAUSE_OPTIONS": "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in CAUSES.items()),
         "CASE_LINKS": "".join(f'<a href="#{esc(r["id"])}" class="case-link" data-case-link><span>{esc(r["title"])}</span><small>{esc(CAUSES[r["cause"]])} &rarr;</small></a>' for r in cases),
     }
@@ -462,6 +478,20 @@ def main():
         write_json(health_path, health)
         print(f"Archived {len(archive)} selected reports. Source health: {health['status']}.")
     else:
+        from scripts import enrichment
+        stored = read_json(ROOT / "data" / "explanations.json", {})
+        archive = enrichment.for_build(
+            archive, read_json(ROOT / "data" / "current-explanations.json", {}), stored)
+        if stored.get("health"):
+            explanation_health = dict(stored["health"])
+            explanation_health["explained"] = sum(
+                r.get("explanation_status") == "reviewed" for r in archive)
+            explanation_health["timelines"] = sum(
+                r.get("explanation_status") == "timeline" for r in archive)
+            explanation_health["total"] = len(archive)
+            explanation_health["pending"] = sum(bool(r.get("enrichment_error")) for r in archive)
+            explanation_health["status"] = "partial" if explanation_health["pending"] else "ok"
+            health["explanations"] = explanation_health
         build(archive, read_json(ROOT / "data" / "case-studies.json", []), health, ROOT / "site")
         print(f"Built site with {len(archive)} collected reports.")
     return 0

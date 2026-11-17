@@ -1,0 +1,155 @@
+{
+  "reviewed_at": "2026-11-17T09:12:00Z",
+  "records": {
+    "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/": {
+      "summary": "A weakness in Optimizely's signup flow let an attacker modify scripts delivered by customer websites. A trusted website dependency became a route to visitors' browsers; Optimizely reports blocking the entry point and removing the injected code.",
+      "what_happened": {
+        "text": "BleepingComputer reports that an attacker used Optimizely's Experimentation account signup flow to insert malicious JavaScript into customer projects. Websites that loaded the affected Optimizely scripts then delivered that code to their own visitors. This was a compromise of a shared delivery dependency, not evidence that every affected site's own application servers were breached.",
+        "quotes": ["attackers exploited a vulnerability in its Experimentation account signup flow"]
+      },
+      "impact": {
+        "text": "The reported payload could target cryptocurrency transfers and payment details and deliver attacks against older iOS software. The distinction matters: the ability to collect data and exposure to a malicious script do not establish how many visitors actually lost money or data. This report does not establish a final visitor-victim count.",
+        "quotes": ["exposing visitors to scripts designed to steal cryptocurrency and payment information and exploit vulnerabilities in iOS devices."]
+      },
+      "known_cause": {
+        "text": "Optimizely's statement, quoted in the article, identifies exploitation of a vulnerability in its Experimentation account signup flow as the route used to add malicious JavaScript. Group: security attack. The article does not provide enough detail to reconstruct the underlying authorization defect, and this notebook does not speculate about it.",
+        "quotes": ["attackers exploited a vulnerability in its Experimentation account signup flow"]
+      },
+      "response": {
+        "text": "Optimizely says it closed and fixed the vulnerable path and removed injected code. These are separate recovery tasks: blocking new modifications does not itself clean scripts that have already been changed. The statement describes an ongoing investigation, so mitigation should not be read as a completed assessment of every exposed visitor.",
+        "quotes": ["We have blocked access to the vulnerable path and deployed a fix.", "We have removed the injected code from affected projects."]
+      },
+      "cause": "security",
+      "lessons": [
+        "A script loaded by a trusted page often inherits access to that page's sensitive context. Inventory third-party execution on checkout and authenticated pages, not just backend packages; a vendor feature can become part of your effective security boundary.",
+        "Plan a browser-side dependency kill switch and test what still works when that integration is disabled. Pair entry-point containment with an inventory of modified delivered artifacts: stopping writes and cleaning previously published code are different operations.",
+        "Monitor unexpected script changes and outbound browser destinations. These controls are defense-in-depth ideas motivated by the delivery path, not claims that a particular control would certainly have stopped this incident."
+      ],
+      "questions": [
+        "Which third-party scripts can read sensitive fields on your highest-value pages?",
+        "Can you stop delivery of a compromised integration without waiting for its vendor to finish an investigation?",
+        "How would you distinguish visitor exposure from confirmed theft in your incident report?"
+      ]
+    },
+    "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/": {
+      "summary": "Barracuda says a cloud key left active after a vendor project enabled intrusion into its cloud environment. The important engineering failure is the lifetime and reach of delegated credentials, not simply the reported use of an AI hacking tool.",
+      "what_happened": {
+        "text": "BleepingComputer describes an intrusion into Barracuda's cloud environment using a key previously supplied to a third-party vendor. The company attributes activity to the ARTEX framework, but a tool attribution is different from the access failure that made the activity possible. The reported initial access was a still-valid cloud credential.",
+        "quotes": ["used a stolen cloud access key and the ARTEX AI penetration testing framework."]
+      },
+      "impact": {
+        "text": "Barracuda reports access to approximately ten cloud accounts over a 44-hour period. The article distinguishes access to systems from proof of theft of every secret they held. In particular, uncertainty about customer integration credentials prompted precautionary action; it should not be rewritten as a confirmed theft of all customer credentials.",
+        "quotes": ["accessed approximately 10 of its cloud accounts over a 44-hour period"]
+      },
+      "known_cause": {
+        "text": "The reported access mechanism was a stolen vendor cloud key that Barracuda had not retired after the engagement ended. Group: security attack, with a credential-lifecycle failure as a contributing control weakness. The source's belief about where the attacker obtained the key remains attributed, not independently established by this notebook.",
+        "quotes": ["We did not retire the key when the vendor"]
+      },
+      "response": {
+        "text": "Potentially affected customers were asked to replace integration credentials because the investigation could not eliminate exposure. This is a risk-based containment decision, not proof that those credentials were stolen. The report says customers not contacted directly were not asked to act.",
+        "quotes": ["revoke and recreate their integration credentials."]
+      },
+      "cause": "security",
+      "lessons": [
+        "Treat the end of a vendor project as an access-revocation event. Prefer short-lived, narrowly scoped identities with an owner and expiry; a credential can outlive the business reason for granting it.",
+        "Model credential reach as a graph: access to one environment may reveal credentials for another. Exercise containment that closes these paths, rather than only disabling the first key discovered.",
+        "Separate three statements in customer communication: a system was reached, a credential may have been exposed, and theft was confirmed. Rotation can be justified under uncertainty without collapsing those distinctions."
+      ],
+      "questions": [
+        "Which vendor identities remain usable after the associated work ends?",
+        "Can one compromised integration credential reveal access to another environment?",
+        "What evidence would justify precautionary rotation even before theft is confirmed?"
+      ]
+    },
+    "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/": {
+      "summary": "Microsoft's preliminary account links the Microsoft 365 outage to a latent gateway defect activated by changed traffic and reduced capacity. Routing around failed servers amplified the load on survivors; restoring processes alone did not remove the failure condition.",
+      "what_happened": {
+        "text": "BleepingComputer reports Microsoft's preliminary explanation: gateway software that had run for months contained a defect exposed by a different traffic mix and reduced available capacity. As gateways stopped responding, traffic shifted to remaining servers and extended the failure. This is a cascading overload mechanism, not evidence that the most recent deployment was necessarily the trigger.",
+        "quotes": ["a previously undetected software bug, increased traffic after a Microsoft Teams failover, and reduced server capacity."]
+      },
+      "impact": {
+        "text": "The report describes worldwide Microsoft 365 disruption and says more than 80% of gateway servers became unresponsive. Server failure percentage is not a measured percentage of affected users, and the notebook does not equate the two. The preliminary nature of the account matters: later investigation may refine the contributing factors.",
+        "quotes": ["more than 80% of servers were unresponsive"]
+      },
+      "known_cause": {
+        "text": "Group: capacity/resources, because the reported active failure mechanism was traffic-driven contention and cascading overload. A latent software bug and failover-related traffic change were also contributing factors; a single filter label is not a complete causal tree. Attribution is to Microsoft's preliminary account as reported by BleepingComputer.",
+        "quotes": ["a previously undetected software bug, increased traffic after a Microsoft Teams failover, and reduced server capacity."]
+      },
+      "response": {
+        "text": "The report says engineers produced and rolled out a software fix, after which services stabilized. A restart is not equivalent to recovery when the same backlog and load immediately return; the incident illustrates why recovery must remove the triggering condition as well as revive individual instances.",
+        "quotes": ["Microsoft engineers developed a fix and deployed it across affected servers"]
+      },
+      "cause": "capacity",
+      "lessons": [
+        "Test the production traffic mix and machine topology, not merely a smaller server under synthetic load. More cores or a different concurrency pattern can expose contention that a weaker test machine never reaches.",
+        "Failover consumes spare capacity and changes who shares a dependency. Budget for simultaneous maintenance loss and redirected traffic; regional separation is not a guarantee of isolation if routing can move the same stress everywhere.",
+        "Design recovery with admission control and bounded backlog draining. Restarting an instance into the original overload can turn a local repair into a repeating failure loop."
+      ],
+      "questions": [
+        "What traffic would arrive at your shared gateway after a neighboring service fails over?",
+        "Does your load test preserve production concurrency, core count, and request mix?",
+        "How would you keep a recovering instance from accepting the entire backlog at once?"
+      ]
+    },
+    "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/": {
+      "summary": "Fandango reported a checkout-page compromise that could expose payment data while a purchase was being entered. This illustrates why protecting stored payment data is not sufficient when the browser's live input path is compromised.",
+      "what_happened": {
+        "text": "BleepingComputer reports that malicious skimmer code on Fandango's checkout page intercepted payment inputs. The report concerns the live checkout path; it is not presented here as a database dump or a compromise of all Fandango accounts. The disclosure describes an earlier exposure window, not a new attack beginning on the article's publication date.",
+        "quotes": ["Card skimmer code injected into Fandango"]
+      },
+      "impact": {
+        "text": "The company notification, as reported, concerns payment information associated with some checkout transactions. The article lists payment-card and contact fields but does not establish a victim count. Exposure of information usable for fraud is not itself evidence that fraudulent purchases have already occurred.",
+        "quotes": ["payment card information associated with certain transactions on our checkout page"]
+      },
+      "known_cause": {
+        "text": "Group: security attack. The supported mechanism is checkout-page skimming. How the attacker first obtained the ability to modify that page is not established by this source, so no vulnerable component, stolen credential, or initial intrusion method is invented.",
+        "quotes": ["Card skimmer code injected into Fandango"]
+      },
+      "response": {
+        "text": "The report says Fandango fixed the checkout issue and investigated with outside specialists. It also says the company was not aware of resulting fraud at publication. That is a time-bounded observation, not a guarantee that exposed data cannot be abused later.",
+        "quotes": ["fixed the issue on its checkout page, investigated with outside cybersecurity specialists"]
+      },
+      "cause": "security",
+      "lessons": [
+        "Trace payment data before it reaches your server. Database encryption and avoiding card storage do not protect values that malicious browser code can intercept during entry.",
+        "Monitor the integrity and allowed execution paths of checkout scripts. Consider isolating sensitive fields in a carefully designed payment-provider boundary, while verifying rather than assuming what scripts can access.",
+        "Keep exposure window, discovery date, disclosure date, and confirmed fraud separate. Each answers a different operational and customer-risk question."
+      ],
+      "questions": [
+        "What code can observe sensitive inputs before submission on your checkout page?",
+        "Would an unexpected script change on that page trigger a user-impacting alert?",
+        "How would you explain possible exposure without claiming confirmed fraud?"
+      ]
+    },
+    "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html": {
+      "summary": "The Hacker News reports an FBI account of cryptocurrency theft through impersonated video meetings and fake technical fixes. The trust boundary failed when a convincing meeting became a reason to run untrusted software, not merely when a fake face appeared.",
+      "what_happened": {
+        "text": "The article describes a campaign that uses stolen contacts and recorded or synthetic video to make meeting invitations appear credible. A fabricated meeting problem then becomes a pretext to install malware. This is a reported multi-victim campaign, not one new breach on the date of the article.",
+        "quotes": ["a mock technical error is presented to the victim"]
+      },
+      "impact": {
+        "text": "The article attributes more than $400 million in cryptocurrency theft over an 18-month period to the FBI's account. That is an attributed campaign-wide estimate, not the loss of a single newly disclosed incident. The report also discusses other government actions; their separate figures should not be added to this estimate as if they measured the same event.",
+        "quotes": ["resulting in the theft of more than $400 million in the last 18 months."]
+      },
+      "known_cause": {
+        "text": "Group: security attack. The described access path is social engineering that turns a fake technical fix into malware execution. Recorded video and familiar accounts support the deception but do not by themselves execute code; the software-execution step is the crucial security boundary.",
+        "quotes": ["The fix is a ClickFix-style lure that's designed to install malware"]
+      },
+      "response": {
+        "text": "The report says authorities seized campaign infrastructure. Disrupting an attacker's service is not equivalent to removing malware from previously compromised devices or restoring stolen assets; those separate recovery outcomes are not established here.",
+        "quotes": ["campaign has been seized."]
+      },
+      "cause": "security",
+      "lessons": [
+        "A familiar face or account is not authorization to install a meeting fix. Define an independent support channel and a policy that ordinary meetings never require pasting commands or running software supplied by another participant.",
+        "Separate signing authority and repository release credentials from general-purpose meeting workstations. This reduces the damage a socially engineered endpoint can cause even when the initial deception succeeds.",
+        "Exercise recovery for both a compromised device and hijacked communication accounts. A victim's trusted contact list can become the next delivery channel, so containment is broader than reinstalling one machine."
+      ],
+      "questions": [
+        "Can a meeting participant persuade someone to bypass your normal software-installation path?",
+        "Which high-value signing or release capabilities are reachable from meeting workstations?",
+        "How would you warn contacts after a trusted communications account is compromised?"
+      ]
+    }
+  }
+}

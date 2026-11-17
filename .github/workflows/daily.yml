@@ -11,6 +11,7 @@ on:
       - "web/**"
       - "tests/**"
       - "data/case-studies.json"
+      - "data/current-explanations.json"
       - ".github/workflows/daily.yml"
 
 permissions: {}
@@ -25,7 +26,6 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
-      models: read
     steps:
       - name: Check out latest archive
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -36,38 +36,17 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -v
           node --test tests/filters.test.mjs
-      - name: Verify built-in model access
-        env:
-          GH_MODELS_TOKEN: ${{ github.token }}
-        run: |
-          python3 - <<'PY'
-          import json, os, urllib.request, urllib.error
-          payload = {"model": "gpt-4o-mini", "messages": [
-              {"role": "user", "content": "Reply with the single word available."}],
-              "max_tokens": 8, "temperature": 0}
-          request = urllib.request.Request(
-              "https://models.inference.ai.azure.com/chat/completions",
-              data=json.dumps(payload).encode(),
-              headers={"Authorization": "Bearer " + os.environ["GH_MODELS_TOKEN"],
-                       "Content-Type": "application/json"})
-          try:
-              with urllib.request.urlopen(request, timeout=40) as response:
-                  body = response.read(2000).decode(errors="replace")
-                  print("Model access HTTP", response.status,
-                        "type:", response.headers.get("Content-Type"), "body:", body)
-          except urllib.error.HTTPError as error:
-              print("Model access unavailable HTTP", error.code,
-                    error.read(800).decode(errors="replace"))
-          PY
       - name: Collect current public feeds
         run: python3 scripts/pipeline.py collect
+      - name: Check current explanation evidence
+        run: python3 -m scripts.enrichment
       - name: Build static learning library
         run: python3 scripts/pipeline.py build
       - name: Preserve incident history
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/incidents.json data/collection.json
+          git add data/incidents.json data/collection.json data/explanations.json
           if ! git diff --cached --quiet; then
             git commit -m "Update selected incident archive" \
               -m "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
