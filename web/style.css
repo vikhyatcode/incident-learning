@@ -1,12 +1,12 @@
 :root {
-  --ink:#172e2a;
-  --muted:#586862;
-  --paper:#f8f9f4;
-  --line:#dce3da;
-  --green:#246349;
-  --pale:#eaf1e4;
-  --orange:#b75432;
-  --radius:15px;
+  --ink:#202833;
+  --muted:#53606e;
+  --paper:#fff;
+  --line:#d6dce3;
+  --green:#245785;
+  --pale:#f1f4f7;
+  --orange:#864224;
+  --radius:3px;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--ink);
   background:var(--paper);
@@ -49,7 +49,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   padding-right:40px
 }
 .site-header {
-  min-height:110px;
+  min-height:70px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -61,7 +61,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   align-items:center;
   font-size:19px;
   font-weight:750;
-  letter-spacing:-.7px;
+  letter-spacing:0;
   text-decoration:none
 }
 .wordmark>span:not(.logo) {
@@ -309,9 +309,9 @@ h2 {
   grid-template-columns:1.5fr 1fr 1.15fr 1fr;
   gap:15px;
   padding:22px;
-  background:#eef1e9;
+  background:#f3f5f7;
   border:1px solid var(--line);
-  border-radius:10px
+  border-radius:3px
 }
 .filters label {
   font-size:10px;
@@ -319,7 +319,7 @@ h2 {
   flex-direction:column;
   gap:8px;
   font-weight:650;
-  color:#42574e
+  color:var(--ink)
 }
 .filters input,.filters select {
   min-width:0;
@@ -372,7 +372,7 @@ h2 {
   background:#fff;
   border:1px solid var(--line);
   border-radius:var(--radius);
-  padding:26px 30px 0;
+  padding:20px 24px 0;
   scroll-margin-top:24px
 }
 .incident-card:target {
@@ -397,15 +397,15 @@ h2 {
   color:var(--muted)
 }
 h3 {
-  font-size:21px;
+  font-size:22px;
   font-weight:620;
-  letter-spacing:-.5px;
+  letter-spacing:0;
   line-height:1.4;
   margin:13px 0 10px;
   overflow-wrap:anywhere
 }
 .card-summary {
-  font-size:13px;
+  font-size:15px;
   line-height:1.8;
   color:var(--muted);
   margin:0 0 16px;
@@ -464,7 +464,7 @@ h3 {
 }
 .lesson-content {
   padding:3px 0 24px;
-  font-size:12px;
+  font-size:15px;
   line-height:1.9;
   overflow-wrap:anywhere
 }
@@ -482,9 +482,9 @@ h3 {
   gap:8px 35px
 }
 h4 {
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:1px;
+  font-size:15px;
+  text-transform:none;
+  letter-spacing:0;
   margin:14px 0 7px;
   color:var(--green)
 }
@@ -848,3 +848,44 @@ footer p,footer>a:last-child {
     transition:none!important
   }
 }
+  .publication-intro {padding:26px 0 22px;max-width:950px}
+  .publication-intro h1 {font-size:clamp(24px,3vw,34px);line-height:1.3;letter-spacing:-.3px;margin:0 0 12px}
+  .publication-intro p {font-size:15px;line-height:1.7;color:var(--muted);margin:0}
+  .collection-bar {padding:14px 0;grid-template-columns:150px 180px 1fr}
+  .collection-bar strong {font-size:22px;letter-spacing:0}
+  .section-heading {margin:25px 0 16px}
+  .section-heading h2,h2 {font-size:25px;letter-spacing:0}
+  .filters label {font-size:12px}
+  .library-note {font-size:13px;margin:12px 0 18px}
+  .learning-assessment {border-left:3px solid #426b94;padding:8px 12px;margin:0 0 15px;background:#f4f6f9;font-size:13px;line-height:1.6}
+  .learning-assessment p {margin:4px 0}
+  .analysis-pending {font-size:12px;color:var(--muted);line-height:1.7}
+  .analysis-detail {border-top:1px solid var(--line);margin-top:20px;padding-top:10px}
+  .analysis-detail dl,.causal-context {margin:16px 0}
+  .analysis-detail dt,.causal-context dt {font-weight:650;margin-top:8px}
+  .analysis-detail dd,.causal-context dd {margin:0 0 10px}
+  .causal-explanation {border-top:1px solid var(--line);margin-top:22px;padding-top:10px}
+  .causal-map {display:flex;list-style:none;padding:0;gap:22px;align-items:stretch;margin:20px 0;counter-reset:none}
+  .causal-map .causal-node {flex:1;min-width:0;position:relative;border:1px solid #8e9dae;background:#f6f8fa;padding:12px;font-size:13px;line-height:1.5}
+  .causal-node:not(:last-child)::after {content:"\2192";position:absolute;right:-20px;top:40%;font-size:18px;color:#425870}
+  .causal-node strong,.causal-node small {display:block}
+  .causal-node small {margin-top:8px;color:#53606e;font-size:11px}
+  .causal-number {font-weight:700;color:#245785}
+  .causal-map .causal-unknown {border:2px dashed #8a6746;background:#fffaf2}
+  .causal-map .causal-recommendation {border-style:dotted}
+  .causal-prose {padding-left:24px}
+  .causal-prose li {padding-left:4px;margin:12px 0}
+  .feedback {border-left:3px solid #826742;padding:8px 12px;background:#faf7f1}
+  .study-panel {background:#f4f6f8;border-color:var(--line);border-radius:3px}
+  .lesson-content section p {color:var(--ink)}
+  .fact-grid {grid-template-columns:1fr;gap:0}
+  .source-section {background:#f4f6f8;border-radius:3px}
+  .tag,.tag.security,.tag.outage {background:#f4f6f8;border-color:var(--line);color:#354658}
+  .start-section {padding:30px 0}
+  @media(max-width:800px) {
+    .causal-map {flex-direction:column;gap:26px}
+    .causal-node:not(:last-child)::after {content:"\2193";top:auto;bottom:-26px;left:16px;right:auto}
+    .collection-bar {grid-template-columns:1fr 1fr}
+    .collection-bar .collection-time {grid-column:span 2;border-left:0;padding-left:0}
+    .incident-card {padding-left:16px;padding-right:16px}
+  }

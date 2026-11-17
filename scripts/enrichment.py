@@ -19,6 +19,13 @@ ARTICLE_HOSTS = {
     "www.bleepingcomputer.com": re.compile(r"^/news/[a-z0-9-]+/[a-z0-9-]+/$"),
     "thehackernews.com": re.compile(r"^/\d{4}/\d{2}/[a-z0-9-]+\.html$"),
 }
+PRIMARY_ARTICLES = {
+    "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor": "article",
+    "https://fireworks.ai/security-bulletins": "article",
+    "https://github.blog/news-insights/company-news/oct21-post-incident-analysis/": "main",
+    "https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/": "article",
+    "https://blog.lastpass.com/posts/security-incident-update-recommended-actions": "main",
+}
 FIELDS = ("what_happened", "impact", "known_cause", "response")
 UNKNOWN = "Not established by the available source evidence."
 
@@ -29,6 +36,10 @@ def article_url(url):
         raise ValueError("Unsafe article URL")
     parts = urlsplit(clean)
     pattern = ARTICLE_HOSTS.get(parts.hostname)
+    if (clean in PRIMARY_ARTICLES and parts.scheme == "https"
+            and parts.port in (None, 443) and not parts.username and not parts.password
+            and not parts.query and "%" not in parts.path):
+        return clean
     if (parts.scheme != "https" or parts.port not in (None, 443) or not pattern
             or parts.query or unquote(parts.path) != parts.path
             or not pattern.fullmatch(parts.path)):
@@ -48,11 +59,13 @@ class ArticleText(HTMLParser):
     VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
             "link", "meta", "param", "source", "track", "wbr"}
 
-    def __init__(self):
+    def __init__(self, container=None):
         super().__init__(convert_charrefs=True)
         self.stack = []
         self.body_depth = None
         self.parts = []
+        self.container = container
+        self.completed = False
 
     def handle_starttag(self, tag, attrs):
         self.parts.append(" ")
@@ -61,11 +74,13 @@ class ArticleText(HTMLParser):
         attributes = dict(attrs)
         classes = attributes.get("class", "").split()
         hidden = (bool(self.stack and self.stack[-1][1])
-                  or tag in {"script", "style", "aside", "figure", "table"}
+                  or tag in {"script", "style", "aside", "figure", "nav", "footer"}
+                  or tag == "table" and not self.container
                   or "article-callout" in classes)
         self.stack.append((tag, hidden))
-        if self.body_depth is None and (
-                "articleBody" in classes or "articlebody" in classes):
+        if self.body_depth is None and not self.completed and (
+                tag == self.container or
+                not self.container and ("articleBody" in classes or "articlebody" in classes)):
             self.body_depth = len(self.stack)
 
     def handle_endtag(self, tag):
@@ -75,6 +90,7 @@ class ArticleText(HTMLParser):
                 break
         if self.body_depth is not None and len(self.stack) < self.body_depth:
             self.body_depth = None
+            self.completed = bool(self.container)
         self.parts.append(" ")
 
     def handle_data(self, data):
@@ -82,13 +98,13 @@ class ArticleText(HTMLParser):
             self.parts.append(data)
 
 
-def extract_article(body):
-    parser = ArticleText()
+def extract_article(body, container=None):
+    parser = ArticleText(container)
     parser.feed(body)
     result = " ".join("".join(parser.parts).split())
     if len(result) < 80:
         raise ValueError("No substantial recognized article body")
-    return result[:24000]
+    return result
 
 
 def download_article(url):
@@ -102,7 +118,7 @@ def download_article(url):
         body = response.read(2_000_001)
         if len(body) > 2_000_000:
             raise ValueError("Article exceeds 2 MB")
-    return extract_article(body.decode("utf-8", errors="replace"))
+    return extract_article(body.decode("utf-8", errors="replace"), PRIMARY_ARTICLES.get(url))
 
 
 def fetch_article(url):
@@ -184,7 +200,8 @@ def apply_explanation(record, cached):
         "Source-reviewed current explanation, originally written for this notebook. "
         f"Evidence checked {cached['checked_at']}. Claims are attributed to the linked source; "
         "cause grouping reflects that account, not independent verification. "
-        "Automated AI explanation: unavailable; this is a reviewed explanation with automatic citation checks.")
+        "Written during a Copilot source-review session; daily collection checks citations "
+        "but does not run an AI model.")
     result["explanation_status"] = "reviewed"
     return result
 
@@ -298,15 +315,18 @@ def provider_timeline(record):
 def run(archive, document, previous, now, loader=fetch_article):
     notes = document["records"]
     cache = copy.deepcopy(previous.get("entries", {}))
-    for entry in cache.values():
+    urls = {r["id"]: r["url"] for r in archive}
+    for identity, entry in cache.items():
         entry.setdefault("explanation_revision", digest({
-            "reviewed_at": previous.get("reviewed_at"), "note": entry["explanation"]}))
+            "reviewed_at": previous.get("reviewed_at_by_url", {}).get(urls.get(identity)),
+            "note": entry["explanation"]}))
     selected = []
     for record in archive:
         if record["url"] in notes:
             candidate = copy.deepcopy(record)
             candidate["explanation_revision"] = digest({
-                "reviewed_at": document["reviewed_at"], "note": notes[record["url"]]})
+                "reviewed_at": document.get("reviewed_at_by_url", {}).get(record["url"]),
+                "note": notes[record["url"]]})
             selected.append(candidate)
 
     def explain(record, evidence):
@@ -319,22 +339,30 @@ def run(archive, document, previous, now, loader=fetch_article):
     explained, report = enrich(selected, cache, now, lambda r: loader(r["url"]), explain)
     report["total"] = len(archive)
     report["timelines"] = sum(r["source_id"] in {"github", "cloudflare"} for r in archive)
-    report["unreviewed"] = len(archive) - len(selected) - report["timelines"]
+    curated = sum(r["source_id"] == "advisory" and r.get("explanation_status") == "reviewed"
+                  for r in archive)
+    report["explained"] += curated
+    report["unreviewed"] = len(archive) - len(selected) - report["timelines"] - curated
     errors = {r["id"]: r["enrichment_error"] for r in explained if r.get("enrichment_error")}
     if report["unreviewed"]:
         report["status"] = "partial"
     return {"entries": cache, "health": report, "errors": errors,
-            "reviewed_at": document["reviewed_at"]}
+            "reviewed_at": document["reviewed_at"],
+            "reviewed_at_by_url": document.get("reviewed_at_by_url", {})}
 
 
 def for_build(archive, document, stored):
     records = []
     for record in archive:
         candidate = copy.deepcopy(record)
+        if record["source_id"] == "advisory":
+            records.append(candidate)
+            continue
         notes = document.get("records", {}).get(record["url"])
         if notes:
             candidate["explanation_revision"] = digest({
-                "reviewed_at": document["reviewed_at"], "note": notes})
+                "reviewed_at": document.get("reviewed_at_by_url", {}).get(record["url"]),
+                "note": notes})
         cached = stored.get("entries", {}).get(record["id"])
         error = stored.get("errors", {}).get(record["id"])
         if cached and cached["fingerprint"] == fingerprint(candidate) and not error:

@@ -6,7 +6,7 @@
   <meta name="description" content="Learn from major software outages and security incidents. Source-backed case studies, daily selected reports, and practical engineering questions.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light">
-  <title>Incident Learning - Better systems begin with better questions</title>
+  <title>Software Incident Reviews</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
@@ -14,36 +14,24 @@
 <body>
   <a class="skip-link" href="#library">Skip to incidents</a>
   <header class="site-header wrap">
-    <a class="wordmark" href="./"><span class="logo" aria-hidden="true">il.</span> incident<span>learning</span></a>
-    <nav aria-label="Main navigation"><a href="#start">Start learning</a><a href="#library">Incident library</a><a href="https://github.com/vikhyatcode/incident-learning">GitHub &nearr;</a></nav>
+    <a class="wordmark" href="./">Software Incident Reviews</a>
+    <nav aria-label="Main navigation"><a href="#library">Reports</a><a href="#start">Historical reviews</a><a href="https://github.com/vikhyatcode/incident-learning">Repository</a></nav>
   </header>
   <main class="wrap">
-    <section class="hero" aria-labelledby="headline">
-      <div class="hero-copy"><p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> A FIELD GUIDE FOR CURIOUS ENGINEERS</p>
-        <h1 id="headline">Things break.<br><em>Learn what matters.</em></h1>
-        <p class="lede">Understand the outages and security incidents shaping software. Start with the short version. Stay for the engineering lesson.</p>
-        <div class="hero-actions"><a class="button" href="#start">Find your next lesson <span aria-hidden="true">&rarr;</span></a><span>No noise. No invented root causes.</span></div>
-      </div>
-      <aside class="principle" aria-label="Our learning approach">
-        <span class="diagram-label">THE LEARNING LOOP</span>
-        <div class="loop"><span>Observe</span><b aria-hidden="true">&darr;</b><span>Understand</span><b aria-hidden="true">&darr;</b><span class="loop-final">Build better</span></div>
-        <p>Evidence first.<br>Questions before assumptions.</p>
-      </aside>
+    <section class="publication-intro" aria-labelledby="headline">
+      <h1 id="headline">Technical reviews of software failures and security incidents</h1>
+      <p>Executive summaries, causal explanations, and engineering analysis based on public evidence. Feeds are collected daily; separately invoked Copilot agents review selected reports for study.</p>
     </section>
     <section class="collection-bar" aria-label="Collection status">
       <div><strong>{{LIVE_COUNT}}</strong><span>selected reports</span></div><div><strong>{{CASE_COUNT}}</strong><span>deep-dive case studies</span></div>
       <div class="collection-time"><span class="health-label">{{HEALTH_LABEL}}</span><span>Last collection: <time id="collected-at" datetime="{{COLLECTED_AT}}">{{COLLECTION_LABEL}}</time></span><a href="#source-health">View source health &darr;</a></div>
     </section>
     <p id="stale-warning" class="warning" role="status" hidden></p>
-    <section id="start" class="start-section" aria-labelledby="start-heading">
-      <div class="section-heading"><div><p class="eyebrow">START HERE</p><h2 id="start-heading">Three incidents. Lasting lessons.</h2></div><p>Historical, source-backed explainers.<br>Not today's breaking news.</p></div>
-      <div class="case-links">{{CASE_LINKS}}</div>
-    </section>
     <section id="library" aria-labelledby="library-heading">
-      <div class="section-heading"><div><p class="eyebrow">THE INCIDENT NOTEBOOK</p><h2 id="library-heading">Follow the failure. Find the lesson.</h2></div><p>Grouped by confirmed cause.<br>Unknown is an honest answer.</p></div>
-      <p class="library-note">Daily selected reports and historical cases, not a complete incident census. A recent publication can describe an older event. Different outlets may cover the same event; reports are not unique-event counts.</p>
+      <div class="section-heading"><h2 id="library-heading">Incident reports</h2><p>Filter by the supported causal category. Unpublished causes remain unknown.</p></div>
+      <p class="library-note">Selected reporting, not comprehensive coverage. Publication date is not necessarily the incident date. Reviewed aliases are combined; unmatched syndicated coverage can remain separate.</p>
       <form class="filters" id="filters" role="search" aria-label="Filter incident library" hidden>
-        <label class="search">Search the notebook<input id="search" name="q" type="search" placeholder="Service, incident, or engineering concept..." autocomplete="off"></label>
+        <label class="search">Search reports<input id="search" name="q" type="search" placeholder="Service, incident, or engineering concept" autocomplete="off"></label>
         <label>Incident type<select id="type" name="type"><option value="">All types</option><option value="outage">Outages / failures</option><option value="security">Security incidents</option></select></label>
         <label>Underlying cause<select id="cause" name="cause"><option value="">All causes</option>{{CAUSE_OPTIONS}}</select></label>
         <label>Collection<select id="kind" name="kind"><option value="">All entries</option><option value="live">Collected reports</option><option value="historical">Historical studies</option></select></label>
@@ -51,23 +39,29 @@
         <label>Sort by<select id="sort" name="sort" aria-describedby="sort-help"><option value="latest">Latest</option><option value="learnings">Most learnings</option></select></label>
         <button type="reset" class="reset">Reset filters</button>
       </form>
-      <p id="sort-help" class="library-note">Latest: newest incident date, or publication date if unknown. Most learnings: reviewed deep dives first, then provider timelines, then feed-only reports; within each group, more distinct engineering lessons first, then latest. A browsing heuristic, not an objective measure of educational value.</p>
+      <p id="sort-help" class="library-note">Latest: incident date, otherwise publication date. Most learnings: fresh AI source-review score, highest first; ties use latest then ID. Stale and unassessed entries are unranked and follow scored reports. Score = 5 &times; relevance + 10 &times; evidence detail + 7 &times; transferability + 3 &times; confidence (each 0&ndash;4). This is a subjective study priority, not incident severity or popularity.</p>
       <noscript><p class="warning">JavaScript is off. All incidents and expandable lessons remain available, latest first; filters and changing sort order need JavaScript.</p></noscript>
       <div class="results-line"><p id="result-count" role="status" aria-live="polite">Browse all entries below</p><span>Incident date when known; otherwise publication date. All times UTC.</span></div>
       <p id="empty-results" class="empty" hidden>No incidents match these filters. Try another cause or date range.</p>
       <div class="incident-list">{{CARDS}}</div>
     </section>
+    <section id="start" class="start-section" aria-labelledby="start-heading">
+      <div class="section-heading"><h2 id="start-heading">Historical engineering reviews</h2><p>Retrospective studies, not current incidents.</p></div>
+      <div class="case-links">{{CASE_LINKS}}</div>
+    </section>
     <section class="source-section" id="source-health" aria-labelledby="sources-heading">
-      <div><p class="eyebrow">TRANSPARENCY, NOT CERTAINTY</p><h2 id="sources-heading">Know what you know.<br>See what you don't.</h2>
+      <div><h2 id="sources-heading">Sources and review status</h2>
         <p>Collected daily at <strong>08:37 UTC</strong>. Major and critical provider incidents, plus significant-impact security and outage reporting. We do not infer a root cause from a headline.</p>
         <p>Current source-reviewed explainers link evidence for what happened, impact, cause, and recovery. Provider incidents also include automated reporting timelines. Other entries retain clearly labeled feed-only evidence. General engineering lessons are not additional incident facts.</p>
         <p class="evidence-note" id="explanation-health">{{EXPLANATION_HEALTH}}</p>
+        <p class="evidence-note" id="learning-health">{{LEARNING_HEALTH}}</p>
+        <p>The daily job does not run Copilot agents. AI assessments identify their model, review date and evidence; changed or unavailable sources remove scores from trusted ranking. Official advisory discovery supplements the finite feeds through deliberate agent review.</p>
         <p>Partial failures are listed here; total collection failure preserves the previous site. Check the timestamp and <a href="https://github.com/vikhyatcode/incident-learning/actions/workflows/daily.yml">workflow history</a> for freshness.</p>
         <a href="https://github.com/vikhyatcode/incident-learning#sources-and-selection">Read selection rules &amp; limitations &nearr;</a>
       </div>
       <ul class="source-list">{{SOURCES}}</ul>
     </section>
   </main>
-  <footer class="wrap"><a class="wordmark" href="./">incident<span>learning</span></a><p>A personal learning notebook. Not an authoritative security advisory.</p><a href="https://github.com/vikhyatcode/incident-learning">Source &amp; contributions &nearr;</a></footer>
+  <footer class="wrap"><a href="./">Software Incident Reviews</a><p>Educational analysis, not an authoritative security advisory.</p><a href="https://github.com/vikhyatcode/incident-learning">Source and methodology</a></footer>
 </body>
 </html>

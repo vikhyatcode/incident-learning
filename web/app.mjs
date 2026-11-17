@@ -10,9 +10,11 @@ export function matches(record, filters) {
 
 export function compareIncidents(a, b, order = "latest") {
   if (order === "learnings") {
-    const depth = Number(b.learningTier) - Number(a.learningTier);
-    const lessons = Number(b.lessonCount) - Number(a.lessonCount);
-    if (depth || lessons) return depth || lessons;
+    const score = (record) => record.analysisStatus === "assessed"
+      && record.learningScore !== "" && Number.isFinite(Number(record.learningScore))
+      ? Number(record.learningScore) : -1;
+    const difference = score(b) - score(a);
+    if (difference) return difference;
   }
   if (a.orderDate !== b.orderDate) return a.orderDate > b.orderDate ? -1 : 1;
   return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;

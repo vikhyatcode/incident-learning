@@ -1,0 +1,52 @@
+[
+  {
+    "id": "advisory:notion-fireworks-2026",
+    "title": "Notion / Fireworks AI: customer transcript exposure at an external processor",
+    "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+    "source_id": "advisory",
+    "source_name": "Notion security advisory / Fireworks AI bulletin",
+    "type": "security",
+    "cause": "security",
+    "historical": false,
+    "status": "contained_investigation_ongoing",
+    "incident_date": null,
+    "published_at": "2026-11-12T00:00:00Z",
+    "source_updated_at": "2026-11-13T00:00:00Z",
+    "selection_reason": "Copilot discovery beyond the finite feeds: official AI-vendor customer-data advisory, researched against two primary disclosures.",
+    "discovery": {
+      "method": "copilot-agent",
+      "artifact": "data/reviews/fireworks-discovery.json"
+    },
+    "aliases": [],
+    "evidence": [],
+    "explanation_status": "reviewed",
+    "explanation_note": "Original Copilot three-agent report, reviewed by the parent against source-grounded handoffs. Vendor claims remain attributed; the precise intrusion path to Notion transcripts is unknown. Dates here identify advisory publication/update days, not the exposure window. Daily checks do not execute AI.",
+    "references": [
+      {
+        "name": "Notion: Fireworks AI incident (including November 13 update)",
+        "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"
+      },
+      {
+        "name": "Fireworks AI: November 17 update distinguishing two intrusions",
+        "url": "https://fireworks.ai/security-bulletins"
+      }
+    ],
+    "summary": "A dataset accessed at Fireworks AI contained Notion customer chat transcripts used for Insights, affecting less than 1% of workspaces. Some messages contained API keys. Unauthorized access at an external processor thus exposed both customer text and embedded credentials. The initial intrusion path to this dataset remains unknown: the vendor describes two distinct intrusions, but neither primary disclosure maps Notion's transcripts to either one. The lesson is to examine workflow-specific data boundaries, not infer safety from missing identity labels.",
+    "what_happened": "Normally, Notion used Fireworks classification jobs for Insights, crossing an application-to-external-processor boundary with chat content. Separately, it used the vendor for open-weight model inference; the confirmed transcript exposure concerns Insights. The investigation's trigger was evolving dataset evidence, not a disclosed exploit against Notion. A November 2 notification concerned synthetic testing data. A November 6 warning prompted another investigation; the final impacted dataset, confirmed November 8, contained customer Insights transcripts. This supersedes an overall synthetic-only interpretation without proving that the initial dataset itself contained customer data. Unauthorized access at the processor exposed content beyond the intended processing relationship. Its precise storage, access authorization and exfiltration route remain unpublished.",
+    "impact": "Less than 1% of Notion workspaces were affected; the customer disclosure says no other Notion features were affected. For the vast majority of affected workspaces, transcripts lacked author/workspace labels and tool-call results, with no additional identifying information beyond the chat text itself. That is neither universal anonymization nor harmless content: affected messages contained Notion and third-party API keys. Credential exposure creates possible downstream access risk, but misuse is not established. Exact transcript counts and exposure windows remain unpublished. Separately, the vendor's second intrusion involved account/billing information for accounts created before October 30 and datasets, models and/or secrets for a small number of customers; payment card numbers were not stored. Those broader categories cannot automatically be assigned to Notion.",
+    "known_cause": "The supported root mechanism is confidentiality loss at an external processor holding customer transcripts, not a demonstrated exploit against Notion. The initial vector and dataset-access path remain UNKNOWN. Two distinct vendor intrusions provide context: August 3\u2013October 7 involved stolen Fireworks credentials plus an unnamed service vulnerability, with some customers' secrets, models and datasets accessed. October 23\u201330 involved access to cloud-hosted development machines followed by access to part of production. Credential theft, the vulnerability, cloud-provider compromise and exact development-to-production authorization crossing are unexplained. Neither disclosure maps Notion's dataset to either intrusion or both. Therefore neither contextual path is a proven end-to-end explanation for Notion, and the evidence establishes no specific failed Notion control or retention-policy violation.",
+    "response": "Containment is separate from cause. Notion disconnected Fireworks by November 3 and deleted its data there November 4, before final customer-data confirmation. It disabled Insights, removed Fireworks-served open-weight models, notified affected customers November 9 and offered secure review of impacted data. It revoked exposed Notion API keys November 11 and reported third-party keys to issuers November 12; notification does not prove issuer revocation. Deletion cannot recall already accessed copies or invalidate credentials. Fireworks reports credential replacement, reduced privileges, network isolation, tighter storage access, enhanced logging and temporary dataset-operation restrictions. It describes both intrusions as contained and remediated; the first forensic investigation is completed and the second ongoing. Those are attributed vendor statements, not independent verification.",
+    "lessons": [
+      "Recommendation \u2014 inventory the workflow, not just the provider. Trace the exact classification service, retained content, retrieval permissions and deletion verification. Product-specific zero-data-retention defaults do not settle this workflow's behavior. Compare retaining full transcripts for debugging with narrower excerpts or derived signals, measuring classification utility against reduced sensitive content.",
+      "Recommendation \u2014 minimize content as well as metadata. Removing workspace labels does not remove API keys or personal details inside text. Test secret detection, redaction and narrower inputs against classification quality; do not assume these controls are free or sufficient. The disclosures do not establish that a particular filter was absent.",
+      "Recommendation \u2014 separate copy removal from authority revocation. Dataset deletion reduces available copies at the processor; issuer revocation stops future authentication with a compromised key. Maintain issuer contacts and an activity-review process. Notification is not revocation, and exposure is not proof of misuse.",
+      "Recommendation \u2014 test development-to-production privilege boundaries using the vendor's second intrusion as contextual evidence, not as Notion's proven attack path. Examine which development identities can reach production data, what restricts that reach and which logs detect misuse. The precise failed control remains unpublished."
+    ],
+    "questions": [
+      "Which intrusion, or combination of intrusions, reached Notion's dataset, and what evidence establishes that mapping? It remains unpublished.",
+      "What service held Insights transcripts, why were they retained, which authorization enabled access and what were the collection and access windows?",
+      "How many transcripts and workspaces were affected, what information appeared outside the vast-majority metadata qualification, and were any embedded credentials used?",
+      "Which third-party issuers revoked reported keys, and what will completed second-intrusion forensics establish about scope and remediation?"
+    ]
+  }
+]

@@ -57,6 +57,12 @@ class EnrichmentTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             e.extract_article("<html><p>No recognized article.</p></html>")
 
+    def test_hash_covers_corrections_beyond_reading_preview_length(self):
+        prefix = "<article><p>" + "Original finding. " * 1600
+        first = e.extract_article(prefix + "Original scope.</p></article>", "article")
+        corrected = e.extract_article(prefix + "Corrected scope.</p></article>", "article")
+        self.assertNotEqual(e.digest(first), e.digest(corrected))
+
     def test_rejects_non_allowlisted_urls_and_redirects(self):
         for url in ("http://www.bleepingcomputer.com/news/security/test/",
                     "https://www.bleepingcomputer.com.evil.test/news/x",
@@ -142,11 +148,25 @@ class EnrichmentTests(unittest.TestCase):
         self.assertIn("needs re-review", rendered["enrichment_error"])
         self.assertEqual(rendered["cause"], "unknown")
         revised = copy.deepcopy(notes)
-        revised["reviewed_at"] = "2026-11-18"
+        revised["reviewed_at_by_url"] = {record["url"]: "2026-11-18"}
         refreshed = e.run([changed], revised, failed, "third",
                           lambda url: EVIDENCE + " The original account is disputed.")
         self.assertEqual(refreshed["health"]["explained"], 1)
         self.assertEqual(e.for_build([changed], revised, refreshed)[0]["cause"], "configuration")
+
+    def test_reviewing_another_report_does_not_authorize_changed_source(self):
+        url = "https://www.bleepingcomputer.com/news/security/test/"
+        records = [{"id": str(i), "url": url + str(i), "source_id": "bleepingcomputer"}
+                   for i in range(2)]
+        notes = {"records": {r["url"]: explanation() for r in records}, "reviewed_at": "first",
+                 "reviewed_at_by_url": {r["url"]: "first" for r in records}}
+        stored = e.run(records, notes, {}, "first", lambda url: EVIDENCE)
+        notes["reviewed_at"] = "second"
+        notes["reviewed_at_by_url"][records[1]["url"]] = "second"
+        result = e.run(records, notes, stored, "second",
+                       lambda url: EVIDENCE + " A later correction narrows the claim.")
+        self.assertIn("needs re-review", result["errors"]["0"])
+        self.assertNotIn("1", result["errors"])
 
     def test_build_recomputes_health_after_feed_invalidates_cached_explanation(self):
         record = {"id": "test", "title": "Payment outage",
@@ -157,7 +177,7 @@ class EnrichmentTests(unittest.TestCase):
         changed = dict(record, title="Updated payment outage")
         files = {"incidents.json": [changed], "current-explanations.json": notes,
                  "explanations.json": stored, "collection.json": {}, "case-studies.json": []}
-        with patch.object(e.p, "read_json", side_effect=lambda path, default: files[path.name]), \
+        with patch.object(e.p, "read_json", side_effect=lambda path, default: files.get(path.name, default)), \
                 patch.object(e.p, "build") as build, \
                 patch.object(e.sys, "argv", ["pipeline", "build"]):
             self.assertEqual(e.p.main(), 0)
@@ -165,6 +185,17 @@ class EnrichmentTests(unittest.TestCase):
         self.assertEqual(health["explained"], 0)
         self.assertEqual(health["status"], "partial")
         self.assertEqual(health["checked_at"], "first")
+
+    def test_curated_advisory_is_explained_without_claiming_an_article_check(self):
+        record = {"id": "advisory:test", "source_id": "advisory",
+                  "url": "https://example.com/advisory", "explanation_status": "reviewed"}
+        stored = e.run([record], {"records": {}, "reviewed_at": "2026-11-17"},
+                       {}, "now", lambda url: self.fail("No article check was selected"))
+        self.assertEqual(stored["health"]["attempted"], 0)
+        self.assertEqual(stored["health"]["explained"], 1)
+        self.assertEqual(stored["health"]["unreviewed"], 0)
+        self.assertEqual(stored["health"]["status"], "ok")
+        self.assertEqual(e.for_build([record], {"records": {}}, stored), [record])
 
     def test_provider_timeline_has_real_operations_and_separates_recovery_from_cause(self):
         record = {"title": "Actions job delays", "source_name": "GitHub Status",

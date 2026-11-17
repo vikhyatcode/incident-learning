@@ -361,12 +361,14 @@ def ordering(record):
 
 
 def render_card(record):
+    from scripts import learning
     r = record
     cause = CAUSES[r["cause"]]
     historical = r["historical"]
     label = "Historical case study" if historical else "Collected report"
     display_date = (r.get("incident_date") or r["published_at"])[:10]
     order_date, learning_tier, lesson_count = ordering(r)
+    learning_summary, learning_detail = learning.render(r)
     date_label = "Incident" if r.get("incident_date") else "Published; incident date unconfirmed"
     evidence = "".join(
         f'<blockquote><p>{esc(e["text"])}</p><cite>{esc(r["source_name"])} &middot; {esc(e["at"])}</cite></blockquote>'
@@ -391,16 +393,19 @@ def render_card(record):
     <article class="incident-card {'case-study' if historical else ''}" id="{esc(r['id'])}"
       data-type="{esc(r['type'])}" data-cause="{esc(r['cause'])}"
       data-kind="{'historical' if historical else 'live'}" data-date="{esc(display_date)}" data-search="{esc(search.lower())}"
-      data-id="{esc(r['id'])}" data-order-date="{esc(order_date)}" data-learning-tier="{learning_tier}" data-lesson-count="{lesson_count}">
+      data-id="{esc(r['id'])}" data-order-date="{esc(order_date)}" data-learning-tier="{learning_tier}" data-lesson-count="{lesson_count}"
+      data-analysis-status="{esc(r.get('analysis_status', 'unassessed'))}" data-learning-score="{esc(r.get('learning_score', ''))}">
       <div class="card-top"><span class="eyebrow">{esc(label)}</span><span class="status">{esc(r['status'].replace('_', ' '))}</span></div>
       <h3>{esc(r['title'])}</h3>
       <p class="card-summary">{esc(r['summary'])}</p>
+      {learning_summary}
       <div class="tags"><span class="tag {esc(r['type'])}">{'Security incident' if r['type'] == 'security' else 'Outage / failure'}</span><span class="tag">{esc(cause)}</span></div>
       <p class="date-line">{esc(date_label)}: <time datetime="{esc(display_date)}">{esc(display_date)}</time></p>
       <details class="lesson"><summary>Explore the incident <span aria-hidden="true">+</span></summary>
         <div class="lesson-content">
           <p class="evidence-note">{esc(r.get('explanation_note', 'Originally written case study, based on the linked postmortem. Facts and general lessons are separated below.'))}</p>
           {('<p class="warning">Explanation update unavailable: ' + esc(r["enrichment_error"]) + '</p>') if r.get("enrichment_error") else ''}
+          {learning_detail}
           <div class="fact-grid">
             <section><h4>01 &nbsp; What happened</h4><p>{esc(r['what_happened'])}</p></section>
             <section><h4>02 &nbsp; Impact</h4><p>{esc(r['impact'])}</p></section>
@@ -413,6 +418,7 @@ def render_card(record):
             <h4>Pause &amp; reflect</h4><ol>{questions}</ol></section>
           <div class="provenance"><p>{source_link(r['url'], r['source_name'])}</p>
             <p>Source published: {esc(r['published_at'])}<br>Source updated: {esc(r['source_updated_at'] or 'Not provided by feed')}</p>
+            <p><a href="#{esc(r['id'])}">Link to this reading report</a></p>
             {('<p>First collected: ' + esc(r['first_seen']) + '<br>Last seen in feed: ' + esc(r['last_seen']) + '</p>') if r.get('first_seen') else ''}
             {('<p>Selection: ' + esc(r['selection_reason']) + '</p>') if r.get('selection_reason') else ''}
             {('<ul>' + references + '</ul>') if references else ''}
@@ -448,6 +454,10 @@ def build(archive, cases, health, output):
         "HEALTH_LABEL": "Partial source failure" if health.get("status") == "partial" else ("Sources healthy" if health.get("status") == "ok" else "Awaiting collection"),
         "LIVE_COUNT": str(len(archive)),
         "CASE_COUNT": str(len(cases)),
+        "LEARNING_HEALTH": esc(
+            f'{health["learning"]["assessed"]} fresh AI assessments; '
+            f'{health["learning"]["stale"]} stale; {health["learning"]["unassessed"]} unassessed.'
+        ) if health.get("learning") else "No AI assessment freshness checks available.",
         "EXPLANATION_HEALTH": esc(
             f'{health["explanations"]["explained"]} of {health["explanations"]["total"]} current reports explained '
             f'with source-reviewed analysis; {health["explanations"].get("timelines", 0)} automated provider timelines. '
@@ -488,11 +498,16 @@ def main():
         except CollectionFailed as error:
             print(error, file=sys.stderr)
             return 1
+        from scripts import learning
+        archive = learning.merge_advisories(archive, read_json(ROOT / "data" / "advisories.json", []))
+        health["archive_count"] = len(archive)
         write_json(archive_path, archive)
         write_json(health_path, health)
         print(f"Archived {len(archive)} selected reports. Source health: {health['status']}.")
     else:
-        from scripts import enrichment
+        from scripts import enrichment, learning
+        archive = learning.merge_advisories(archive, read_json(ROOT / "data" / "advisories.json", []))
+        raw_records = {r["id"]: r for r in archive}
         stored = read_json(ROOT / "data" / "explanations.json", {})
         archive = enrichment.for_build(
             archive, read_json(ROOT / "data" / "current-explanations.json", {}), stored)
@@ -504,9 +519,20 @@ def main():
                 r.get("explanation_status") == "timeline" for r in archive)
             explanation_health["total"] = len(archive)
             explanation_health["pending"] = sum(bool(r.get("enrichment_error")) for r in archive)
+            explanation_health["unreviewed"] = sum(
+                r.get("explanation_status") not in {"reviewed", "timeline"} for r in archive)
             explanation_health["status"] = "partial" if explanation_health["pending"] else "ok"
             health["explanations"] = explanation_health
-        build(archive, read_json(ROOT / "data" / "case-studies.json", []), health, ROOT / "site")
+        cases = read_json(ROOT / "data" / "case-studies.json", [])
+        raw_records.update({r["id"]: r for r in cases})
+        assessments = read_json(ROOT / "data" / "learning-analysis.json", {"entries": {}})["entries"]
+        checks = read_json(ROOT / "data" / "analysis-checks.json", {})
+        archive = [learning.attach(r, assessments.get(r["id"]), checks, raw_records[r["id"]], health) for r in archive]
+        cases = [learning.attach(r, assessments.get(r["id"]), checks, raw_records[r["id"]], health) for r in cases]
+        health["learning"] = {
+            key: sum(r["analysis_status"] == key for r in archive + cases)
+            for key in ("assessed", "stale", "unassessed")}
+        build(archive, cases, health, ROOT / "site")
         print(f"Built site with {len(archive)} collected reports.")
     return 0
 

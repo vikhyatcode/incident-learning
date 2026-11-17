@@ -37,17 +37,17 @@ test("latest uses full timestamps and deterministic identity ties without pinnin
     ["a", "z", "earlier", "old-study"]);
 });
 
-test("most learnings orders explanation depth, distinct lesson counts, recency, then identity", () => {
+test("most learnings uses current AI scores, not lesson counts; unassessed and stale are unranked", () => {
   const entries = [
-    sortable("feed", "2026-11-17T00:00:00Z", "0", "0"),
-    sortable("timeline", "2026-11-17T00:00:00Z", "1", "4"),
-    sortable("fewer", "2026-11-17T00:00:00Z", "2", "2"),
-    sortable("old-study", "2018-10-21T00:00:00Z", "2", "3"),
-    sortable("z", "2026-11-17T00:00:00Z", "2", "3"),
-    sortable("a", "2026-11-17T00:00:00Z", "2", "3"),
+    {...sortable("unassessed", "2026-11-17T00:00:00Z", "2", "100"), analysisStatus: "unassessed"},
+    {...sortable("stale", "2026-11-16T00:00:00Z"), analysisStatus: "stale", learningScore: "100"},
+    {...sortable("low", "2026-11-17T00:00:00Z", "2", "8"), analysisStatus: "assessed", learningScore: "30"},
+    {...sortable("old-study", "2018-10-21T00:00:00Z"), analysisStatus: "assessed", learningScore: "90"},
+    {...sortable("z", "2026-11-17T00:00:00Z"), analysisStatus: "assessed", learningScore: "90"},
+    {...sortable("a", "2026-11-17T00:00:00Z"), analysisStatus: "assessed", learningScore: "90"},
   ];
   assert.deepEqual(entries.sort((a, b) => compareIncidents(a, b, "learnings")).map(r => r.id),
-    ["a", "z", "old-study", "fewer", "timeline", "feed"]);
+    ["a", "z", "old-study", "low", "unassessed", "stale"]);
   const filtered = entries.filter(r => matches(r, {q: "database", cause: "dependency"}));
   assert.deepEqual(filtered.sort((a, b) => compareIncidents(a, b, "learnings")),
     entries);

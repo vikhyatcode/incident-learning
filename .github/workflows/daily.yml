@@ -12,6 +12,11 @@ on:
       - "tests/**"
       - "data/case-studies.json"
       - "data/current-explanations.json"
+      - "data/advisories.json"
+      - "data/learning-analysis.json"
+      - "plugin.json"
+      - "agents/**"
+      - ".github/skills/**"
       - ".github/workflows/daily.yml"
 
 permissions: {}
@@ -40,13 +45,15 @@ jobs:
         run: python3 scripts/pipeline.py collect
       - name: Check current explanation evidence
         run: python3 -m scripts.enrichment
+      - name: Check AI assessment source freshness (no model execution)
+        run: python3 -m scripts.learning check
       - name: Build static learning library
         run: python3 scripts/pipeline.py build
       - name: Preserve incident history
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/incidents.json data/collection.json data/explanations.json
+          git add data/incidents.json data/collection.json data/explanations.json data/analysis-checks.json
           if ! git diff --cached --quiet; then
             git commit -m "Update selected incident archive" \
               -m "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"

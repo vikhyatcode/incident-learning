@@ -1,0 +1,851 @@
+{
+  "schema_version": 1,
+  "entries": {
+    "report:b6e25351df538f83532c": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "78623f3089a6817e0f1c4679d5e813e2f6891da63c32e0e1e1afdb556c705278",
+      "sources": [
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/",
+          "kind": "article",
+          "sha256": "6aab246250c9733ea7f9f195e352706195772aa2c5c5f0853cad255c3e7c30a2"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "A shared website integration delivered code across customer trust boundaries; relevant to teams embedding third-party scripts."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "The updated report connects a signup-flow vulnerability, modified customer JavaScript and browser-side payloads, but does not publish a complete exploit or victim-loss accounting."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Supports concrete review of publishing authority, script inventory, emergency distribution shutdown and browser-side data boundaries."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "Vendor statements and researcher findings are attributed through secondary reporting; file counts and payload capability do not establish realized theft for every customer."
+        }
+      },
+      "why": "This is a distribution-trust failure, not merely another malicious website: an integration already trusted by customer pages became the delivery channel.",
+      "learn": "Trace who can change each externally loaded script. Design a way to suspend compromised distribution without waiting for every customer to deploy; distinguish an attacker's payload capability from proven data loss.",
+      "diagram": {
+        "normal": "Customer websites load Optimizely-managed JavaScript to run their configured experiments and integrations.",
+        "root_cause": "The report attributes unauthorized project changes to a vulnerability in Optimizely's signup flow; the trusted script channel then distributed attacker-modified JavaScript.",
+        "contributors": "Customer browsers already trusted the integration. A control-plane compromise therefore crossed into many independent customer pages.",
+        "symptoms": "Researchers found scripts with wallet replacement, card-skimming and mobile-payload behavior. Observed file counts are not counts of visitors whose data was stolen.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Customer loads trusted integration",
+            "detail": "A customer page includes vendor-managed JavaScript, so changes to that code can execute in the customer's browser context.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Signup-flow weakness abused",
+            "detail": "The updated report attributes access to customer projects to a vulnerability in the signup flow; it does not provide a complete exploit reconstruction.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Project scripts modified",
+            "detail": "Malicious JavaScript was inserted into customer projects and delivered through the existing trusted integration.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Browser-side payload exposure",
+            "detail": "Reported payloads could replace wallet addresses, collect payment-form inputs or deliver an iOS payload. Capability does not prove each visitor suffered theft.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Distribution and access contained",
+            "detail": "The company reported blocking the path, removing malicious code and ending or resetting affected access. These controls limit propagation; they do not establish what happened before containment.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "report:ac17c0218f3e057f3e39": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "a2dd05fccc8724bfd48433bc151cc35856404245123109601b2d2a7a6181e623",
+      "sources": [
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/",
+          "kind": "article",
+          "sha256": "2bdaaa64397b2365f9ae374ef510def566d8b5495b13379083faccd383b717f8"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "An obsolete vendor credential became an entry point into connected cloud systems; common across integration-heavy software estates."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "The report describes credential origin, subsequent service access and an attempted persistence path, but leaves uncertainty about actual integration-secret access."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Credential retirement, privilege boundaries and cross-service compromise mapping provide several specific controls and useful tradeoffs."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "Detailed vendor claims are conveyed through a secondary article. AI-tool attribution and absence-of-access claims remain attributed assessments."
+        }
+      },
+      "why": "The useful failure is the lifetime and reach of a leftover access key. An AI-related attack label is not necessary to understand that control failure.",
+      "learn": "Make project closure retire credentials, not just infrastructure. Review whether one integration identity can discover credentials for the next service, and practice revocation across that dependency chain.",
+      "diagram": {
+        "normal": "A vendor-issued key should authorize only the active integration for which it was created.",
+        "root_cause": "According to the report, a stolen vendor cloud key remained valid after its project ended. How it was initially stolen is described as the company's belief, not independently established.",
+        "contributors": "Reachable analytics, source and Kubernetes systems created opportunities for credential chaining after entry.",
+        "symptoms": "Unauthorized cross-service activity and an attempted container-based persistence path were detected; the report does not establish theft of all reachable integration credentials.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Vendor integration uses a key",
+            "detail": "A cloud access key originally served a vendor project. Authorization should have ended with that project's need.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Old key remains usable",
+            "detail": "The company says attackers used a vendor key that had not been retired; it believed the credential was stolen from the vendor.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Access chains across services",
+            "detail": "The account describes movement through analytics, source and Kubernetes systems, illustrating why reachable secret stores enlarge blast radius.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Sensitive systems reached",
+            "detail": "An integration-credential system was reached, but the vendor said it had no evidence its stored credentials were accessed or stolen. Reachability and confirmed theft differ.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Contain and rotate credentials",
+            "detail": "The account reports blocked activity and precautionary credential rotation. Rotation responds to uncertain exposure; it does not prove every rotated secret was stolen.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "report:91e784d7cca7318ca4d6": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "88f88e79508ca20c45884b2f8823fb67f83ebd57da9378f925fa4c377270c49d",
+      "sources": [
+        {
+          "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/",
+          "kind": "article",
+          "sha256": "5c0093f8a0b3bc97302bbadc801fe8ee59f7aa7dda6cec7f8469eb93d0f7f6a5"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Shared gateway overload and cascading failover are directly useful to operators of replicated services."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "A concrete feedback loop, concurrent capacity reduction and representative-test gap are described, but the public account quotes a preliminary nonpublic Microsoft report."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Connects load shedding, spare capacity, realistic high-core testing and backlog-aware recovery rather than recommending more capacity alone."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "The mechanism is attributed to Microsoft's preliminary report via BleepingComputer; it is not independently reproduced or supported by a public final postmortem."
+        }
+      },
+      "why": "It explains why redundancy can amplify an outage: moving requests away from a failed gateway can overload the very gateways needed for recovery.",
+      "learn": "Draw the failover feedback loop before sizing reserves. Test production-like core counts and traffic mixes, then exercise simultaneous reduced capacity, redirected load and accumulated backlog.",
+      "diagram": {
+        "normal": "Available gateways share Microsoft 365 traffic, and traffic can be redirected when capacity becomes unavailable.",
+        "root_cause": "The preliminary account attributes gateway unresponsiveness to a latent contention bug activated under the incident's load conditions, not simply insufficient machine count.",
+        "contributors": "Earlier Teams failover added traffic while approximately 14% of gateway capacity was independently offline. Smaller laboratory hardware and different traffic mixes did not expose the behavior.",
+        "symptoms": "Gateways stopped responding and Microsoft 365 services became inaccessible. Redirected load then caused more gateway failures; these are symptoms and amplification, not the initial software defect.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Gateways share request load",
+            "detail": "The report describes a shared gateway layer serving multiple Microsoft 365 workloads, with traffic redirection when gateways are unavailable.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Extra traffic meets less capacity",
+            "detail": "Earlier Teams failover increased gateway traffic while a separate capacity reduction left fewer gateways available. The combination matters more than either observation alone.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Latent contention stalls gateways",
+            "detail": "Microsoft's preliminary account describes a months-old contention bug, exacerbated on higher-core hardware, making gateways unresponsive under these conditions.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Survivors inherit more traffic",
+            "detail": "Traffic moved from unavailable gateways to the survivors. Further failures reduced capacity again, disrupting multiple services; regional safeguards did not contain the cascade.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Fix, capacity and backlog control",
+            "detail": "The response combined software remediation, capacity and redirection safeguards. Restarts alone were overwhelmed by the backlog; some services used alternative infrastructure.",
+            "source": 0,
+            "state": "reported"
+          }
+        ],
+        "feedback": {
+          "from": 3,
+          "to": 2,
+          "label": "Redirected traffic raises contention on survivors; further failures reduce capacity and repeat the overload."
+        }
+      }
+    },
+    "report:0d946a07bc289f653805": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "6387c392489c7c8f97be35f130ea5c0b0268b9886fe1ad48c08419311ed16593",
+      "sources": [
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/",
+          "kind": "article",
+          "sha256": "41aeca0116ca94c12136b7098194ba406e9787063974d9615f487f696f356068"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 3,
+          "rationale": "Browser-side payment collection is directly relevant to commerce teams, though narrower than a shared infrastructure failure."
+        },
+        "detail": {
+          "score": 2,
+          "rationale": "The collection surface, affected data and response are described, but the original checkout compromise mechanism and complete victim scope are not established."
+        },
+        "transferability": {
+          "score": 3,
+          "rationale": "Supports concrete separation of live form inputs from stored records, script-change monitoring and incident-window review."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "The account cites the company's notification through secondary reporting; no public technical postmortem establishes initial access."
+        }
+      },
+      "why": "It distinguishes payment data stolen as a user types from theft of an existing backend database; those paths require different controls.",
+      "learn": "Map every script that can read payment-form inputs, then test detection and shutdown of an unauthorized checkout change. An unknown initial access path must stay unknown even when the collection mechanism is clear.",
+      "diagram": {
+        "normal": "A customer submits payment details through the checkout page to purchase tickets.",
+        "root_cause": "The account establishes malicious checkout-page collection, but not how attackers first gained the ability to alter that checkout.",
+        "contributors": "Sensitive values entered into a live form were exposed to the compromised page path; that is distinct from a claim that the stored customer database was stolen.",
+        "symptoms": "Reported exposure included card details and related checkout fields during October 8-11. The later publication date is not the attack date.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Customer enters checkout data",
+            "detail": "The normal purchase flow accepts payment and associated checkout details.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Initial compromise not published",
+            "detail": "The available account does not explain the initial intrusion or unauthorized change path. No specific exploit is inferred.",
+            "source": 0,
+            "state": "unknown"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Checkout skimmer collects input",
+            "detail": "Fandango's notification, as reported, describes malicious code collecting submitted checkout data during October 8-11.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Payment information exposed",
+            "detail": "Reported fields included card number, expiry, CVV, billing ZIP and email. The company did not report exposure of names, Social Security numbers or account information.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Checkout fixed; investigation opened",
+            "detail": "The company reported fixing the checkout issue and engaging outside investigators. No known fraud is not proof that no misuse will occur.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "report:d32b5f97fc676bf8272f": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "2739695bb5a362d89f80b1d2dcc838b27eeaf9752130b276f7801cd531d7623f",
+      "sources": [
+        {
+          "url": "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html",
+          "kind": "article",
+          "sha256": "dc1947f57ad3f8357826e79fc762889c4557f811bf0cb50f5836a2f8b154b4a8"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 3,
+          "rationale": "Compromised collaboration identities and developer endpoints are relevant to software organizations, although this is a campaign report rather than one service postmortem."
+        },
+        "detail": {
+          "score": 2,
+          "rationale": "The social-engineering-to-endpoint-to-next-contact progression is described; one complete victim environment and recovery timeline are not."
+        },
+        "transferability": {
+          "score": 3,
+          "rationale": "Supports independent contact verification, software-installation boundaries and treating a trusted account as potentially compromised."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "The report attributes the campaign to agencies through secondary reporting; attribution and aggregate losses are not independently validated here."
+        }
+      },
+      "why": "A familiar account and a convincing video are identity signals, not authorization to install a supposed meeting repair tool.",
+      "learn": "Model the handoff from social trust to endpoint execution. Practice verifying unusual installation requests through an independent channel, and include contact-account compromise in response planning.",
+      "diagram": {
+        "normal": "People use an existing contact and a video call to arrange legitimate professional conversations.",
+        "root_cause": "The reported campaign abuses compromised trusted-contact accounts and a fabricated meeting problem to persuade targets to run malicious software.",
+        "contributors": "A familiar identity and prerecorded or deepfake video reduced suspicion. These cues do not cryptographically authenticate the requested action.",
+        "symptoms": "Endpoint credential theft enabled financial theft and further approaches to the victim's contacts. This is a multi-victim campaign, not one newly dated breach.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Conversation with a known contact",
+            "detail": "The campaign used existing contact relationships as the entry point to professional conversations.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Contact account is compromised",
+            "detail": "An attacker-controlled trusted account invited a target into a staged video interaction.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Fake repair crosses execution boundary",
+            "detail": "A claimed audio problem prompted a malicious software-installation request. The meaningful trust crossing is executing that request, not the video format alone.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Endpoint secrets and contacts exposed",
+            "detail": "The report connects endpoint compromise to stolen credentials, cryptocurrency theft and additional contact targeting. Aggregate losses are agency-attributed claims.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Independent verification and response",
+            "detail": "As a transferable recommendation, verify unusual requests outside the suspect channel; if execution occurred, isolate and investigate the endpoint and revoke affected sessions and secrets. This is advice, not a reported universal victim recovery.",
+            "source": 0,
+            "state": "recommendation"
+          }
+        ]
+      }
+    },
+    "case-github-2018": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "2e69cf5aa1ce3272e84ca6440f2703342678848f723922b464fb7151300020fc",
+      "sources": [
+        {
+          "url": "https://github.blog/news-insights/company-news/oct21-post-incident-analysis/",
+          "kind": "article",
+          "sha256": "fb0e2af6fd0796284047988382082094d5e76c0f9ce4ca375ae0babdb4bfe7e1"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Database failover, application locality and consistency-preserving recovery are broadly applicable to stateful services."
+        },
+        "detail": {
+          "score": 4,
+          "rationale": "The primary postmortem explains the short partition, quorum decision, divergent writes, restore decision and backlog recovery."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Readers can test topology assumptions, failback preconditions and data-integrity tradeoffs rather than assuming a healthy new primary means a healthy application."
+        },
+        "confidence": {
+          "score": 4,
+          "rationale": "A detailed first-party retrospective supports the causal sequence and explicitly discusses recovery constraints."
+        }
+      },
+      "why": "A 43-second network partition produced a much longer service incident because correct database-level failover conflicted with application and data-recovery assumptions.",
+      "learn": "Evaluate failover as an application transition, not just a database election. Specify when automatic failback is unsafe and how you reconcile divergent state before replaying queued work.",
+      "diagram": {
+        "normal": "Applications and database topology normally relied on local connectivity and established replication relationships.",
+        "root_cause": "A network partition triggered a cross-region database promotion. Divergent writes and application locality assumptions made immediate return unsafe or ineffective.",
+        "contributors": "Quorum placement favored the western site, while application traffic retained assumptions about the previous database location. Recovery had to preserve data integrity.",
+        "symptoms": "Cross-region latency and unavailable or delayed operations persisted after the short partition ended; queued work extended the recovery.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Application and databases aligned",
+            "detail": "The previous placement and replication topology supported the applications' normal latency and availability assumptions.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "43-second network partition",
+            "detail": "The postmortem reports a brief connectivity interruption between facilities during network maintenance.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Promotion creates divergent state",
+            "detail": "Orchestrator promoted western primaries; writes on different sides of the partition meant an immediate failback could lose data.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Application locality assumptions fail",
+            "detail": "Database relocation exposed unacceptable cross-country latency and service degradation. Reconnecting the network did not reconcile divergent databases.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Restore, synchronize, process backlog",
+            "detail": "Responders prioritized integrity, restored and synchronized data, and then processed accumulated work rather than forcing an unsafe fast failback.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "case-cloudflare-2019": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:17:47Z",
+      "record_hash": "c62f9ea6ea126cf680a545ec0bf433a563b113e203edf5f39c99d23d78670909",
+      "sources": [
+        {
+          "url": "https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/",
+          "kind": "article",
+          "sha256": "688ac0dfa83f2b3e79e1922000c7b7b00152fa1690932ffe51d326bfc4a8afdf"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Configuration-as-code, globally shared request paths and control-plane dependencies apply to many production systems."
+        },
+        "detail": {
+          "score": 4,
+          "rationale": "The primary postmortem connects a specific WAF regex performance failure, global delivery path, CPU exhaustion and operational recovery."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Provides concrete reasoning for performance budgets, canarying rules, linear-time matching and an emergency control path outside the failing dependency."
+        },
+        "confidence": {
+          "score": 4,
+          "rationale": "A detailed first-party retrospective explains the mechanism, limitations of testing and corrective changes."
+        }
+      },
+      "why": "A rule in simulate mode still consumed production CPU. Non-blocking business logic can therefore be fully capable of taking down the request path.",
+      "learn": "Treat frequently changed rules as production programs. Test worst-case execution cost, stage their rollout and make the emergency disable mechanism usable during request-path failure.",
+      "diagram": {
+        "normal": "The WAF evaluates rules while processing HTTP requests; simulate mode changes enforcement, not the need to execute matching.",
+        "root_cause": "A newly deployed regular expression exhibited excessive backtracking and exhausted request-processing CPU.",
+        "contributors": "The rule distribution path delivered globally without the staged rollout used for regular software. Some operational access depended on the impaired service.",
+        "symptoms": "CPU saturation caused widespread HTTP 502 errors; simulate mode did not prevent resource exhaustion.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "WAF evaluates incoming requests",
+            "detail": "Rules run on production traffic even when their enforcement is set to simulate.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "New rule distributed globally",
+            "detail": "The WAF rule update followed a global deployment path rather than a staged software-style canary rollout.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Regex backtracking exhausts CPU",
+            "detail": "An inefficient expression consumed available processing resources. This computational mechanism, not a malicious traffic claim, explains the failure.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Request processing returns errors",
+            "detail": "Resource exhaustion produced widespread 502 responses, while shared operational dependencies complicated responder access.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Disable WAF; retest before restoring",
+            "detail": "Responders disabled the WAF globally, removed the problematic rule and re-enabled service after controlled checks.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "case-lastpass-2022": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "70bb0d1ea8fd2b1950ab7a38ff259e305bb391c53709eb730fd4e06656bf8022",
+      "sources": [
+        {
+          "url": "https://blog.lastpass.com/posts/security-incident-update-recommended-actions",
+          "kind": "article",
+          "sha256": "1080cc9a4d21bbed727c7c8caa44b6857f49577fdea6c5fd5bf4414a1a20164d"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Backup access, privileged human endpoints and linked intrusions are relevant to teams protecting sensitive customer data."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "The retrospective connects two intrusions, endpoint compromise, backup credentials and stolen backup contents, while withholding some forensic detail."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Supports threat-modeling restore access, minimizing exported metadata and separating human workstations from high-value backup credentials."
+        },
+        "confidence": {
+          "score": 3,
+          "rationale": "A first-party retrospective is substantive but remains the affected company's account, with limits on independently verified exposure and downstream decryption."
+        }
+      },
+      "why": "Backups are another production data store. Encrypting vault contents did not make their surrounding metadata or the credentials used to reach backups harmless.",
+      "learn": "Enumerate the identities, endpoints and secrets that can restore backups. Distinguish stolen ciphertext, unencrypted metadata and proven decryption rather than collapsing them into a single breach claim.",
+      "diagram": {
+        "normal": "Backups support recovery of customer data and require tightly controlled access to storage and decryption-related secrets.",
+        "root_cause": "The company's account describes linked intrusions culminating in compromise of a DevOps engineer and access to cloud backup storage.",
+        "contributors": "Information from the first incident supported targeting in the second; vulnerable third-party software on a privileged human endpoint created another trust boundary.",
+        "symptoms": "Backups containing encrypted vault data and unencrypted metadata were stolen. The account does not establish that every vault was decrypted.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Backups retain sensitive data",
+            "detail": "The recovery system stored data whose confidentiality still mattered outside the live service, including encrypted vaults and some unencrypted metadata.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "First intrusion exposes internal knowledge",
+            "detail": "The retrospective links the earlier development-environment intrusion to information later used in a separate targeted intrusion.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Privileged endpoint compromised",
+            "detail": "A DevOps engineer was targeted through vulnerable third-party software; the account connects that compromise to credentials and secrets needed for backup access.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Cloud backups copied",
+            "detail": "The attacker obtained backup material containing encrypted vault contents and unencrypted metadata. Stolen encrypted data is not evidence that all plaintext was recovered.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Access rebuilt and credentials rotated",
+            "detail": "The company reported containment and hardening actions and issued customer recommendations. Those actions reduce future access; they cannot recall data already copied.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "github:1xzmt89vv61l": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "d85d36b7d439c945535c2bb43c9274e19dc6140785953b4186d939e2484fb9c8",
+      "sources": [
+        {
+          "url": "https://stspg.io/qzj7qjdcr8jc",
+          "kind": "record",
+          "sha256": "d85d36b7d439c945535c2bb43c9274e19dc6140785953b4186d939e2484fb9c8"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 3,
+          "rationale": "Pull-request availability matters to software delivery teams."
+        },
+        "detail": {
+          "score": 1,
+          "rationale": "The retained notices establish degradation, mitigation, monitoring and resolution, but not the failing component or mechanism."
+        },
+        "transferability": {
+          "score": 1,
+          "rationale": "Only general incident-communication and workflow-continuity questions are supported; specific prevention controls cannot be inferred."
+        },
+        "confidence": {
+          "score": 3,
+          "rationale": "The provider's own status notices support the observed sequence, not a root-cause claim."
+        }
+      },
+      "why": "Useful as an operational notice, but not yet a strong technical learning case: the retained provider evidence lacks a causal explanation.",
+      "learn": "Separate the observed reporting sequence from technical causation. Wait for the promised root-cause account before recommending a particular architectural fix.",
+      "diagram": {
+        "normal": "Pull-request workflows normally remain available to contributors.",
+        "root_cause": "Cause not published in the retained provider notices.",
+        "contributors": "No contributing factors are established by the available status updates.",
+        "symptoms": "Pull-request degradation followed by mitigation, monitoring and resolution notices.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Pull-request workflow available",
+            "detail": "This is the affected product's normal user function, not an inferred internal topology.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Cause not published",
+            "detail": "The status evidence does not explain what initiated the degradation. The missing link is intentionally visible.",
+            "source": 0,
+            "state": "unknown"
+          },
+          {
+            "stage": "impact",
+            "label": "Degradation reported",
+            "detail": "The provider reported degraded pull-request performance on November 13; reporting timestamps are not a measured outage duration.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Mitigated, monitored, resolved",
+            "detail": "The provider's sequence reports mitigation, monitoring and resolution without identifying the corrective technical change.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "github:dvy0t3mvh1lg": {
+      "method": "agent-source-review",
+      "model": "gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:03:28Z",
+      "record_hash": "8ac1de9b649758aeb66ddef44463d306f3f8cdbb9778b926d63a119783a0885e",
+      "sources": [
+        {
+          "url": "https://stspg.io/jdjlq5zjyl48",
+          "kind": "record",
+          "sha256": "8ac1de9b649758aeb66ddef44463d306f3f8cdbb9778b926d63a119783a0885e"
+        }
+      ],
+      "dimensions": {
+        "relevance": {
+          "score": 3,
+          "rationale": "Actions, Pages and Copilot availability can affect software-development and publication workflows."
+        },
+        "detail": {
+          "score": 1,
+          "rationale": "The notices mention recovery and backlog processing but do not identify the original failure mechanism."
+        },
+        "transferability": {
+          "score": 1,
+          "rationale": "Backlog verification is a useful recovery question, but the record does not support a technical prevention case study."
+        },
+        "confidence": {
+          "score": 3,
+          "rationale": "These are attributed first-party status observations; causal attribution is not available."
+        }
+      },
+      "why": "The distinction between service recovery and backlog completion is useful, but a multi-product impact list alone does not make this a detailed postmortem.",
+      "learn": "When reviewing recovery, ask whether queued work has finished rather than relying only on a green status. Do not infer a shared database or network cause from simultaneous symptoms.",
+      "diagram": {
+        "normal": "The affected products normally serve requests and process queued workflow or publication work.",
+        "root_cause": "Cause not published in the retained provider evidence.",
+        "contributors": "A backlog was reported during recovery; its presence does not establish what caused the initial failure.",
+        "symptoms": "Multiple products were affected and pending work remained during recovery.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Requests and queued work progress",
+            "detail": "Actions and publication workflows depend on completing queued operations as well as accepting new requests.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Initial failure not explained",
+            "detail": "The retained notices do not identify the initiating technical fault or internal dependency.",
+            "source": 0,
+            "state": "unknown"
+          },
+          {
+            "stage": "impact",
+            "label": "Products degraded; backlog observed",
+            "detail": "The provider named Actions, Pages and Copilot impacts and subsequently reported recovery with remaining backlog.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Backlog processed; incident resolved",
+            "detail": "A later notice reported backlog processing and resolution. No invented deployment, database repair or traffic cause is added.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      }
+    },
+    "advisory:notion-fireworks-2026": {
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Directly useful across software and AI systems: Notion's confirmed external classification workflow illustrates how customer text and embedded credentials can cross a processor boundary. The lesson applies beyond this vendor or product. Sources: Notion security advisory; Fireworks AI security bulletins."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "Notion supplies a supported data-flow-to-exposure chain and dated containment/key-response actions; Fireworks distinguishes two contextual intrusion mechanisms. This meets causal-chain-and-response-with-gaps, not a fully demonstrated technical retrospective: the Notion-specific entry vector, authorization/storage path and intrusion mapping remain unpublished. Sources: Notion security advisory; Fireworks AI November 17 bulletin."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "The evidence supports reusable design tradeoffs between classification utility/debugging and retained text, metadata removal versus content minimization, and data deletion versus issuer revocation. A synthetic-data exercise makes those choices and response boundaries testable without pretending the exact exploit is known. Basis: Notion's confirmed transcript/key exposure and response; Fireworks' bounded vendor mechanisms and rotation advice."
+        },
+        "confidence": {
+          "score": 3,
+          "rationale": "The dossier attributes confirmed customer transcripts, embedded-key actions and distinct vendor intrusions to two primary first-party disclosures, with revisions reconciled and limits explicit. This supports the processor-boundary lesson, but not a detailed, independently verified end-to-end forensic account; the second investigation and customer-to-intrusion mapping remain unresolved. Sources: Notion security advisory; Fireworks AI security bulletins. This writer used the supplied source-grounded dossier, not new source fetches."
+        }
+      },
+      "why": "Study this for an AI supply-chain data-boundary lesson, not a complete exploit reconstruction. An ordinary analytics workflow led to vendor-held transcripts and concrete credential-response work. The disclosures support examining data minimization, workflow-specific retention, privilege boundaries and issuer-specific recovery. The unpublished Notion-to-intrusion link limits exploit-level conclusions without weakening the supported lesson: sensitive content can remain in text after identity labels are removed.",
+      "learn": "Recommended exercise: create a synthetic chat with invented identity text and a clearly fake API-key-shaped marker; never use customer data or live secrets. Draw its path through your classification workflow, marking application-to-processor and stored-content-to-reader boundaries, retention owners and credential issuers. Compare full-text, redacted-excerpt and derived-signal designs on classification utility, debugging evidence and sensitive content retained. Tabletop unauthorized access: identify what disconnection/deletion can protect, what cannot be recalled, how an issuer would revoke an actual compromised credential and which logs could reveal use. Finish with one testable minimization change and a response checklist separating copy removal from authority revocation. This applies the supported transcript/key lesson without pretending to reconstruct Notion's unpublished architecture.",
+      "diagram": {
+        "normal": "Insights classification crossed an external-processor boundary with chat content. Separately reported open-weight model inference is not the established transcript-exposure path.",
+        "root_cause": "Partial supported mechanism: unauthorized vendor-side access exposed customer Insights transcripts. The initial intrusion vector, dataset-access path and mapping to either vendor intrusion are UNKNOWN. No specific failed Notion control is established.",
+        "contributors": "Vendor-held customer transcripts created an external content exposure surface; some messages contained API keys. Missing identity labels did not remove embedded secrets. Storage and retention implementation remain unpublished. The vendor's two distinct intrusion paths are contextual evidence, not proven contributors to Notion's specific exposure.",
+        "symptoms": "Confirmed transcript exposure affected less than 1% of workspaces and prompted embedded-key response; exact counts and downstream misuse remain unknown. Insights disablement and model-provider removal were containment-related product changes, not proof that every disabled workflow was compromised.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Insights crosses processor boundary",
+            "detail": "Notion sent chat content into Fireworks classification jobs supporting Insights. This placed customer text within an external processing relationship rather than solely inside the application operator's boundary.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "normal",
+            "label": "Vendor dataset contains transcripts",
+            "detail": "Customer Insights transcripts were identified in the final impacted vendor dataset. That establishes vendor-held customer content as the exposure surface; the storage topology, retention agreement and exact collection window remain unpublished.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "UNKNOWN intrusion-to-dataset path",
+            "detail": "The unauthorized entry vector and authorization crossing that reached Notion's dataset are UNKNOWN. The vendor separately reports an August 3\u2013October 7 stolen-credential/service-vulnerability intrusion and an October 23\u201330 cloud-development-to-production intrusion. These are contextual paths, not alternative proven explanations for Notion: neither disclosure maps its transcripts to either intrusion or both.",
+            "source": 1,
+            "state": "unknown"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Vendor access exposes customer text",
+            "detail": "The customer-side result is confirmed despite the preceding gap: the impacted dataset contained customer transcripts. Unauthorized access at the processor crossed the confidentiality boundary for that content; its exact retrieval or exfiltration route remains unpublished.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Text includes credential exposure",
+            "detail": "Less than 1% of Notion workspaces were affected, and affected user messages contained API keys. Text can therefore carry sensitive material even without author/workspace labels. Credential exposure creates possible downstream access risk, but subsequent use of these keys is not established.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Disconnect and remove vendor data",
+            "detail": "Notion disconnected Fireworks by November 3 and deleted its data there November 4, before final customer dataset confirmation. It also disabled Insights and removed Fireworks-served open-weight models. These containment actions reduced ongoing dependency/exposure; they neither explain the intrusion nor prove recovery of accessed copies. This causal chain does not imply every response waited for customer-data confirmation.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Revoke keys and reach issuers",
+            "detail": "Notion notified affected customers November 9, revoked exposed Notion API keys November 11 and reported exposed third-party keys to issuers November 12. Revocation addresses credential authority separately from dataset deletion; issuer notification alone does not establish third-party revocation or absence of misuse.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      },
+      "method": "agent-source-review",
+      "model": "Copilot incident-writer (inherited model unexposed); parent review gpt-6.1-sol",
+      "analyzed_at": "2026-11-17T22:11:11Z",
+      "record_hash": "d6afd967fb33fa4b2ca0c7039b4a713e2d362af75961b6833d5bd91682fd846d",
+      "sources": [
+        {
+          "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+          "kind": "article",
+          "sha256": "b865c61727fd278882d7798287951dd54793b7afac75b46eff30a1fe59a4b020"
+        },
+        {
+          "url": "https://fireworks.ai/security-bulletins",
+          "kind": "article",
+          "sha256": "ffe4275c20e1358196c80622bdd699e4483886b657914f959c38f40387b281cd"
+        }
+      ]
+    }
+  }
+}

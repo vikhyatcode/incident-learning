@@ -1,0 +1,85 @@
+{
+  "evaluated_at": "2026-11-17T22:12:00Z",
+  "scope": "Bounded authoring checks and one actual current-incident three-agent demonstration, not a discovery recall benchmark.",
+  "baseline": {
+    "method": "Separate Copilot subagent explicitly emulating the old deterministic four-feed/tier-and-lesson-count policy on six synthetic scenarios.",
+    "limitations": "The baseline was prompted policy emulation, not an uncontrolled behavioral experiment or a live full-web search.",
+    "observations": [
+      "An official Notion-like advisory absent from the finite feeds was missed.",
+      "Eight generic bullets could outrank three substantive lessons within the same explanation tier.",
+      "A major provider status was selected without establishing its cause.",
+      "The old policy had no event-level cross-outlet alias review or chronology reconciliation."
+    ]
+  },
+  "with_skill": {
+    "method": "Fresh-context Copilot subagent read the skill and applied it to the same synthetic scenarios without network access or file edits.",
+    "checks": [
+      "Explicitly searches official advisory and AI infrastructure sources beyond feeds.",
+      "Reconciles later scope updates without rewriting early dataset-specific evidence.",
+      "Merges verified syndicated aliases, not separate intrusions at the same vendor.",
+      "Keeps Notion-like entry vector unknown; treats key rotation as containment, not cause.",
+      "Does not reward generic bullet count."
+    ],
+    "fixture_results": [
+      {"scenario":"Official partial-mechanism advisory","dimensions":[4,2,2,3],"score":63,"judgment":"Monitor for details"},
+      {"scenario":"Viral headline with eight generic bullets","dimensions":[3,0,1,0],"score":22,"judgment":"Low learning value"},
+      {"scenario":"Detailed primary technical postmortem","dimensions":[4,4,3,4],"score":93,"judgment":"Learn now"},
+      {"scenario":"Major provider notice without mechanism","dimensions":[3,1,0,3],"score":34,"judgment":"Low learning value"}
+    ],
+    "limitations": "Synthetic instruction-compliance check. These fixture scores are not published incident judgments or proof of exhaustive discovery."
+  },
+  "plugin": {
+    "format": "Official legacy Copilot plugin.json with mapped agents and skills paths; no Agent Plugins 1.0 schema mixed in.",
+    "actual_load_command": "copilot --plugin-dir . plugin list --json",
+    "observed": {"name":"incident-learning","version":"1.0.0","enabled":true,"source":"external"},
+    "install_state": "Ephemeral local package load verified. No global installation claimed.",
+    "schema_references": [
+      "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating",
+      "https://docs.github.com/en/copilot/reference/custom-agents-configuration"
+    ]
+  },
+  "release_validation": {
+    "python_tests_passed": 41,
+    "node_tests_passed": 4,
+    "actual_collection": {"reports": 20, "feed_reports": 19, "official_advisories": 1, "source_health": "ok"},
+    "assessments": {"fresh": 11, "stale": 0, "unassessed": 12},
+    "browser": {
+      "desktop_viewport": [1440, 1000],
+      "mobile_viewport": [390, 844],
+      "causal_maps": 23,
+      "horizontal_overflow": false,
+      "checks": ["Notion/Fireworks search and seven-node diagram", "Microsoft 365 overload feedback", "score ordering with type/search filters", "sort preserves expanded details", "reset restores Latest", "no-JavaScript Latest and native expandable details"]
+    },
+    "code_review": {
+      "agent": "everything-claude-code:code-reviewer",
+      "resolved": ["Complete bounded article hashes include corrections beyond 24,000 characters", "Failed or expired provider observations remove trusted scores", "Per-URL reviews cannot rebaseline unrelated changed sources"],
+      "regressions": "Three focused regression tests failed before their fixes and passed afterward."
+    },
+    "scope": "Local release evidence. Actual deployment is independently recorded in GitHub Actions history."
+  },
+  "actual_three_agent_demonstration": {
+    "execution": "Three sequential real Copilot general-purpose subagents explicitly loaded each new role instruction file and skill. The host could not dynamically register those new custom-role names in its task tool. This is not a claim of installed-registry role selection.",
+    "agents": [
+      {
+        "role":"incident-discovery",
+        "agent_id":"618c0ec5-2448-4be4-b83a-f1b6da6f99c4",
+        "artifact":"data/reviews/fireworks-discovery.json",
+        "result":"Read two primary public bodies, found no archive duplicate, preserved separate Fireworks intrusions."
+      },
+      {
+        "role":"incident-research",
+        "agent_id":"736ff733-26c7-4c9c-a9c5-5acec099fa99",
+        "artifact":"data/reviews/fireworks-dossier.json",
+        "result":"Read the two primary bodies and reconciled Notion scope chronology against Fireworks November 17 update; no unsupported intrusion mapping."
+      },
+      {
+        "role":"incident-writer",
+        "agent_id":"9a78e330-0ebf-48c4-8a63-0e925e41c7ed",
+        "artifact":"data/reviews/fireworks-report.json",
+        "result":"Read the dossier, wrote an original report and seven-step sourced diagram, proposed dimensions 4/3/4/3 (87/100), then revised for compact formal publication. No browsing or publication."
+      }
+    ],
+    "parent_review": "GPT-6.1 Sol integrated the writer handoff, checked attribution/unknowns and sealed actual source-body and raw-record hashes. Subagent model IDs were not exposed and are not invented.",
+    "remaining_limits": "One bounded demonstrated event, not an autonomous recurring news service. Daily Actions does not run Copilot agents."
+  }
+}

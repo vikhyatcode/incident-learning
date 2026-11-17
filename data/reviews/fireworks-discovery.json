@@ -1,0 +1,89 @@
+{
+  "topic": "Fireworks AI / Notion AI Insights transcript exposure",
+  "discovered_at": "2026-11-17T22:01:16.3125872Z",
+  "candidates": [
+    {
+      "title": "Notion confirms AI Insights chat transcript exposure at Fireworks; vendor distinguishes two intrusions",
+      "primary_urls": [
+        "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+        "https://fireworks.ai/security-bulletins"
+      ],
+      "supporting_urls": [],
+      "event_identity": {
+        "candidate_scope": "The customer-confirmed exposure of Notion AI chat transcripts used by Insights at Fireworks, affecting less than 1% of Notion workspaces according to Notion. Treat this as one customer-impact candidate, not as evidence that Fireworks suffered only one intrusion.",
+        "customer_disclosure_sequence": [
+          "Notion says Fireworks notified it on November 2 of accessed data initially determined to be synthetic testing data, with no Notion AI customer data in that dataset.",
+          "Notion disconnected Fireworks by November 3 and deleted its data there on November 4.",
+          "Fireworks warned Notion of potential customer-data access on November 6 and confirmed the final impacted dataset on November 8. Notion says analysis of that dataset identified Insights chat transcripts; it contacted affected customers on November 9.",
+          "Notion's updates say it revoked exposed Notion API keys on November 11 and reported exposed third-party API keys to their issuing vendors on November 12."
+        ],
+        "distinct_vendor_events": [
+          {
+            "period": "2026-08-03 through 2026-10-07",
+            "attribution": "Fireworks November 17 bulletin",
+            "reported_mechanism": "An unauthorized party used stolen Fireworks credentials and a service vulnerability to misuse the platform and access secrets, model files, and datasets for a small number of customers.",
+            "reported_response": "Unit 42 completed its forensic investigation; Fireworks says the incident is contained and remediated."
+          },
+          {
+            "period": "2026-10-23 through 2026-10-30",
+            "attribution": "Fireworks November 17 bulletin",
+            "reported_mechanism": "An unauthorized party accessed Fireworks development machines at a third-party cloud provider that had experienced a security incident, then reached part of production. Fireworks reports account and billing information access for all accounts created before October 30 and dataset, model, and/or secret access for a small number of customers. Payment card numbers were not stored.",
+            "reported_response": "AprosSyber is investigating; Fireworks says this incident is also contained and remediated."
+          }
+        ],
+        "mapping_status": "Neither body read explicitly identifies which of the two intrusions caused the Notion transcript exposure. Do not assign the Notion exposure to either intrusion or merge the two vendor events."
+      },
+      "discovery_reason": {
+        "archive_gap": "No Fireworks or Notion match was found in the 19-record data/incidents.json archive or in the existing data JSON files searched.",
+        "actual_incident_evidence": "Notion reports an impacted dataset containing customer chat transcripts and credential-response actions, rather than merely describing a hypothetical vulnerability. Fireworks confirms unauthorized access and customer-data impacts.",
+        "provisional_learning_value": "Worth research-stage review for the trust boundary between an application's AI analytics feature and an AI infrastructure vendor. The supported customer-impact chain is: Insights uses Fireworks for classification; an impacted Fireworks dataset included Insights chat transcripts; transcript text can contain sensitive material or credentials even when author/workspace labels are absent; containment and credential rotation occur after exposure. The intrusion-to-transcript-access link remains unpublished in the reviewed sources.",
+        "teaching_cautions": [
+          "Notion says the vast majority of affected transcripts were unattributable and lacked tool-call results. Missing labels do not establish that transcript text was nonsensitive; Notion's credential revocations demonstrate why content must be considered separately from metadata.",
+          "Fireworks' zero-data-retention defaults and its November 9 statement that it had not detected impact to specified ZDR services do not establish that every customer workflow stored no data. Do not infer the exact storage path used for Insights.",
+          "The initial synthetic-only dataset assessment must not override Notion's later customer-transcript confirmation. Conversely, the later confirmation does not prove the initial dataset itself contained customer data.",
+          "Use the November 17 two-intrusion distinction when interpreting older Fireworks bulletins. Do not apply the earlier LLMJacking attribution to both intrusions or to the Notion exposure without further evidence.",
+          "Least-privilege separation of development and production, workflow-specific retention inventories, and credential rotation at issuing providers are potential controls to examine, not proof of the exact cause of Notion's exposure."
+        ]
+      },
+      "missing_information": [
+        "An explicit primary-source mapping of the Notion dataset to the first intrusion, the second intrusion, or both.",
+        "The precise initial access and data-access path responsible for the Notion transcripts, including the affected service or storage boundary.",
+        "The transcript collection/exposure window, record count, and precise workspace count; Notion supplies only a less-than-1% workspace bound in the reviewed body.",
+        "The identities of the affected third-party cloud provider and exploited service vulnerability are not supplied in the reviewed bodies.",
+        "A completed forensic retrospective for the second intrusion and independently corroborated scope.",
+        "The previous Notion article linked from the current advisory was not read; historical comparisons here rely only on the current page's stated timeline."
+      ],
+      "existing_aliases": []
+    }
+  ],
+  "coverage_limits": {
+    "execution_mode": "A real Copilot subagent explicitly loaded agents/incident-discovery.agent.md and its referenced .github/skills/incident-learning-analysis/SKILL.md. This is not a claim of installed-registry role invocation.",
+    "scope": "Only the requested missing Fireworks AI / Notion event was investigated. One customer-impact candidate is handed off; relevance and learning assessment remain provisional for the research stage.",
+    "public_source_body_limit": 3,
+    "public_source_bodies_read": [
+      {
+        "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+        "sections_read": "Complete returned advisory body, including its November 12 updated version, November 11 and November 13 update entries, customer-impact description, timeline, and recommendations."
+      },
+      {
+        "url": "https://fireworks.ai/security-bulletins",
+        "sections_read": "Complete returned bulletin body, including November 17's two distinct incidents, the November 9 update, and the October 10 bulletin and response timeline."
+      }
+    ],
+    "public_source_bodies_read_count": 2,
+    "other_source_bodies_read": [],
+    "archive_check": {
+      "path": "data/incidents.json",
+      "records_checked": 19,
+      "method": "Parsed the archive, searched complete serialized records case-insensitively for Fireworks or Notion, and inspected record identities/titles. Also searched existing data JSON files for those names.",
+      "duplicate_found": false,
+      "limit": "No named match or candidate duplicate was found; no URL alias is asserted. There were no existing data/advisories.json or data/learning-analysis.json files in the inspected data directory."
+    },
+    "not_performed": [
+      "No third source body, linked historical Notion version, linked reporting, indicators-of-compromise PDF, or leaked dataset was fetched.",
+      "No unbounded search, crawling, scoring, causal-diagram publication, downstream dossier/report generation, or site/archive modification was performed.",
+      "No delegation or publication was performed."
+    ],
+    "handoff": "Persist this discovery artifact only. Research must preserve the two-intrusion distinction and the unresolved Notion-to-intrusion mapping."
+  }
+}

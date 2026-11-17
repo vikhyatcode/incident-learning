@@ -1,0 +1,264 @@
+{
+  "topic": "Fireworks AI / Notion AI Insights transcript exposure",
+  "researched_at": "2026-11-17T22:02:19Z",
+  "sources": [
+    {
+      "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+      "publisher": "Notion",
+      "observed_update": "Main advisory marked updated November 12, 2026; separate update entries dated November 11 and November 13, with the latter describing November 12 actions. Investigation remains ongoing.",
+      "read_body": true,
+      "short_fact_summary": "Notion confirms the November 8 impacted dataset included customer chat transcripts used for Insights, affecting less than 1% of workspaces. Its earlier November 2 assessment concerned a synthetic-only dataset. Notion disconnected Fireworks, deleted data, disabled Insights and Fireworks-served open-weight models, notified affected customers, revoked exposed Notion keys, and reported exposed third-party keys to their issuers."
+    },
+    {
+      "url": "https://fireworks.ai/security-bulletins",
+      "publisher": "Fireworks AI",
+      "observed_update": "November 17, 2026 bulletin, plus November 9 and October 10 bulletins retained on the same page.",
+      "read_body": true,
+      "short_fact_summary": "The latest bulletin separates an August 3–October 7 intrusion using stolen Fireworks credentials and a service vulnerability from an October 23–30 intrusion through cloud-hosted development machines into part of production. Fireworks reports customer secrets, models and datasets accessed in each, and broad account/billing access in the second. Both are described as contained and remediated; only the first forensic investigation is described as completed."
+    }
+  ],
+  "chronology": [
+    {
+      "date": "2026-08-03/2026-10-07",
+      "fact": "Fireworks' November 17 retrospective dates the first intrusion to this interval: an unauthorized party used stolen Fireworks credentials and a vulnerability in an unnamed service to misuse the platform and access secrets, model files and datasets for a small number of customers. This is not a dated attribution of Notion's transcripts.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "date": "2026-10-06/2026-10-10",
+      "fact": "The October bulletin says Fireworks detected unauthorized activity and began containment October 6, started customer notifications October 7, rotated employee API keys October 9, and revoked further user keys and rotated service-account tokens October 10. Its contemporaneous scope was evaluation-job environment variables, including credentials; absence of detected access to other categories was explicitly provisional.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "date": "2026-10-23/2026-10-30",
+      "fact": "The November 17 bulletin dates the second intrusion to this interval. Fireworks reports access to development machines at a third-party cloud provider that had suffered a security incident, followed by access to part of production. It reports account and billing information access for all accounts created before October 30 and access to datasets, models and/or secrets for a small number of customers. Payment card numbers were not stored. No customer-to-intrusion mapping is published.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "date": "2026-10-24/2026-10-25",
+      "fact": "In the older November 9 account, Fireworks says an unauthorized party reached development machines and ran an unauthorized workload October 24; Fireworks detected it that day and closed known critical vulnerabilities. That account says no further evidence of successful access on the customer platform was detected as of October 25. Preserve this as the older, qualified observation, not an assurance overriding the later October 23–30 incident interval.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "date": "2026-11-02",
+      "fact": "Notion says Fireworks notified it that evening of a small accessed dataset. Investigation determined that dataset contained synthetic Notion AI testing data and no Notion AI customer data. This finding applies to that initial dataset.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-03/2026-11-04",
+      "fact": "Notion says it disconnected its systems from Fireworks and stopped communication by the morning of November 3, then deleted all its data in Fireworks on November 4. These actions followed possible exposure; they do not prove recovery of already accessed copies or explain initial compromise.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-06",
+      "fact": "Fireworks notified Notion that malicious actors may have accessed potential customer data. Notion began another internal investigation.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-08/2026-11-09",
+      "fact": "Fireworks confirmed the final impacted dataset November 8. Notion says analysis identified Notion AI chat transcripts used for Insights; Notion contacted impacted customers November 9. Its current advisory bounds impact to less than 1% of workspaces and says no other Notion features were affected.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-09",
+      "fact": "Fireworks expanded its earlier scope to account and billing information and, for limited accounts, secrets, datasets and incomplete models. It described financially motivated LLMJacking links and reported no detected impact to specified default-ZDR services. The later two-intrusion distinction prevents applying this older combined narrative or attribution wholesale to either intrusion or to Notion.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "date": "2026-11-11",
+      "fact": "Notion says it revoked exposed Notion API keys found in affected user messages. This is an actual response to credentials embedded in transcript content, not merely a generic recommendation.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-12",
+      "fact": "Notion revised the advisory timeline and says it reported exposed third-party API keys found in affected user messages to their issuing vendors. The latter action is documented in its November 13 update entry; reporting does not establish that each issuer revoked each key.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "date": "2026-11-17",
+      "fact": "Fireworks explicitly distinguished two incidents, stated both were contained and remediated, and named Unit 42's first-incident investigation as completed and AprosSyber's second-incident investigation as ongoing. Neither reviewed source explicitly assigns Notion's transcript exposure to either incident.",
+      "source_urls": ["https://fireworks.ai/security-bulletins", "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    }
+  ],
+  "normal_behavior": {
+    "reported_usage": "Notion used Fireworks for classification jobs supporting Insights, which helped customers understand their own AI usage. Separately, it used Fireworks as an inference provider for open-weight models in its product. The confirmed Notion customer exposure concerns Insights transcripts, not all use of those models.",
+    "trust_boundary": "The supported data-flow boundary is from Notion AI chat content into processing by an external AI infrastructure vendor for Insights classification. Customer transcript content was therefore present in the vendor-held impacted dataset. Unauthorized access at that vendor crossed the confidentiality boundary for that content without requiring a reported compromise of Notion's own systems.",
+    "retention_limits": "The reviewed sources do not publish the exact Insights service, storage architecture, retention agreement or authorization path. Fireworks' default zero-data-retention statements for specified products do not prove this workflow stored nothing or establish a retention-policy violation.",
+    "content_vs_metadata": "Notion says the vast majority of affected workspaces' transcripts lacked author/workspace labels and tool-call results, with no additional identifying information beyond the chat text itself. This is qualified, not universal anonymization. Text can itself contain identifying or sensitive material; Notion's discovered API keys demonstrate a concrete content risk."
+  },
+  "root_cause": {
+    "customer_exposure": {
+      "status": "Partial supported mechanism; exact intrusion and initial exploit unpublished",
+      "supported_chain": [
+        "Notion used Fireworks classification jobs for Insights.",
+        "Fireworks supplied a final impacted dataset on November 8.",
+        "Notion identified customer Insights chat transcripts in that dataset and notified affected customers.",
+        "Notion subsequently identified exposed API keys embedded in affected user messages and took issuer-specific response actions."
+      ],
+      "causal_limit": "The sources support vendor-side unauthorized access and actual customer transcript exposure, but do not disclose the access path to this particular dataset. They do not explicitly map Notion to the first intrusion, the second intrusion, or both. Do not join the second intrusion's development-to-production chain directly to Notion as a proven end-to-end attack path.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor", "https://fireworks.ai/security-bulletins"]
+    },
+    "distinct_vendor_intrusions": [
+      {
+        "event": "Fireworks first intrusion, August 3–October 7",
+        "reported_mechanism": "Stolen Fireworks credentials plus a vulnerability in one service enabled platform misuse and access to some customers' secrets, model files and datasets.",
+        "unknown_initial_exploit": "Credential theft method, vulnerability identity, exploitation details and precise sequence are not disclosed.",
+        "notion_mapping": "Unproven",
+        "source_urls": ["https://fireworks.ai/security-bulletins"]
+      },
+      {
+        "event": "Fireworks second intrusion, October 23–30",
+        "reported_mechanism": "Access to Fireworks development machines at a cloud provider that had suffered a security incident enabled access to part of Fireworks production and customer data.",
+        "unknown_initial_exploit": "Cloud provider identity, its compromise mechanism, exact development-machine entry method and production authorization/network crossing are not disclosed.",
+        "notion_mapping": "Unproven",
+        "source_urls": ["https://fireworks.ai/security-bulletins"]
+      }
+    ]
+  },
+  "contributors": [
+    {
+      "status": "Reported condition",
+      "fact": "An Insights-related vendor dataset contained customer chat transcripts. This created a customer-content exposure surface at the external processor; the storage implementation and reason for retention are unknown.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "status": "Reported content condition",
+      "fact": "Affected messages contained Notion and third-party API keys. Compromising transcript text can expose credentials independently of missing author/workspace labels. The sources do not demonstrate subsequent abuse of these embedded keys.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "status": "Vendor-reported access chain, not a proven contributor to Notion's specific exposure",
+      "fact": "The second Fireworks intrusion propagated from cloud-hosted development machines into part of production. This supports examining development/production privilege and network separation but does not reveal the failed control or prove that this route reached Notion transcripts.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    }
+  ],
+  "symptoms": [
+    {
+      "fact": "Notion confirms affected customer Insights transcripts, less than 1% of workspaces affected, direct customer notifications, and exposed embedded credentials. Exact record counts, customer counts and transcript exposure dates are not supplied.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "fact": "Insights was disabled and Fireworks was removed as the provider of open-weight models in Notion. These are containment-related product changes, not evidence that every Fireworks-powered product path was compromised.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    }
+  ],
+  "response": [
+    {
+      "actor": "Notion",
+      "reported_actions": "Disconnected Fireworks by November 3, deleted its data there November 4, disabled Insights, stopped serving open-weight models through Fireworks, contacted impacted customers November 9, and provided affected customers secure in-workspace access to review impacted data. Exact dates of feature disablement and model-provider removal are not separately published.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "actor": "Notion",
+      "reported_actions": "Revoked exposed Notion API keys November 11 and reported exposed third-party keys to their issuers November 12. Recommended affected customers treat data as exposed and rotate sensitive credentials pasted during the incident timeframe. Notion did not claim that all third-party keys were rotated or that exposed copies were erased.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "actor": "Fireworks AI",
+      "reported_actions": "Reported credential and service-account revocation/replacement, privilege reduction, network isolation, tighter storage/analytics access and enhanced logging. Disabled self-service dataset uploads/downloads for Batch Inference and dataset-based training during investigation. The November 17 bulletin describes both incidents as contained and remediated, with separate forensic investigations; these remain attributed vendor statements, not independent validation.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "actor": "Fireworks AI",
+      "reported_actions": "Advised affected customers to rotate exposed third-party credentials with issuing providers and review associated activity. Removing a stored secret alone does not invalidate its underlying credential. This general credential response is relevant to transcript-embedded secrets but does not establish which Fireworks intrusion exposed Notion's keys.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "actor": "Research synthesis, not a reported implemented fix",
+      "recommended_controls_to_examine": "Inventory processor data flows and retention per workflow, minimize sensitive content sent for classification, inspect content rather than relying on missing metadata, separate development and production privileges, and ensure credential response reaches issuing providers. These are transferable review questions, not established root causes or evidence that a specific control was absent.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor", "https://fireworks.ai/security-bulletins"]
+    }
+  ],
+  "unknowns": [
+    "Which Fireworks intrusion, if either individually or both together, produced the Notion impacted transcript dataset; neither reviewed body explicitly maps it.",
+    "The precise initial exploit responsible for Notion's exposure and the service, storage location, access authorization and exfiltration route for its transcripts.",
+    "How the first intrusion's Fireworks credentials were stolen and which service vulnerability was exploited.",
+    "The cloud provider involved in the second intrusion, its underlying compromise mechanism and the exact development-to-production trust-boundary failure.",
+    "Transcript collection and access windows, exact record/workspace counts and overlap between initially reviewed synthetic data and subsequently confirmed customer data. Separate notifications do not prove the same dataset changed contents.",
+    "The exact Insights retention configuration and contractual commitments; default-ZDR claims do not resolve this workflow's behavior.",
+    "The scope and identifying characteristics of the minority not covered by Notion's vast-majority qualification, and the precise distribution of embedded sensitive content.",
+    "Whether embedded credentials were used maliciously, which third-party issuers revoked them and whether any downstream data was accessed.",
+    "Completed second-intrusion forensics and independently verified remediation or scope.",
+    "The contents of Notion's linked previous advisory version; it was not read and is not part of this dossier's evidence."
+  ],
+  "conflicts_and_revisions": [
+    {
+      "issue": "Initial synthetic-only assessment versus later customer transcripts",
+      "reconciliation": "Notion's current timeline identifies a November 2 synthetic-only dataset and a later warning and final impacted dataset on November 6 and 8. The later customer-data confirmation supersedes any broad synthetic-only interpretation of the overall incident. It does not show that the initial dataset itself contained customer data or that Notion knowingly mischaracterized it.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "issue": "Early Fireworks scope versus expanded scope and distinct incidents",
+      "reconciliation": "October's absence-of-detected-access statements were provisional. November 9 expanded affected categories; November 17 explicitly split activity into two intrusions and provided separate time ranges and investigators. Use the latest distinction without retroactively assigning every older impact statement to a particular intrusion.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "issue": "November 9 detection observation versus November 17 second-intrusion interval",
+      "reconciliation": "The older account's lack of detected further successful access as of October 25 is a bounded observation. The latest interval runs through October 30. The page does not explain the relationship; do not infer uninterrupted access, exact last successful access, or a contradiction resolved by invention.",
+      "source_urls": ["https://fireworks.ai/security-bulletins"]
+    },
+    {
+      "issue": "Unattributable transcripts versus sensitive text",
+      "reconciliation": "Notion qualifies the metadata/tool-result statement to the vast majority of affected workspaces and expressly leaves the chat text itself as possible identifying information. Its later key revocation/reporting actions establish exposed credentials in messages. Missing labels cannot establish nonsensitive or unidentifiable content.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "issue": "Default zero-data retention versus confirmed Insights data",
+      "reconciliation": "Fireworks' November 9 statement names services with no detected impact and default ZDR; Notion confirms an Insights dataset with transcripts. Without the precise product/storage mapping, neither a universal no-data-held claim nor a ZDR-policy violation is established. General inference use should not be conflated with the confirmed classification dataset.",
+      "source_urls": ["https://fireworks.ai/security-bulletins", "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "issue": "LLMJacking attribution and customer-to-intrusion mapping",
+      "reconciliation": "The older November 9 bulletin describes financially motivated LLMJacking links in its then-combined account. November 17 separates incidents without explicitly identifying which involved Notion. Do not assign the older attribution to both intrusions, characterize Notion transcripts as an LLMJacking consequence, or claim a common actor across both.",
+      "source_urls": ["https://fireworks.ai/security-bulletins", "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor"]
+    },
+    {
+      "issue": "Publication labels and chronology precision",
+      "reconciliation": "Notion's main body is marked updated November 12 and contains dated November 11/13 update entries. Its November 13 entry reports an action taken November 12. Fireworks' page labels the earliest bulletin October 10 while its timeline says publication October 9 and its November 9 text references an October 9 bulletin. Preserve the observed labels rather than manufacture publication precision.",
+      "source_urls": ["https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor", "https://fireworks.ai/security-bulletins"]
+    }
+  ],
+  "event_aliases": {
+    "customer_impact_candidate": "Notion AI Insights transcript exposure at Fireworks AI",
+    "reviewed_labels": [
+      {
+        "label": "Fireworks AI incident",
+        "publisher": "Notion",
+        "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+        "relationship": "Customer disclosure for this exposure"
+      },
+      {
+        "label": "Update on October 2026 security incidents",
+        "publisher": "Fireworks AI",
+        "url": "https://fireworks.ai/security-bulletins",
+        "relationship": "Vendor umbrella disclosure covering two distinct intrusions; related evidence, not proof either is an exact alias for the Notion event"
+      }
+    ],
+    "verified_additional_url_aliases": [],
+    "merge_constraint": "Keep one customer-impact candidate while retaining two separate vendor intrusions. The primary-source relationship between Notion and Fireworks does not establish the narrower customer-to-intrusion mapping."
+  },
+  "coverage_limits": {
+    "execution_mode": "This Copilot research subagent explicitly read agents\\incident-research.agent.md and loaded its referenced incident-learning-analysis skill. This is explicit role-file execution, not a claim that the harness selected an installed-registry plugin role by name.",
+    "input_artifact": "data\\reviews\\fireworks-discovery.json",
+    "scope": "Only Fireworks AI / Notion underlying customer exposure, using the discovery's two exact primary URLs.",
+    "public_source_body_limit": 3,
+    "public_source_bodies_read_count": 2,
+    "public_source_bodies_read": [
+      {
+        "url": "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+        "sections_read": "Complete returned advisory, November 11/13 update entries, November 12 revised timeline, impact description, usage explanation and recommendations."
+      },
+      {
+        "url": "https://fireworks.ai/security-bulletins",
+        "sections_read": "Complete returned November 17, November 9 and October 10 bulletins, including dated response timeline and credential recommendations."
+      }
+    ],
+    "evidence_quality": "Two primary first-party accounts, cross-checked chronologically. Vendor/customer assertions are attributable, not independently forensic-verified. No source body was retained in full; dossier prose is original paraphrase.",
+    "not_performed": [
+      "No third source, linked historical Notion version, Google threat report, documentation, indicators PDF, leaked dataset or customer export was fetched.",
+      "No arbitrary crawling, additional agent delegation, publication, scoring, diagram generation, archive change, source hashing or validator execution was performed.",
+      "No claim is made that missing metadata means harmless text, defaults govern every workflow, deletion invalidates exposed credentials, or containment proves the cause."
+    ],
+    "persistent_output": "data\\reviews\\fireworks-dossier.json",
+    "handoff": "Research stage only. Preserve the latest two-intrusion distinction, confirmed customer transcripts and embedded-key response, and unresolved mapping. Stop after the durable dossier."
+  }
+}

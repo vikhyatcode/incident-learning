@@ -1,5 +1,12 @@
 {
-  "reviewed_at": "2026-11-17T09:12:00Z",
+  "reviewed_at": "2026-11-17T22:03:28Z",
+  "reviewed_at_by_url": {
+    "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/": "2026-11-17T22:03:28Z",
+    "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/": "2026-11-17T22:03:28Z",
+    "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/": "2026-11-17T22:03:28Z",
+    "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/": "2026-11-17T22:03:28Z",
+    "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html": "2026-11-17T22:03:28Z"
+  },
   "records": {
     "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/": {
       "summary": "A weakness in Optimizely's signup flow let an attacker modify scripts delivered by customer websites. A trusted website dependency became a route to visitors' browsers; Optimizely reports blocking the entry point and removing the injected code.",
