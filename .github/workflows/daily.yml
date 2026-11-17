@@ -42,11 +42,11 @@ jobs:
         run: |
           python3 - <<'PY'
           import json, os, urllib.request, urllib.error
-          payload = {"model": "openai/gpt-4.1-mini", "messages": [
+          payload = {"model": "gpt-4o-mini", "messages": [
               {"role": "user", "content": "Reply with the single word available."}],
               "max_tokens": 8, "temperature": 0}
           request = urllib.request.Request(
-              "https://models.github.ai/inference/chat/completions",
+              "https://models.inference.ai.azure.com/chat/completions",
               data=json.dumps(payload).encode(),
               headers={"Authorization": "Bearer " + os.environ["GH_MODELS_TOKEN"],
                        "Content-Type": "application/json"})
