@@ -25,6 +25,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
+      models: read
     steps:
       - name: Check out latest archive
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -35,6 +36,29 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -v
           node --test tests/filters.test.mjs
+      - name: Verify built-in model access
+        env:
+          GH_MODELS_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          payload = {"model": "openai/gpt-4.1-mini", "messages": [
+              {"role": "user", "content": "Reply with the single word available."}],
+              "max_tokens": 8, "temperature": 0}
+          request = urllib.request.Request(
+              "https://models.github.ai/inference/chat/completions",
+              data=json.dumps(payload).encode(),
+              headers={"Authorization": "Bearer " + os.environ["GH_MODELS_TOKEN"],
+                       "Content-Type": "application/json"})
+          try:
+              with urllib.request.urlopen(request, timeout=40) as response:
+                  result = json.load(response)
+                  print("Model access HTTP", response.status,
+                        "reply:", result["choices"][0]["message"]["content"])
+          except urllib.error.HTTPError as error:
+              print("Model access unavailable HTTP", error.code,
+                    error.read(800).decode(errors="replace"))
+          PY
       - name: Collect current public feeds
         run: python3 scripts/pipeline.py collect
       - name: Build static learning library
