@@ -52,9 +52,9 @@ jobs:
                        "Content-Type": "application/json"})
           try:
               with urllib.request.urlopen(request, timeout=40) as response:
-                  result = json.load(response)
+                  body = response.read(2000).decode(errors="replace")
                   print("Model access HTTP", response.status,
-                        "reply:", result["choices"][0]["message"]["content"])
+                        "type:", response.headers.get("Content-Type"), "body:", body)
           except urllib.error.HTTPError as error:
               print("Model access unavailable HTTP", error.code,
                     error.read(800).decode(errors="replace"))
