@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn from major software outages and security incidents. Source-backed case studies, daily selected reports, and practical engineering questions.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light">
+  <title>Incident Learning - Better systems begin with better questions</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#library">Skip to incidents</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="./"><span class="logo" aria-hidden="true">il.</span> incident<span>learning</span></a>
+    <nav aria-label="Main navigation"><a href="#start">Start learning</a><a href="#library">Incident library</a><a href="https://github.com/vikhyatcode/incident-learning">GitHub &nearr;</a></nav>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-copy"><p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> A FIELD GUIDE FOR CURIOUS ENGINEERS</p>
+        <h1 id="headline">Things break.<br><em>Learn what matters.</em></h1>
+        <p class="lede">Understand the outages and security incidents shaping software. Start with the short version. Stay for the engineering lesson.</p>
+        <div class="hero-actions"><a class="button" href="#start">Find your next lesson <span aria-hidden="true">&rarr;</span></a><span>No noise. No invented root causes.</span></div>
+      </div>
+      <aside class="principle" aria-label="Our learning approach">
+        <span class="diagram-label">THE LEARNING LOOP</span>
+        <div class="loop"><span>Observe</span><b aria-hidden="true">&darr;</b><span>Understand</span><b aria-hidden="true">&darr;</b><span class="loop-final">Build better</span></div>
+        <p>Evidence first.<br>Questions before assumptions.</p>
+      </aside>
+    </section>
+    <section class="collection-bar" aria-label="Collection status">
+      <div><strong>{{LIVE_COUNT}}</strong><span>selected reports</span></div><div><strong>{{CASE_COUNT}}</strong><span>deep-dive case studies</span></div>
+      <div class="collection-time"><span class="health-label">{{HEALTH_LABEL}}</span><span>Last collection: <time id="collected-at" datetime="{{COLLECTED_AT}}">{{COLLECTION_LABEL}}</time></span><a href="#source-health">View source health &darr;</a></div>
+    </section>
+    <p id="stale-warning" class="warning" role="status" hidden></p>
+    <section id="start" class="start-section" aria-labelledby="start-heading">
+      <div class="section-heading"><div><p class="eyebrow">START HERE</p><h2 id="start-heading">Three incidents. Lasting lessons.</h2></div><p>Historical, source-backed explainers.<br>Not today's breaking news.</p></div>
+      <div class="case-links">{{CASE_LINKS}}</div>
+    </section>
+    <section id="library" aria-labelledby="library-heading">
+      <div class="section-heading"><div><p class="eyebrow">THE INCIDENT NOTEBOOK</p><h2 id="library-heading">Follow the failure. Find the lesson.</h2></div><p>Grouped by confirmed cause.<br>Unknown is an honest answer.</p></div>
+      <p class="library-note">Daily selected reports and historical cases, not a complete incident census. A recent publication can describe an older event. Different outlets may cover the same event; reports are not unique-event counts.</p>
+      <form class="filters" id="filters" role="search" aria-label="Filter incident library" hidden>
+        <label class="search">Search the notebook<input id="search" name="q" type="search" placeholder="Service, incident, or engineering concept..." autocomplete="off"></label>
+        <label>Incident type<select id="type" name="type"><option value="">All types</option><option value="outage">Outages / failures</option><option value="security">Security incidents</option></select></label>
+        <label>Underlying cause<select id="cause" name="cause"><option value="">All causes</option>{{CAUSE_OPTIONS}}</select></label>
+        <label>Collection<select id="kind" name="kind"><option value="">All entries</option><option value="live">Collected reports</option><option value="historical">Historical studies</option></select></label>
+        <label>Date from<input id="from" name="from" type="date"></label><label>Date to<input id="to" name="to" type="date"></label>
+        <button type="reset" class="reset">Reset filters</button>
+      </form>
+      <noscript><p class="warning">JavaScript is off. All incidents and expandable lessons remain available; filters need JavaScript.</p></noscript>
+      <div class="results-line"><p id="result-count" role="status" aria-live="polite">Browse all entries below</p><span>Incident date when known; otherwise publication date. All times UTC.</span></div>
+      <p id="empty-results" class="empty" hidden>No incidents match these filters. Try another cause or date range.</p>
+      <div class="incident-list">{{CARDS}}</div>
+    </section>
+    <section class="source-section" id="source-health" aria-labelledby="sources-heading">
+      <div><p class="eyebrow">TRANSPARENCY, NOT CERTAINTY</p><h2 id="sources-heading">Know what you know.<br>See what you don't.</h2>
+        <p>Collected daily at <strong>08:37 UTC</strong>. Major and critical provider incidents, plus significant-impact security and outage reporting. We do not infer a root cause from a headline.</p>
+        <p>Live entries contain short attributed feed extracts and clearly labeled general study prompts. Full, incident-specific explainers are curated historical case studies. No AI-generated incident facts.</p>
+        <p>Partial failures are listed here; total collection failure preserves the previous site. Check the timestamp and <a href="https://github.com/vikhyatcode/incident-learning/actions/workflows/daily.yml">workflow history</a> for freshness.</p>
+        <a href="https://github.com/vikhyatcode/incident-learning#sources-and-selection">Read selection rules &amp; limitations &nearr;</a>
+      </div>
+      <ul class="source-list">{{SOURCES}}</ul>
+    </section>
+  </main>
+  <footer class="wrap"><a class="wordmark" href="./">incident<span>learning</span></a><p>A personal learning notebook. Not an authoritative security advisory.</p><a href="https://github.com/vikhyatcode/incident-learning">Source &amp; contributions &nearr;</a></footer>
+</body>
+</html>

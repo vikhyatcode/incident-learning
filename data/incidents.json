@@ -1,0 +1,892 @@
+[
+  {
+    "id": "report:b6e25351df538f83532c",
+    "title": "Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware",
+    "url": "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-17T02:12:17Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map third-party code and credentials that cross your trust boundary; constrain what each dependency can access.",
+      "Practice revoking compromised integrations and preserving evidence before restoring trust. These are review ideas, not a reconstruction of this attack."
+    ],
+    "questions": [
+      "Which external dependency can execute code in your users' browsers or production systems?",
+      "Can you disable that dependency without losing your ability to investigate?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-17T02:12:17Z",
+        "text": "A suspected supply chain attack targeting Optimizely has led to malicious JavaScript being loaded on numerous popular websites, including Zoom, CNN, Fox News, BBC, Salesforce, and GitLab, exposing visitors to scripts designed to steal..."
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "report:ac17c0218f3e057f3e39",
+    "title": "Barracuda links cloud breach to ARTEX AI-powered cyberattack",
+    "url": "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-16T19:57:13Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: Barracuda links cloud breach to ARTEX AI-powered cyberattack.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map access to sensitive data, including backups and integration tokens. Minimize privileges and make unusual access observable.",
+      "Prepare a containment and credential-rotation checklist. A report of theft alone does not establish how access was obtained."
+    ],
+    "questions": [
+      "What evidence would confirm the scope of access rather than just the initial alert?",
+      "Which credentials and downstream systems would your containment plan need to examine?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-16T19:57:13Z",
+        "text": "Hackers who breached the cloud environment of network and email security company Barracuda earlier this month used a stolen cloud access key and the ARTEX AI penetration testing framework. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "report:91e784d7cca7318ca4d6",
+    "title": "Microsoft says months-old bug caused global Microsoft 365 outage",
+    "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-16T16:43:24Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: Microsoft says months-old bug caused global Microsoft 365 outage.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-16T16:43:24Z",
+        "text": "Microsoft says a software bug introduced in July caused last week's worldwide Microsoft 365 outage, triggering a cascading failure that left more than 80% of its networking gateway servers unresponsive. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "report:0d946a07bc289f653805",
+    "title": "Fandango says hackers stole payment card details from checkout pages",
+    "url": "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-16T15:44:21Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: Fandango says hackers stole payment card details from checkout pages.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map access to sensitive data, including backups and integration tokens. Minimize privileges and make unusual access observable.",
+      "Prepare a containment and credential-rotation checklist. A report of theft alone does not establish how access was obtained."
+    ],
+    "questions": [
+      "What evidence would confirm the scope of access rather than just the initial alert?",
+      "Which credentials and downstream systems would your containment plan need to examine?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-16T15:44:21Z",
+        "text": "Ticket seller Fandango Media is notifying customers about a data breach that exposed payment card details entered on its checkout pages. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:1xzmt89vv61l",
+    "title": "Incident with Pull Requests",
+    "url": "https://stspg.io/qzj7qjdcr8jc",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-13T15:47:12Z",
+    "published_at": "2026-11-13T15:47:12Z",
+    "source_updated_at": "2026-11-13T18:29:31Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Pull Requests.",
+    "impact": "We are investigating reports of degraded availability for Pull Requests",
+    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-13T15:47:12Z",
+        "text": "We are investigating reports of degraded availability for Pull Requests"
+      },
+      {
+        "at": "2026-11-13T17:28:01Z",
+        "text": "The degradation affecting Pull Requests has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-13T17:46:11Z",
+        "text": "We continue to monitor the stability of merge requests."
+      },
+      {
+        "at": "2026-11-13T18:29:31Z",
+        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "report:d32b5f97fc676bf8272f",
+    "title": "FBI Says North Korean Hackers Stole Over $400 Million in Crypto Using Deepfake Video Calls",
+    "url": "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html",
+    "source_id": "hackernews",
+    "source_name": "The Hacker News",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-13T14:28:58Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from The Hacker News: FBI Says North Korean Hackers Stole Over $400 Million in Crypto Using Deepfake Video Calls.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "The Hacker News published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map access to sensitive data, including backups and integration tokens. Minimize privileges and make unusual access observable.",
+      "Prepare a containment and credential-rotation checklist. A report of theft alone does not establish how access was obtained."
+    ],
+    "questions": [
+      "What evidence would confirm the scope of access rather than just the initial alert?",
+      "Which credentials and downstream systems would your containment plan need to examine?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-13T14:28:58Z",
+        "text": "The U.S. Federal Bureau of Investigation (FBI) has established that threat actors tied to the Democratic People's Republic of Korea (DPRK aka North Korea) have stolen more than $400 million worth of cryptocurrency as part of a social..."
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:dvy0t3mvh1lg",
+    "title": "Impact across multiple GitHub products including Actions, Pages, and Copilot products.",
+    "url": "https://stspg.io/jdjlq5zjyl48",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-11T20:48:12Z",
+    "published_at": "2026-11-11T20:48:12Z",
+    "source_updated_at": "2026-11-11T21:21:39Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Impact across multiple GitHub products including Actions, Pages, and Copilot products..",
+    "impact": "We are investigating reports of degraded availability for Pages",
+    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-11T20:48:12Z",
+        "text": "We are investigating reports of degraded availability for Pages"
+      },
+      {
+        "at": "2026-11-11T21:07:26Z",
+        "text": "We\u2019re seeing recovery across all services and continuing to monitor. The backlog of Actions jobs are being processed. We\u2019ll update when we see full recovery."
+      },
+      {
+        "at": "2026-11-11T21:21:32Z",
+        "text": "The backlog of Actions jobs has been fully processed. We\u2019re observing full recovery across all impacted services."
+      },
+      {
+        "at": "2026-11-11T21:21:39Z",
+        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:hnf21m9jkl3c",
+    "title": "Incident with Git Operations and Pull Requests",
+    "url": "https://stspg.io/16nsnk2th3rv",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-10T16:10:52Z",
+    "published_at": "2026-11-10T16:10:52Z",
+    "source_updated_at": "2026-11-13T15:23:49Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Incident with Git Operations and Pull Requests.",
+    "impact": "We are investigating reports of degraded performance for Actions and Pull Requests",
+    "response": "On November 10, 2026, from approximately 15:00 UTC to 17:55 UTC, GitHub experienced degraded performance affecting repository pages, pull requests, and GitHub Actions. Customers may have seen slow or failed page loads and delays processing pull request updates and merges. Some pull requests continued to display an earlier source-branch commit after the...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-10T16:10:52Z",
+        "text": "We are investigating reports of degraded performance for Actions and Pull Requests"
+      },
+      {
+        "at": "2026-11-10T17:28:17Z",
+        "text": "Actions is operating normally."
+      },
+      {
+        "at": "2026-11-10T17:46:33Z",
+        "text": "We continue to investigate elevated response times for Git operations and pull requests. Actions workflows are recovering. Pull request processing has shown some improvement, but users continue to experience delays and failures. We\u2019re monitoring the impact and working to restore normal service."
+      },
+      {
+        "at": "2026-11-10T17:55:03Z",
+        "text": "On November 10, 2026, from approximately 15:00 UTC to 17:55 UTC, GitHub experienced degraded performance affecting repository pages, pull requests, and GitHub Actions. Customers may have seen slow or failed page loads and delays processing pull request updates and merges. Some pull requests continued to display an earlier source-branch commit after the..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:6jm5k16vyhfg",
+    "title": "Degraded availability for GPT-5.3 Codex and GPT-5.6 models in Copilot",
+    "url": "https://stspg.io/t5gqmprtrdf2",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-09T23:16:32Z",
+    "published_at": "2026-11-09T23:16:32Z",
+    "source_updated_at": "2026-11-10T00:05:52Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Degraded availability for GPT-5.3 Codex and GPT-5.6 models in Copilot.",
+    "impact": "We are investigating reports of degraded availability for Copilot",
+    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-09T23:16:32Z",
+        "text": "We are investigating reports of degraded availability for Copilot"
+      },
+      {
+        "at": "2026-11-09T23:46:35Z",
+        "text": "The degradation affecting Copilot AI Model Providers has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-09T23:59:44Z",
+        "text": "The issue affecting GPT-5.3 Codex, GPT-5.6 Luna, and GPT-5.6 Sol in Copilot products and IDE surfaces has been mitigated. We are monitoring the service to ensure stability."
+      },
+      {
+        "at": "2026-11-10T00:05:52Z",
+        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:tp8cghg7tlc4",
+    "title": "Incident with Actions and Checks API",
+    "url": "https://stspg.io/7yw63xl9ztrv",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-09T18:12:37Z",
+    "published_at": "2026-11-09T18:12:37Z",
+    "source_updated_at": "2026-11-13T04:16:38Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Incident with Actions and Checks API.",
+    "impact": "We are investigating reports of degraded availability for Actions",
+    "response": "On November 9, 2026, between 18:07 and 18:59 UTC, GitHub Actions experienced degraded performance. During this time, some customers saw workflow runs fail to start, update or report status correctly. An average of 28% of workflow runs were affected, peaking at 65% during the worst period of the incident. Once Actions services recovered, some jobs were left...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-09T18:12:37Z",
+        "text": "We are investigating reports of degraded availability for Actions"
+      },
+      {
+        "at": "2026-11-09T18:30:17Z",
+        "text": "Pages is experiencing degraded performance. We are continuing to investigate."
+      },
+      {
+        "at": "2026-11-09T18:43:24Z",
+        "text": "The degradation affecting Actions, Pages and Webhooks has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-09T18:59:32Z",
+        "text": "On November 9, 2026, between 18:07 and 18:59 UTC, GitHub Actions experienced degraded performance. During this time, some customers saw workflow runs fail to start, update or report status correctly. An average of 28% of workflow runs were affected, peaking at 65% during the worst period of the incident. Once Actions services recovered, some jobs were left..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:xxb3l2bm76dr",
+    "title": "Incident with Webhooks and Actions",
+    "url": "https://stspg.io/4vdghm7tycm4",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-09T10:00:35Z",
+    "published_at": "2026-11-09T10:00:35Z",
+    "source_updated_at": "2026-11-12T19:12:06Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Webhooks and Actions.",
+    "impact": "We are investigating reports of degraded performance for Actions and Webhooks",
+    "response": "On November 9, 2026, from 09:23 to 11:40 UTC, one of our job queue clusters was degraded, delaying webhook deliveries, Actions workflow runs, and Dependabot and dependency graph updates. Until mitigation at 10:37 UTC, an average of 26% of webhook deliveries were delayed, peaking at 30%, and the backlog cleared by 11:40 UTC. Some deliveries were delayed by...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-09T10:00:35Z",
+        "text": "We are investigating reports of degraded performance for Actions and Webhooks"
+      },
+      {
+        "at": "2026-11-09T11:42:04Z",
+        "text": "Webhooks is experiencing degraded performance. We are continuing to investigate."
+      },
+      {
+        "at": "2026-11-09T11:45:07Z",
+        "text": "The degradation affecting Webhooks has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-09T11:50:35Z",
+        "text": "On November 9, 2026, from 09:23 to 11:40 UTC, one of our job queue clusters was degraded, delaying webhook deliveries, Actions workflow runs, and Dependabot and dependency graph updates. Until mitigation at 10:37 UTC, an average of 26% of webhook deliveries were delayed, peaking at 30%, and the backlog cleared by 11:40 UTC. Some deliveries were delayed by..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:h02n9572mx9y",
+    "title": "Incident with Actions",
+    "url": "https://stspg.io/7pwv28hvkmz8",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-04T17:40:33Z",
+    "published_at": "2026-11-04T17:40:33Z",
+    "source_updated_at": "2026-11-07T01:10:18Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Actions.",
+    "impact": "We are investigating reports of degraded availability for Actions",
+    "response": "Please refer to the combined summary in this related incident: https://www.githubstatus.com/incidents/xr3myzj7ms51",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-04T17:40:33Z",
+        "text": "We are investigating reports of degraded availability for Actions"
+      },
+      {
+        "at": "2026-11-04T17:53:11Z",
+        "text": "We have identified an issue with events that might trigger Actions. We have applied mitigations and are monitoring for recovery at this point. Customers may observe delayed status updates for their jobs."
+      },
+      {
+        "at": "2026-11-04T18:07:51Z",
+        "text": "The degradation affecting Actions has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-04T18:16:08Z",
+        "text": "Please refer to the combined summary in this related incident: https://www.githubstatus.com/incidents/xr3myzj7ms51"
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:xr3myzj7ms51",
+    "title": "Incident with Actions and Pages",
+    "url": "https://stspg.io/pjgptg3cfc6n",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-04T16:05:31Z",
+    "published_at": "2026-11-04T16:05:31Z",
+    "source_updated_at": "2026-11-07T01:04:38Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Actions and Pages.",
+    "impact": "We are investigating reports of degraded performance for Actions and Pages",
+    "response": "On November 4, 2026, between 15:49 UTC and 16:48 UTC, and again between 17:20 UTC and 17:55 UTC, GitHub Actions, Pages, Webhooks, Code Scanning, and Copilot coding agent experienced delays. During this time, Actions workflow runs and job status updates were delayed by up to 25 minutes. Pages deployments dropped to about 4% of normal volume, webhook...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-04T16:05:31Z",
+        "text": "We are investigating reports of degraded performance for Actions and Pages"
+      },
+      {
+        "at": "2026-11-04T16:48:03Z",
+        "text": "The degradation affecting Actions and Pages has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-04T16:49:27Z",
+        "text": "The degradation has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-04T17:01:11Z",
+        "text": "On November 4, 2026, between 15:49 UTC and 16:48 UTC, and again between 17:20 UTC and 17:55 UTC, GitHub Actions, Pages, Webhooks, Code Scanning, and Copilot coding agent experienced delays. During this time, Actions workflow runs and job status updates were delayed by up to 25 minutes. Pages deployments dropped to about 4% of normal volume, webhook..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:smtdswd1h2w4",
+    "title": "Incident with Pull Requests, Git Operations and Issues",
+    "url": "https://stspg.io/18blsgwnbyy6",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-04T09:49:55Z",
+    "published_at": "2026-11-04T09:49:55Z",
+    "source_updated_at": "2026-11-16T21:54:50Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Pull Requests, Git Operations and Issues.",
+    "impact": "We are investigating reports of degraded performance for Git Operations, Issues and Pull Requests",
+    "response": "n November 4, 2026, between 09:35 UTC and 11:43 UTC, customers experienced intermittent errors and timeouts across GitHub.com, primarily on actions that write data. At peak, about 20% of pull request write operations (such as merging, commenting, and reviewing) failed, along with about 10% of issue creates and edits and 10\u201315% of project item edits. Git...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-04T09:49:55Z",
+        "text": "We are investigating reports of degraded performance for Git Operations, Issues and Pull Requests"
+      },
+      {
+        "at": "2026-11-04T11:30:42Z",
+        "text": "The degradation affecting API Requests, Git Operations, Issues and Pull Requests has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-04T11:43:52Z",
+        "text": "The degradation affecting Actions has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-11-04T11:50:06Z",
+        "text": "n November 4, 2026, between 09:35 UTC and 11:43 UTC, customers experienced intermittent errors and timeouts across GitHub.com, primarily on actions that write data. At peak, about 20% of pull request write operations (such as merging, commenting, and reviewing) failed, along with about 10% of issue creates and edits and 10\u201315% of project item edits. Git..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:pwxsjgnvrk6b",
+    "title": "Incident with Actions, Pages, and Webhooks",
+    "url": "https://stspg.io/5cd2m4n59spv",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-10-30T17:50:54Z",
+    "published_at": "2026-10-30T17:50:54Z",
+    "source_updated_at": "2026-11-03T17:39:38Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a major-impact service incident: Incident with Actions, Pages, and Webhooks.",
+    "impact": "We are investigating reports of degraded performance for Actions and Webhooks",
+    "response": "On October 30, 2026, from 17:50 to 18:32 UTC, Actions, Pages, and Webhooks experienced degraded performance. Actions workflow processing, Pages deployments, and webhook deliveries were delayed, and code search and live updates returned errors. Some Actions queues took additional time to drain after mitigation, and the incident was resolved at 19:23 UTC. The...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-10-30T17:50:54Z",
+        "text": "We are investigating reports of degraded performance for Actions and Webhooks"
+      },
+      {
+        "at": "2026-10-30T18:32:23Z",
+        "text": "All affected services have recovered following mitigation. We continue to investigate root cause."
+      },
+      {
+        "at": "2026-10-30T18:32:39Z",
+        "text": "The degradation affecting Actions, Pages and Webhooks has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-10-30T19:23:40Z",
+        "text": "On October 30, 2026, from 17:50 to 18:32 UTC, Actions, Pages, and Webhooks experienced degraded performance. Actions workflow processing, Pages deployments, and webhook deliveries were delayed, and code search and live updates returned errors. Some Actions queues took additional time to drain after mitigation, and the incident was resolved at 19:23 UTC. The..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:nxy2l0ssxm10",
+    "title": "Disruption with GitHub services",
+    "url": "https://stspg.io/6p81rf34z4nc",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-10-30T14:31:16Z",
+    "published_at": "2026-10-30T14:31:16Z",
+    "source_updated_at": "2026-10-30T15:02:51Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Disruption with GitHub services.",
+    "impact": "We are investigating reports of impacted performance for some GitHub services.",
+    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-10-30T14:31:16Z",
+        "text": "We are investigating reports of impacted performance for some GitHub services."
+      },
+      {
+        "at": "2026-10-30T14:48:00Z",
+        "text": "A temporarily overloaded component triggered a burst of errors between 14:21 and 14:30 UTC across numerous services. Component health has returned to normal and we continue to monitor while investigating the root cause."
+      },
+      {
+        "at": "2026-10-30T14:49:46Z",
+        "text": "The degradation affecting Pages has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-10-30T15:02:51Z",
+        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:l7ycmglmykgg",
+    "title": "Disruption with some Copilot services",
+    "url": "https://stspg.io/bwcyq078jzms",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-10-28T14:12:53Z",
+    "published_at": "2026-10-28T14:12:53Z",
+    "source_updated_at": "2026-11-04T18:30:45Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Disruption with some Copilot services.",
+    "impact": "We are investigating reports of impacted performance for some GitHub services.",
+    "response": "On October 28, 2026, between 13:52 and 15:24 UTC, Copilot users saw errors when using several GPT-family models and the MAI Code 1.1 Flash model. Affected experiences included Copilot Chat in IDEs and on GitHub.com, the Copilot CLI, Copilot Code Review, the Copilot Coding Agent, Code Scanning Autofix, and Code Quality. About 9.73% of requests to the...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-10-28T14:12:53Z",
+        "text": "We are investigating reports of impacted performance for some GitHub services."
+      },
+      {
+        "at": "2026-10-28T15:24:40Z",
+        "text": "Copilot is experiencing degraded performance. We are continuing to investigate."
+      },
+      {
+        "at": "2026-10-28T15:26:14Z",
+        "text": "The degradation affecting Copilot has been mitigated. We are monitoring to ensure stability."
+      },
+      {
+        "at": "2026-10-28T15:28:19Z",
+        "text": "On October 28, 2026, between 13:52 and 15:24 UTC, Copilot users saw errors when using several GPT-family models and the MAI Code 1.1 Flash model. Affected experiences included Copilot Chat in IDEs and on GitHub.com, the Copilot CLI, Copilot Code Review, the Copilot Coding Agent, Code Scanning Autofix, and Code Quality. About 9.73% of requests to the..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:nms1dpzmh9d9",
+    "title": "Delays for Pull Requests and Webhook deliveries",
+    "url": "https://stspg.io/gnnt0tx9nxmk",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-10-21T14:52:49Z",
+    "published_at": "2026-10-21T14:52:49Z",
+    "source_updated_at": "2026-11-16T18:41:45Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Delays for Pull Requests and Webhook deliveries.",
+    "impact": "We are investigating reports of degraded performance for Actions, Pull Requests and Webhooks",
+    "response": "On October 21, 2026, between 13:22 UTC and 19:22 UTC, several GitHub services were delayed due to degradation of our internal event streaming platform. Pull request updates, push webhooks, and push-triggered Actions workflows were delayed by up to 33 minutes until 15:36 UTC. Actions status updates were delayed by up to 33 minutes until 16:16 UTC, holding up...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-10-21T14:52:50Z",
+        "text": "We are investigating reports of degraded performance for Actions, Pull Requests and Webhooks"
+      },
+      {
+        "at": "2026-10-21T18:52:50Z",
+        "text": "Audit log events continue to recover, with delays now below 70 minutes. We\u2019ve applied mitigations to speed recovery and expect audit logs to fully recover in about 40 minutes. Pull request updates, Actions, and webhook deliveries remain recovered. We are monitoring progress and will share further updates."
+      },
+      {
+        "at": "2026-10-21T19:22:38Z",
+        "text": "Pull request updates, Actions, and webhook deliveries have recovered. Audit log delays are now below 40 minutes, within the healthy threshold, and continue to decrease as the remaining backlog is processed."
+      },
+      {
+        "at": "2026-10-21T19:22:52Z",
+        "text": "On October 21, 2026, between 13:22 UTC and 19:22 UTC, several GitHub services were delayed due to degradation of our internal event streaming platform. Pull request updates, push webhooks, and push-triggered Actions workflows were delayed by up to 33 minutes until 15:36 UTC. Actions status updates were delayed by up to 33 minutes until 16:16 UTC, holding up..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  },
+  {
+    "id": "github:8tzbpcnl75jp",
+    "title": "Degraded availability for GitHub Actions, GitHub Pages and Webhooks",
+    "url": "https://stspg.io/nrv2k8s68bwn",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-10-19T15:49:25Z",
+    "published_at": "2026-10-19T15:49:25Z",
+    "source_updated_at": "2026-10-22T13:12:51Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Degraded availability for GitHub Actions, GitHub Pages and Webhooks.",
+    "impact": "We are investigating reports of degraded performance for Actions and Pages",
+    "response": "On October 19, 2026, between 15:24 and 16:52 UTC, GitHub Actions, GitHub Pages, and webhooks generated by Actions were degraded. Live updates on GitHub.com and code search were also degraded for part of this time. No data was lost. Impact - Workflow status updates, logs, and checks were delayed. - 5.13% of jobs on GitHub-hosted runners were delayed in...",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-10-19T15:49:25Z",
+        "text": "We are investigating reports of degraded performance for Actions and Pages"
+      },
+      {
+        "at": "2026-10-19T16:30:29Z",
+        "text": "We\u2019re seeing recovery following mitigation and are continuing to monitor. Customers may still experience delays in GitHub Actions workflow status updates, GitHub Pages deployments, and check and workflow webhook events generated by Actions runs."
+      },
+      {
+        "at": "2026-10-19T16:56:54Z",
+        "text": "Actions, Pages and Webhooks are operating normally."
+      },
+      {
+        "at": "2026-10-19T16:56:58Z",
+        "text": "On October 19, 2026, between 15:24 and 16:52 UTC, GitHub Actions, GitHub Pages, and webhooks generated by Actions were degraded. Live updates on GitHub.com and code search were also degraded for part of this time. No data was lost. Impact - Workflow status updates, logs, and checks were delayed. - 5.13% of jobs on GitHub-hosted runners were delayed in..."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-17T08:31:04Z",
+    "last_seen": "2026-11-17T08:35:17Z",
+    "revisions": []
+  }
+]

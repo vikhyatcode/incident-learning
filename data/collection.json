@@ -1,0 +1,51 @@
+{
+  "collected_at": "2026-11-17T08:35:17Z",
+  "status": "ok",
+  "sources": [
+    {
+      "id": "github",
+      "name": "GitHub Status",
+      "kind": "statuspage",
+      "url": "https://www.githubstatus.com/api/v2/incidents.json",
+      "checked_at": "2026-11-17T08:35:17Z",
+      "last_success": "2026-11-17T08:35:17Z",
+      "status": "ok",
+      "selected": 14,
+      "scanned": 50
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Status",
+      "kind": "statuspage",
+      "url": "https://www.cloudflarestatus.com/api/v2/incidents.json",
+      "checked_at": "2026-11-17T08:35:17Z",
+      "last_success": "2026-11-17T08:35:17Z",
+      "status": "ok",
+      "selected": 0,
+      "scanned": 50
+    },
+    {
+      "id": "bleepingcomputer",
+      "name": "BleepingComputer",
+      "kind": "rss",
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "checked_at": "2026-11-17T08:35:17Z",
+      "last_success": "2026-11-17T08:35:17Z",
+      "status": "ok",
+      "selected": 4,
+      "scanned": 15
+    },
+    {
+      "id": "hackernews",
+      "name": "The Hacker News",
+      "kind": "rss",
+      "url": "https://feeds.feedburner.com/TheHackersNews",
+      "checked_at": "2026-11-17T08:35:17Z",
+      "last_success": "2026-11-17T08:35:17Z",
+      "status": "ok",
+      "selected": 1,
+      "scanned": 50
+    }
+  ],
+  "archive_count": 19
+}

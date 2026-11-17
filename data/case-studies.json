@@ -1,0 +1,92 @@
+[
+  {
+    "id": "case-github-2018",
+    "title": "GitHub 2018: a short partition, a long recovery",
+    "url": "https://github.blog/news-insights/company-news/oct21-post-incident-analysis/",
+    "source_name": "GitHub engineering post-incident analysis",
+    "type": "outage",
+    "cause": "dependency",
+    "historical": true,
+    "incident_date": "2018-10-21T22:52:00Z",
+    "published_at": "2018-10-30",
+    "source_updated_at": "2021-12-19",
+    "status": "historical analysis",
+    "summary": "A brief network partition triggered database failover into a topology the application could not comfortably use. Preserving acknowledged writes made recovery much slower than restoring connectivity.",
+    "what_happened": "During network maintenance, GitHub lost connectivity between an East Coast network hub and its primary East Coast data center. The partition lasted 43 seconds. Orchestrator established quorum elsewhere and promoted databases on the West Coast. When the link recovered, both regions contained writes absent from the other; simply switching back was no longer safe.",
+    "impact": "GitHub reported 24 hours and 11 minutes of degraded service. Some users saw stale or inconsistent information. Webhook delivery and GitHub Pages builds were paused for much of the incident. The report said no user data was ultimately lost, while noting that reconciliation of a few seconds of writes was still in progress at publication.",
+    "known_cause": "The immediate trigger was a network partition during maintenance. The larger failure involved automated cross-region database promotion, divergent writes, and application latency assumptions that did not match the resulting topology. Network connectivity alone was not a sufficient recovery condition.",
+    "response": "Responders stopped deployments and paused some write-producing work. They prioritized data integrity, restored backups, synchronized replicas, and returned to a stable topology before processing accumulated work. Restoring and transferring large backups was part of the recovery cost.",
+    "lessons": [
+      "A failover controller's valid topology may still violate application assumptions. Test the application, replication, and controller as one system.",
+      "Define what you optimize during a crisis: data integrity, availability, and recovery speed can conflict. Make the trade-off explicit before an incident.",
+      "Measure full-cluster restore time, cross-region transfer time, and backlog drain time. A fast network repair does not imply a fast service recovery."
+    ],
+    "questions": [
+      "If two regions accepted different writes, how would you reconcile them without silently losing an acknowledged operation?",
+      "Does your failover drill test actual application latency and write paths, or only whether a database became primary?",
+      "Which background jobs would you pause to preserve correctness during recovery?"
+    ]
+  },
+  {
+    "id": "case-cloudflare-2019",
+    "title": "Cloudflare 2019: a rule is production code",
+    "url": "https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/",
+    "source_name": "Cloudflare engineering postmortem",
+    "type": "outage",
+    "cause": "deployment",
+    "historical": true,
+    "incident_date": "2019-07-02T13:42:00Z",
+    "published_at": "2019-07-12T15:45:21Z",
+    "source_updated_at": "2026-07-15T13:14:20Z",
+    "status": "historical analysis",
+    "summary": "A globally deployed firewall rule exhausted request-processing CPUs. Even in detection-only mode, a regular expression could consume the resources needed to serve traffic.",
+    "what_happened": "Cloudflare deployed a WAF managed-rule update through a process that allowed global rule distribution. A regular expression performed excessive backtracking. The rule was intended to run in simulate mode, but simulation still required evaluating the expression on live requests.",
+    "impact": "Cloudflare reported 27 minutes of disruption to its core HTTP/HTTPS proxying, CDN, and WAF functionality. Customers saw 502 errors as request-processing CPUs became exhausted. Internal access tools also depended on affected Cloudflare services, complicating response.",
+    "known_cause": "An expensive regular expression consumed CPU across the network. The global distribution path expanded the blast radius before a limited rollout could reveal the performance failure. Detection-only behavior did not protect resource availability.",
+    "response": "Responders identified the WAF as the source of CPU consumption and disabled it globally. Traffic and CPU levels recovered. They tested the changed rule and rollback in one location before re-enabling WAF functionality. Reaching internal controls required a bypass when normal access was unavailable.",
+    "lessons": [
+      "Treat configuration, policy rules, and content updates as executable production changes. Include resource-cost tests, not only correctness tests.",
+      "Use staged rollouts with independent health gates. A change that does not block requests can still exhaust shared resources.",
+      "Exercise break-glass access that does not share the failure domain of the service you are trying to repair."
+    ],
+    "questions": [
+      "Which supposedly harmless configuration changes can consume unbounded CPU, memory, or connections?",
+      "What would automatically stop your next global rollout after the first unhealthy region?",
+      "Could your on-call engineer reach the rollback controls if your own authentication proxy were down?"
+    ]
+  },
+  {
+    "id": "case-lastpass-2022",
+    "title": "LastPass 2022: backups belong in the threat model",
+    "url": "https://blog.lastpass.com/posts/security-incident-update-recommended-actions",
+    "source_name": "LastPass March 2023 incident update",
+    "type": "security",
+    "cause": "security",
+    "historical": true,
+    "incident_date": null,
+    "published_at": "2023-03-01",
+    "source_updated_at": null,
+    "status": "historical analysis",
+    "summary": "Two linked intrusions reached development secrets and then cloud backups containing customer data. Production isolation did not prevent loss of sensitive backup material.",
+    "what_happened": "LastPass's March 2023 account describes two incidents in 2022. An attacker compromised a software engineer's laptop and accessed development data. Information from that intrusion helped target a senior DevOps engineer. LastPass said vulnerable third-party software was exploited to deliver malware and gain access to backup-related secrets. A single precise incident start date is not asserted here.",
+    "impact": "The company reported theft of source code and internal secrets in the first incident. The second exposed cloud backup material containing configuration, API and integration secrets, customer metadata, and customer vault backups. Sensitive vault fields were encrypted, but some metadata, including website URLs, was not. Encryption of vault fields and theft of the vaults are distinct facts; this case does not claim that every vault was decrypted.",
+    "known_cause": "LastPass attributed the intrusions to compromised employee systems and, in the second incident, exploitation of third-party software that led to access to cloud backup secrets. The dependency chain crossed development, endpoint, privileged-access, and backup boundaries. Attribution here follows the company's retrospective account.",
+    "response": "LastPass reported rebuilding its development environment, rotating relevant exposed secrets and certificates, changing privileged-access controls, and adding controls around cloud storage. Its March 2023 update provided customer-specific security bulletins and superseded parts of earlier communications. Those linked bulletins, not this historical lesson, are the source for customer action.",
+    "lessons": [
+      "Apply production-grade access controls and monitoring to backup stores. A backup can contain data and credentials that recreate production risk.",
+      "Model a sequence of compromises rather than one isolated breach. Stolen internal documentation and secrets can become inputs to a later attack.",
+      "Encryption does not erase the consequences of exfiltration. Evaluate exposed metadata, key custody, credential rotation, and the lifetime of stolen ciphertext separately."
+    ],
+    "questions": [
+      "Which employee devices and credentials can reach backup decryption keys?",
+      "Could an attacker combine a repository secret with documentation to cross into a more privileged environment?",
+      "How would you update customer guidance as an investigation changes what is known?"
+    ],
+    "references": [
+      {
+        "name": "Earlier December 2022 disclosure (read with the later update)",
+        "url": "https://blog.lastpass.com/posts/notice-of-recent-security-incident"
+      }
+    ]
+  }
+]
