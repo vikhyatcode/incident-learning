@@ -40,6 +40,17 @@
         <button type="reset" class="reset">Reset filters</button>
       </form>
       <p id="sort-help" class="library-note">Latest: incident date, otherwise publication date. Most learnings: fresh AI source-review score, highest first; ties use latest then ID. Stale and unassessed entries are unranked and follow scored reports. Score = 5 &times; relevance + 10 &times; evidence detail + 7 &times; transferability + 3 &times; confidence (each 0&ndash;4). This is a subjective study priority, not incident severity or popularity.</p>
+      <details id="score-guide" class="score-guide">
+        <summary>What do Evidence depth and Confidence mean?</summary>
+        <p>Both assess the available sources, not how polished this report sounds. Scores are reasoned editorial judgments, not independent verification of every vendor claim.</p>
+        <dl>
+          <dt>Evidence depth: how much the sources explain</dt>
+          <dd>0 &mdash; headline only; 1 &mdash; status or scope, no mechanism; 2 &mdash; partial mechanism or response; 3 &mdash; causal chain and response with gaps; 4 &mdash; detailed technical mechanism, response and demonstrated tradeoffs.</dd>
+          <dt>Confidence: support for the specific claims and lesson</dt>
+          <dd>0 &mdash; unverifiable or conflicting; 1 &mdash; weak or unresolved evidence; 2 &mdash; attributable secondary account; 3 &mdash; primary account or corroborated reporting, limits explicit; 4 &mdash; detailed, internally consistent primary retrospective.</dd>
+        </dl>
+        <p>A reliable provider notice can have high confidence but low evidence depth: it establishes disruption, not why the system failed. Confidence is not a probability or a percentage. Better writing alone does not raise either score; each report's assessment gives the rationale.</p>
+      </details>
       <noscript><p class="warning">JavaScript is off. All incidents and expandable lessons remain available, latest first; filters and changing sort order need JavaScript.</p></noscript>
       <div class="results-line"><p id="result-count" role="status" aria-live="polite">Browse all entries below</p><span>Incident date when known; otherwise publication date. All times UTC.</span></div>
       <p id="empty-results" class="empty" hidden>No incidents match these filters. Try another cause or date range.</p>

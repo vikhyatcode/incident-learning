@@ -1,6 +1,6 @@
 {
   "name": "incident-learning",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Copilot discovery, research and teaching agents for evidence-backed software and AI incident learning.",
   "author": {"name": "vikhyatcode"},
   "repository": "https://github.com/vikhyatcode/incident-learning",

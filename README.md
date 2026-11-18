@@ -52,8 +52,19 @@ The skill is `.github/skills/incident-learning-analysis/SKILL.md`.
 Fireworks handoffs and `data/reviews/evaluation.json` record the actual
 three-stage demonstration and evaluation limits.
 The local CLI recognized the package through `--plugin-dir .` as enabled,
-version 1.0.0, source `external`. The demonstration used real Copilot subagents
+version 1.1.0, source `external`. The demonstration used real Copilot subagents
 explicitly loading each role file, not a claimed global plugin installation.
+
+The existing **incident-writer** now explains as a software architect: normal
+responsibilities and boundaries, trigger versus latent mechanism, propagation,
+and detection versus containment/recovery. Its optional archive `architecture`
+block compares two or three explicitly proposed alternatives tied to numbered
+causal edges, with cost/tradeoff, residual risk, a measurable exercise and missing
+evidence. It does not infer a vendor's topology or absence of controls. New
+writer reports use this contract; older and sparse archived records need not
+be backfilled speculatively. `data/reviews/architect-reports.json` contains the
+two actual refreshed writer outputs (Notion/Fireworks and Microsoft 365);
+`data/reviews/architect-evaluation.json` records the before/after evaluation.
 
 ## Learning assessment
 
@@ -65,7 +76,7 @@ Arithmetic and hashes validate judgments; they are **not AI reasoning**.
 | Dimension (0-4) | Anchors |
 | --- | --- |
 | Relevance | 0 unrelated; 1 peripheral; 2 narrow concern; 3 common engineering problem; 4 broadly useful software/AI boundary |
-| Evidence detail | 0 headline; 1 status/scope only; 2 partial mechanism/response; 3 causal chain with gaps; 4 detailed mechanism, recovery and tradeoffs |
+| Evidence depth | 0 headline; 1 status/scope only; 2 partial mechanism/response; 3 causal chain with gaps; 4 detailed mechanism, recovery and tradeoffs |
 | Transferability | 0 none; 1 generic advice; 2 one concrete control; 3 several explained controls; 4 reusable tradeoffs and a practical exercise |
 | Confidence | 0 unverifiable/conflicting; 1 weak; 2 attributable secondary; 3 primary/corroborated with limits; 4 consistent detailed primary retrospective |
 
@@ -77,6 +88,17 @@ and lesson count earn no points. Relevance or transferability <=1 means
 priorities. Reasons, why to study and a concrete exercise accompany each review.
 Sparse provider notices are deliberately low-scored; unread records remain
 unassessed rather than receiving made-up scores.
+
+**Evidence depth** measures what the sources explain, not report eloquence.
+**Confidence** measures support for the specific claims and lesson, not
+certainty about every vendor claim, independent verification, or a statistical
+probability. A reliable provider notice can be high confidence and low depth:
+it establishes disruption without explaining the mechanism. The site provides
+one keyboard-accessible score-definition disclosure, linked from assessed cards,
+with both anchored 0-4 scales and each report's own rationale. Better writing
+alone does not raise scores: the architectural refresh keeps Notion/Fireworks
+at **87/100 (depth 3, confidence 3)** and Microsoft 365 at
+**84/100 (depth 3, confidence 2)**.
 
 Each assessment stores reviewed record/source hashes. `python -m scripts.learning check`
 checks at most 12 unique, explicitly allowlisted source bodies (2 MB/30 seconds

@@ -1,0 +1,266 @@
+{
+  "reports": {
+    "advisory:notion-fireworks-2026": {
+      "title": "Notion and Fireworks: containing copies is not revoking authority",
+      "summary": "Notion confirms that an accessed Fireworks dataset contained customer Insights transcripts, including messages with API keys. The architectural consequence is twofold: customer text crossed a processor confidentiality boundary, and embedded credentials created a separate authority-recovery problem. Neither disclosure identifies which Fireworks intrusion reached these transcripts.",
+      "what_happened": "Notion describes classification jobs supporting Insights, distinct from its separate Fireworks-hosted model inference. Classification required a content-processing relationship; the affected dataset establishes that customer transcripts were present at the vendor, not how or why they were stored. Notion's November 2 synthetic-only finding concerned an initial dataset. A November 6 warning and November 8 dataset confirmation established customer exposure without proving the initial dataset had been mischaracterized.",
+      "impact": "Notion bounds impact to less than 1% of workspaces and says no other features were affected. Its missing-author/workspace-label and tool-result qualification covers the vast majority, not every affected workspace. Embedded API keys demonstrate why text itself remains sensitive. Counts, exposure windows and downstream credential misuse are unpublished.",
+      "known_cause": "Notion establishes vendor-side transcript exposure, not a complete exploit. Fireworks distinguishes an August 3–October 7 stolen-credential/service-vulnerability intrusion from an October 23–30 development-machine-to-production intrusion. Neither disclosure maps Notion's dataset to either or both. These contextual mechanisms cannot fill the missing Notion access path, establish a failed customer control, or prove a retention-policy violation.",
+      "response": "Notion disconnected Fireworks by November 3 and deleted its data November 4, before final customer-data confirmation. It also disabled Insights and removed Fireworks-served models. It notified affected customers November 9, revoked exposed Notion keys November 11 and reported third-party keys to issuers November 12. Fireworks reports both intrusions contained and remediated; its second forensic investigation remains ongoing.",
+      "lessons": [
+        "Recommended boundary review: assess classification and inference separately. The Notion disclosure establishes one affected workflow, not compromise of every disabled dependency.",
+        "Recommended assurance standard: require workflow-specific storage and deletion evidence. Fireworks' product-specific default zero-data-retention statements do not resolve the Insights dataset's lifecycle.",
+        "Recommended response discipline: distinguish vendor notification, customer scope confirmation and issuer-confirmed revocation; each supports a different operational decision."
+      ],
+      "questions": [
+        "What dataset lineage and access logs would map Notion's transcripts to the distinct intrusions?",
+        "What information falls outside Notion's vast-majority metadata qualification, and what activity review covers exposed credentials?"
+      ],
+      "why": "Notion's disclosure supports studying a concrete boundary failure without reconstructing the exploit: removing labels does not remove sensitive text, and removing copies does not invalidate authority carried in that text.",
+      "learn": "Practice choosing the smallest useful classification input and defining a separate completion criterion for credential recovery. The proposed exercise below tests both rather than treating provider disconnection as complete remediation.",
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Directly useful across software and AI systems: Notion's confirmed external classification workflow illustrates how customer text and embedded credentials can cross a processor boundary. The lesson applies beyond this vendor or product. Sources: Notion security advisory; Fireworks AI security bulletins."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "Notion supplies a supported data-flow-to-exposure chain and dated containment/key-response actions; Fireworks distinguishes two contextual intrusion mechanisms. This meets causal-chain-and-response-with-gaps, not a fully demonstrated technical retrospective: the Notion-specific entry vector, authorization/storage path and intrusion mapping remain unpublished. Sources: Notion security advisory; Fireworks AI November 17 bulletin."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "The evidence supports reusable design tradeoffs between classification utility/debugging and retained text, metadata removal versus content minimization, and data deletion versus issuer revocation. A synthetic-data exercise makes those choices and response boundaries testable without pretending the exact exploit is known. Basis: Notion's confirmed transcript/key exposure and response; Fireworks' bounded vendor mechanisms and rotation advice."
+        },
+        "confidence": {
+          "score": 3,
+          "rationale": "The dossier attributes confirmed customer transcripts, embedded-key actions and distinct vendor intrusions to two primary first-party disclosures, with revisions reconciled and limits explicit. This supports the processor-boundary lesson, but not a detailed, independently verified end-to-end forensic account; the second investigation and customer-to-intrusion mapping remain unresolved. Sources: Notion security advisory; Fireworks AI security bulletins. This writer used the supplied source-grounded dossier, not new source fetches."
+        }
+      },
+      "diagram": {
+        "normal": "Notion: Insights classification sends chat content across an application-to-processor boundary; separate model inference is not the established exposure path.",
+        "root_cause": "Notion confirms processor-side confidentiality loss. The intrusion-to-dataset authorization crossing remains unknown; Fireworks' two intrusion accounts do not identify it.",
+        "contributors": "Notion: vendor-held transcripts supplied the exposure surface, and some text contained credentials. Storage implementation and retention obligations remain unpublished.",
+        "symptoms": "Notion: affected transcripts and embedded keys required customer and issuer responses. Disabling features is containment, not evidence that each feature was compromised.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Insights crosses processor boundary",
+            "detail": "Notion describes external classification for Insights. Sending content for that responsibility extends the confidentiality boundary beyond Notion; it does not establish a particular storage design.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "normal",
+            "label": "Vendor dataset contains transcripts",
+            "detail": "Notion identified customer transcripts in the final impacted dataset. Their presence explains what could be exposed, but not the retention purpose, duration or collection path.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "UNKNOWN intrusion-to-dataset path",
+            "detail": "Fireworks reports two distinct intrusions, but neither reviewed disclosure connects either to Notion's dataset. The intervening entry and access mechanism must remain a gap, not an inferred development-to-production route.",
+            "source": 1,
+            "state": "unknown"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Vendor access exposes customer text",
+            "detail": "Notion confirms transcripts in the accessed dataset despite the preceding gap. Unauthorized access defeats confidentiality because customer content was within the accessed material; retrieval and exfiltration details are unpublished.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Text includes credential exposure",
+            "detail": "Notion found API keys inside affected messages. Text exposure therefore also exposes credential material, independently of missing identity labels; subsequent authentication or misuse is not established.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Disconnect and remove vendor data",
+            "detail": "Separate containment response, not the next chronological event after confirmed scope: Notion disconnected by November 3 and deleted data November 4, before November 8 confirmation. These actions limit continued exchange and remaining copies, not already accessed copies.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Revoke keys and reach issuers",
+            "detail": "Notion revoked its exposed keys November 11 and contacted third-party issuers November 12. Copy removal cannot revoke authentication authority, so issuer action is a separate recovery track. Third-party revocation outcomes remain unknown.",
+            "source": 0,
+            "state": "reported"
+          }
+        ]
+      },
+      "architecture": {
+        "invariant": "Inferred design question: can Insights obtain useful classifications without leaving reusable customer text or credential material available beyond its necessary processing lifetime? Notion's disclosure establishes the exposure surface, not the intended retention invariant.",
+        "response": "Detection: Notion describes vendor notifications and dataset analysis, not the intrusion detector for its transcripts. Containment: disconnection and deletion preceded final scope confirmation. Recovery: Notion-key revocation restored that authority boundary; third-party notification is not confirmed revocation, and copied text cannot be recalled. Fireworks reports remediation, with second-intrusion forensics ongoing. The alternatives below are proposed prevention and recovery design, not assertions about missing controls.",
+        "decisions": [
+          {
+            "title": "Reduce the content that can become a retained dataset",
+            "proposal": "Proposed for steps 1→2: compare full transcripts with task-specific excerpts or derived classification signals and a bounded deletion lifecycle. Less retained source text reduces the material exposed if the processor boundary is later crossed.",
+            "from": 0,
+            "to": 1,
+            "tradeoff": "Narrower inputs can reduce classification accuracy and remove debugging evidence; lifecycle enforcement requires visibility into copies and derived stores.",
+            "residual_risk": "Necessary text and processing-time copies remain exposed to compromise. Without service-specific storage evidence, no retention duration or deletion guarantee can be selected."
+          },
+          {
+            "title": "Keep credential authority out of classification text",
+            "proposal": "Proposed for steps 4→5: detect and replace credential-shaped content before external classification. This weakens the transition from readable transcript exposure to reusable credential exposure rather than relying on removed author labels.",
+            "from": 3,
+            "to": 4,
+            "tradeoff": "False positives discard useful context; false negatives and changing secret formats require evaluation and maintenance.",
+            "residual_risk": "Unrecognized keys and identifying prose may survive. Redaction neither prevents vendor compromise nor establishes that Notion lacked filtering."
+          },
+          {
+            "title": "Track authority recovery separately from copy removal",
+            "proposal": "Proposed for steps 6→7: maintain issuer ownership and confirmation tracking so deletion does not close the credential-response task. Verify revocation through the issuer or a safe test system, not notification delivery.",
+            "from": 5,
+            "to": 6,
+            "tradeoff": "Rotation can disrupt integrations; third-party cooperation and customer coordination can delay closure.",
+            "residual_risk": "Revocation blocks future use, not prior misuse; copied content and unidentified credentials remain unresolved."
+          }
+        ],
+        "validation": "Proposed exercise: run synthetic chats with invented identities and fake key markers through full-text, excerpted and redacted classification variants in a controlled test processor. Measure classification agreement, sensitive markers retained and deletion latency. Simulate exposure and disconnect before scope analysis finishes; record that new transfers stop while old copies remain a separate question. Use only a local mock credential issuer to verify that deletion leaves a dummy credential valid until revocation. Choose a design only after measuring utility and obtaining workflow-specific retention, copy inventory and issuer-response evidence.",
+        "open_questions": "Needed evidence: exact Insights service and data lifecycle, access permissions and audit lineage, contractual retention commitments, intrusion mapping, exposure windows and issuer-confirmed revocations. These determine control placement and completion criteria; the supplied disclosures cannot settle them."
+      },
+      "source_urls": [
+        "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+        "https://fireworks.ai/security-bulletins"
+      ],
+      "limitations": [
+        "Explicit incident-writer role-file execution using the updated local skill and supplied dossier/report, advisory and assessment; no browsing or fresh primary-body reading.",
+        "Notion's intrusion mapping and access path remain unknown. Earlier synthetic-only and no-further-detected-access statements remain bounded observations, not current universal assurances.",
+        "Fireworks' second investigation remains ongoing; vendor remediation is attributed, not independently verified. Notion's dated update labels do not establish more precise publication chronology.",
+        "Existing dimension scores and rationale strings are unchanged. This report does not alter source evidence, hashes or assessments."
+      ]
+    },
+    "report:91e784d7cca7318ca4d6": {
+      "title": "Microsoft 365: when failover feeds the gateway failure",
+      "summary": "BleepingComputer's account of Microsoft's preliminary findings describes a latent gateway contention defect activated by changed traffic and reduced capacity. Redirecting work away from failed gateways increased pressure on survivors. The architectural lesson is to bound transferred load and recovery work, not assume that routing around failure creates capacity.",
+      "what_happened": "The existing source-grounded assessment describes gateways sharing Microsoft 365 request traffic and redirecting work when gateways become unavailable. BleepingComputer attributes the incident to extra traffic after a Teams failover coinciding with approximately 14% of gateway capacity being independently offline. The changed operating point exposed a months-old defect; deployment age did not establish safety under this combination.",
+      "impact": "BleepingComputer reports worldwide Microsoft 365 disruption and more than 80% of gateway servers unresponsive. That is a server observation, not a measured percentage of affected users. The existing assessment records multi-service disruption and unsuccessful regional containment, without enough topology to establish how particular services or regions shared capacity.",
+      "known_cause": "According to Microsoft's preliminary account through BleepingComputer, latent contention stalled gateways, with higher-core hardware exacerbating the behavior. Failover-related traffic and independently reduced capacity were activating conditions; unresponsiveness was the symptom. Redirection amplified the failure by raising survivor load. Smaller laboratory hardware and different traffic mixes did not reveal the behavior. The exact contention primitive and failure threshold are not established in the supplied evidence.",
+      "response": "The existing BleepingComputer-based review records software remediation, capacity and redirection safeguards, with some services using alternative infrastructure. It reports that restarts alone were overwhelmed by backlog and that services stabilized after a fix. These are attributed response observations, not a complete recovery sequence or proof that any particular admission-control design had been absent.",
+      "lessons": [
+        "Recommended capacity review: evaluate redirected work against surviving effective throughput, not installed machine count. A latent contention defect can make nominal spare capacity misleading.",
+        "Recommended test review: preserve production-relevant core counts, concurrency and request mix before extrapolating from a smaller environment.",
+        "Recommended recovery criterion: demonstrate sustained useful completions and falling backlog after reintroduction, not merely healthy processes."
+      ],
+      "questions": [
+        "Which contention measurements and traffic classes distinguish defect activation from ordinary saturation?",
+        "What request deadlines, retry policies and regional routing dependencies would constrain safe overload rejection?"
+      ],
+      "why": "BleepingComputer's preliminary account gives a concrete counterexample to redundancy as automatic isolation: redistribution can concentrate the same stress on the capacity needed for recovery. It supports a feedback-loop analysis without requiring an invented gateway topology.",
+      "learn": "Use the exercise below to identify a stable operating envelope during combined traffic transfer and capacity loss, then test whether the same envelope allows backlog to drain during recovery.",
+      "dimensions": {
+        "relevance": {
+          "score": 4,
+          "rationale": "Shared gateway overload and cascading failover are directly useful to operators of replicated services."
+        },
+        "detail": {
+          "score": 3,
+          "rationale": "A concrete feedback loop, concurrent capacity reduction and representative-test gap are described, but the public account quotes a preliminary nonpublic Microsoft report."
+        },
+        "transferability": {
+          "score": 4,
+          "rationale": "Connects load shedding, spare capacity, realistic high-core testing and backlog-aware recovery rather than recommending more capacity alone."
+        },
+        "confidence": {
+          "score": 2,
+          "rationale": "The mechanism is attributed to Microsoft's preliminary report via BleepingComputer; it is not independently reproduced or supported by a public final postmortem."
+        }
+      },
+      "diagram": {
+        "normal": "BleepingComputer-based assessment: a shared gateway layer serves multiple Microsoft 365 workloads and redirects traffic when gateways become unavailable. Detailed routing topology is not established.",
+        "root_cause": "Microsoft's preliminary account via BleepingComputer identifies a latent contention defect activated under changed load and capacity conditions. Neither server count alone nor the latest deployment explains the failure.",
+        "contributors": "BleepingComputer-based review: Teams failover added traffic while approximately 14% of capacity was independently offline. Higher-core behavior and unrepresentative laboratory conditions mattered.",
+        "symptoms": "BleepingComputer reports gateway unresponsiveness and worldwide disruption. The existing review describes redirected traffic causing further failures; this amplification is distinct from the original defect.",
+        "steps": [
+          {
+            "stage": "normal",
+            "label": "Gateways share request load",
+            "detail": "The BleepingComputer-based assessment describes shared gateways and traffic redirection. This provides continuity only while remaining gateways can process the work they receive; no particular routing algorithm is established.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "trigger",
+            "label": "Extra traffic meets less capacity",
+            "detail": "Microsoft's preliminary account via BleepingComputer combines Teams-failover traffic with independently unavailable capacity. More arriving work and fewer available gateways increase pressure together; the source does not establish a precise threshold.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "mechanism",
+            "label": "Latent contention stalls gateways",
+            "detail": "The preliminary account reported by BleepingComputer identifies a months-old contention defect, exacerbated on higher-core hardware. Under the incident conditions, gateways became unresponsive instead of delivering the expected capacity; the exact locking or scheduling mechanism is unpublished here.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "impact",
+            "label": "Survivors inherit more traffic",
+            "detail": "The BleepingComputer-based review describes traffic redirected from unavailable gateways onto survivors. This transfers demand without restoring processing capacity, so survivors face greater pressure and may also fail. Multiple services were disrupted; regional safeguards did not contain the cascade.",
+            "source": 0,
+            "state": "reported"
+          },
+          {
+            "stage": "recovery",
+            "label": "Fix, capacity and backlog control",
+            "detail": "The existing BleepingComputer-based review records a fix, capacity and redirection safeguards, and alternative infrastructure for some services. Restarted processes alone faced overwhelming backlog: restoration had to change the operating condition, not merely revive instances. Detailed sequencing and thresholds are unavailable.",
+            "source": 0,
+            "state": "reported"
+          }
+        ],
+        "feedback": {
+          "from": 3,
+          "to": 2,
+          "label": "BleepingComputer-based review: redirected demand raises pressure on survivors; further unresponsiveness removes capacity and repeats the overload."
+        }
+      },
+      "architecture": {
+        "invariant": "Inferred design question: can the gateway layer keep accepted work within surviving effective capacity during simultaneous failover, maintenance loss and recovery? Microsoft's preliminary account via BleepingComputer supports this question, not a claim about an undocumented Microsoft service-level invariant.",
+        "response": "Detection: the supplied BleepingComputer-based evidence describes unresponsive gateways but not the initial alert or detection latency. Containment: the review records redirection safeguards and alternative infrastructure, without a complete chronology. Recovery: a software fix and capacity measures addressed conditions that restarts alone did not; backlog was material. Proposed prevention: constrain transfer and admission, validate representative concurrency, and stage recovery as below. No absent vendor control is inferred.",
+        "decisions": [
+          {
+            "title": "Budget failover against degraded effective capacity",
+            "proposal": "Proposed for steps 2→3: gate discretionary capacity removal and traffic transfer on an experimentally established safe envelope for the production-like request mix. Hold reserve or defer maintenance when transferred demand would exceed that envelope, reducing entry into the defect-sensitive operating region.",
+            "from": 1,
+            "to": 2,
+            "tradeoff": "Reserve costs money; deferred maintenance increases operational risk, and safety margins can unnecessarily restrict otherwise usable capacity.",
+            "residual_risk": "A software defect can collapse throughput below the measured envelope. Reserve is not a substitute for remediation or evidence about the contention threshold."
+          },
+          {
+            "title": "Bound the redirection feedback loop",
+            "proposal": "Proposed for the steps 4→3 feedback edge: cap transferred admissions per destination and reject or defer excess work before it enters the contended path. Pair this with bounded caller retries so protecting survivors does not regenerate the rejected demand.",
+            "from": 3,
+            "to": 2,
+            "tradeoff": "Deliberate rejection sacrifices some requests to preserve useful throughput. Deferral consumes queue capacity and may outlive user deadlines.",
+            "residual_risk": "Uncoordinated retries or an inaccurate capacity estimate can still overload survivors. Policy requires workload priorities and client semantics that this evidence does not provide."
+          },
+          {
+            "title": "Reintroduce capacity with a bounded backlog drain",
+            "proposal": "Proposed for steps 4→5: place repaired instances behind a gradual admission ramp, reserving a measured completion budget for backlog alongside fresh work. Advance only while useful completions remain stable and queue age falls, preventing restart from recreating the overload.",
+            "from": 3,
+            "to": 4,
+            "tradeoff": "Conservative ramps prolong recovery; prioritizing fresh work can starve queued work, while aggressive draining can harm live traffic.",
+            "residual_risk": "An unfixed defect can recur at low load; health probes may not represent customer work. Expired or non-idempotent queued operations need separate handling."
+          }
+        ],
+        "validation": "Proposed controlled exercise: on production-representative core counts and concurrency, replay a synthetic workload mix while independently reducing gateway capacity and transferring traffic. Compare unrestricted redirection with capped transfer and admission, then restore one instance under backlog using immediate versus staged admission. Observe useful completions, rejection rate, queue age, contention signals and repeated unresponsiveness. A successful policy keeps failures from spreading and drains backlog without another collapse; process restart alone is not success. Establish workload deadlines, retry behavior, effective throughput and contention traces before selecting limits; no Microsoft threshold is inferred.",
+        "open_questions": "Needed evidence: a public final postmortem, the defect and high-core contention mechanism, production/test workload differences, routing and regional dependency boundaries, capacity-loss cause, retry/backlog behavior, and measured effects of each remediation. These determine whether admission, reserve or recovery policy offers the strongest leverage."
+      },
+      "source_urls": [
+        "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/"
+      ],
+      "limitations": [
+        "Explicit incident-writer role-file execution using the updated local skill, the matching current explanation and existing assessment. No browsing, commands or fresh article reading; the supplied local review is the evidence boundary.",
+        "Attribution remains Microsoft's preliminary nonpublic account through BleepingComputer, not independently reproduced findings or a public final postmortem.",
+        "No detailed gateway topology, contention primitive, missing control, exact failure threshold or user-impact percentage is inferred. Proposed alternatives are not claims about Microsoft's deployed design.",
+        "Existing dimension scores and rationale strings are unchanged. This artifact changes no source records, hashes or assessment metadata and requires separate integration validation."
+      ]
+    }
+  }
+}

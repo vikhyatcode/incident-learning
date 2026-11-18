@@ -155,6 +155,73 @@ class LearningTests(unittest.TestCase):
             self.assertNotIn("\nmodel:", text)
         self.assertTrue((root / manifest["skills"][0] / "incident-learning-analysis" / "SKILL.md").is_file())
 
+    def test_architecture_options_validate_edges_and_escape_proposed_controls(self):
+        a = copy.deepcopy(self.assessment)
+        a["architecture"] = {
+            "invariant": "Design question: keep spare capacity after redirection.",
+            "response": "Detection was reported; prevention below is proposed.",
+            "decisions": [
+                {"title": "Bound admission", "proposal": "<script>unsafe</script>",
+                 "from": 1, "to": 2, "tradeoff": "Reject some work to protect survivors.",
+                 "residual_risk": "Does not repair the latent defect."},
+                {"title": "Reserve capacity", "proposal": "Keep independent spare capacity.",
+                 "from": 0, "to": 1, "tradeoff": "Higher idle cost.",
+                 "residual_risk": "Reserves remain finite."}],
+            "validation": "Reduce capacity and redirect synthetic load; measure rejection and recovery.",
+            "open_questions": "What request mix activates the defect?",
+        }
+        rendered = learning.render(dict(self.record, analysis_status="assessed",
+                                       analysis=a, learning_score=75,
+                                       learning_judgment="Learn now"))[1]
+        self.assertIn("Architecture choices", rendered)
+        self.assertIn("Proposed alternatives", rendered)
+        self.assertIn("&lt;script&gt;unsafe&lt;/script&gt;", rendered)
+        self.assertNotIn("<script>", rendered)
+        self.assertIn("step 2", rendered)
+        self.assertIn("step 3", rendered)
+        for field, value in (("from", True), ("to", 9)):
+            bad = copy.deepcopy(a)
+            bad["architecture"]["decisions"][0][field] = value
+            with self.assertRaises(ValueError):
+                learning.validate(bad)
+        bad = copy.deepcopy(a)
+        bad["architecture"]["decisions"][0].update({"from": 2, "to": 0})
+        with self.assertRaises(ValueError):
+            learning.validate(bad)
+        bad = copy.deepcopy(a)
+        del bad["architecture"]["decisions"][0]["residual_risk"]
+        with self.assertRaises(ValueError):
+            learning.validate(bad)
+        stale = learning.render(dict(self.record, analysis_status="stale", analysis=a))[1]
+        self.assertNotIn("Architecture choices", stale)
+
+    def test_score_help_is_shared_and_reachable_from_each_assessed_card(self):
+        import tempfile
+        root = Path(__file__).resolve().parents[1]
+        cases = json.loads((root / "data" / "case-studies.json").read_text())
+        assessments = json.loads((root / "data" / "learning-analysis.json").read_text())["entries"]
+        for record in cases:
+            record.update(analysis_status="assessed", analysis=assessments[record["id"]],
+                          learning_score=100, learning_judgment="Learn now")
+        with tempfile.TemporaryDirectory() as folder:
+            learning.p.build([], cases, {}, Path(folder))
+            page = (Path(folder) / "index.html").read_text(encoding="utf-8")
+        from html.parser import HTMLParser
+        class Elements(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.guides, self.links = 0, 0
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                self.guides += attrs.get("id") == "score-guide"
+                self.links += tag == "a" and attrs.get("href") == "#score-guide"
+        elements = Elements()
+        elements.feed(page)
+        self.assertEqual(elements.guides, 1)
+        self.assertGreaterEqual(elements.links, len(cases))
+        self.assertIn("not a probability", page)
+        self.assertIn("high confidence", page)
+
 
 if __name__ == "__main__":
     unittest.main()

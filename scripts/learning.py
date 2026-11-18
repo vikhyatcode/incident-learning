@@ -92,6 +92,27 @@ def validate(value):
             if type(feedback.get(key)) is not int or not 0 <= feedback[key] < len(steps):
                 raise ValueError("Feedback edge references an absent node")
         string(feedback.get("label"), 200)
+    if "architecture" in value:
+        architecture = value["architecture"]
+        if not isinstance(architecture, dict):
+            raise ValueError("Architecture discussion must be an object")
+        for key in ("invariant", "response", "validation", "open_questions"):
+            string(architecture.get(key))
+        decisions = architecture.get("decisions")
+        if not isinstance(decisions, list) or not 2 <= len(decisions) <= 3:
+            raise ValueError("Expected two or three proposed architecture alternatives")
+        for decision in decisions:
+            if not isinstance(decision, dict):
+                raise ValueError("Invalid architecture alternative")
+            for key in ("title", "proposal", "tradeoff", "residual_risk"):
+                string(decision.get(key), 100 if key == "title" else 1400)
+            for key in ("from", "to"):
+                if type(decision.get(key)) is not int or not 0 <= decision[key] < len(steps):
+                    raise ValueError("Architecture alternative references an absent causal step")
+            edge = (decision["from"], decision["to"])
+            feedback = diagram.get("feedback", {})
+            if edge[1] != edge[0] + 1 and edge != (feedback.get("from"), feedback.get("to")):
+                raise ValueError("Architecture alternative must address a displayed causal edge")
     return copy.deepcopy(value)
 
 
@@ -205,6 +226,29 @@ def render_diagram(assessment):
         + "".join(prose) + '</ol></section>')
 
 
+def render_architecture(assessment):
+    architecture = assessment.get("architecture")
+    if not architecture:
+        return ""
+    decisions = "".join(
+        '<section class="architecture-option"><h5>' + p.esc(option["title"]) + '</h5>'
+        f'<p class="evidence-note">Acts on step {option["from"] + 1} &rarr; step {option["to"] + 1} '
+        'in the causal map.</p>'
+        + f'<p>{p.esc(option["proposal"])}</p>'
+        + f'<p><strong>Cost / tradeoff:</strong> {p.esc(option["tradeoff"])}</p>'
+        + f'<p><strong>Residual risk:</strong> {p.esc(option["residual_risk"])}</p></section>'
+        for option in architecture["decisions"])
+    return (
+        '<section class="architecture-review"><h4>Architecture choices</h4>'
+        '<p class="evidence-note">Proposed alternatives for the reader, not claims about '
+        'controls the vendor lacked or guaranteed fixes.</p>'
+        f'<p><strong>Design invariant to examine:</strong> {p.esc(architecture["invariant"])}</p>'
+        f'<p><strong>Response boundaries:</strong> {p.esc(architecture["response"])}</p>'
+        + decisions
+        + f'<p><strong>Validate the design:</strong> {p.esc(architecture["validation"])}</p>'
+        + f'<p><strong>Evidence still needed:</strong> {p.esc(architecture["open_questions"])}</p></section>')
+
+
 def render(incident):
     state = incident.get("analysis_status", "unassessed")
     if state != "assessed":
@@ -231,18 +275,19 @@ def render(incident):
         f'<div class="learning-assessment"><strong>Learning score {incident["learning_score"]}/100'
         f' &middot; {p.esc(incident["learning_judgment"])}</strong>'
         f'<p>Evidence depth {d["detail"]["score"]}/4 &middot; '
-        f'Confidence {d["confidence"]["score"]}/4</p>'
+        f'Confidence {d["confidence"]["score"]}/4 '
+        '<a href="#score-guide">Score definitions</a></p>'
         f'<p>{p.esc(assessment["why"])}</p></div>')
     detail = (
         '<details class="analysis-detail"><summary>Learning assessment and exercise</summary><h4>What you will learn</h4>'
         f'<p>{p.esc(assessment["learn"])}</p><dl>'
-        + "".join(f'<dt>{p.esc(key.title())} {value["score"]}/4</dt>'
+        + "".join(f'<dt>{p.esc("Evidence depth" if key == "detail" else key.title())} {value["score"]}/4</dt>'
                   f'<dd>{p.esc(value["rationale"])}</dd>' for key, value in d.items())
         + '</dl><p>AI-assisted source review: ' + p.esc(assessment["model"])
         + ' &middot; ' + p.esc(assessment["analyzed_at"])
         + '. Subjective study priority, not an objective severity rating. '
         'Daily collection checks evidence; it does not run an AI model.</p></details>')
-    detail = render_diagram(assessment) + detail
+    detail = render_diagram(assessment) + render_architecture(assessment) + detail
     return summary, detail
 
 

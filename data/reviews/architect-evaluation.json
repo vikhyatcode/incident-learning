@@ -1,0 +1,39 @@
+{
+  "scope": "Existing incident-writer strengthened; two contrasting cases, no new agent or schedule.",
+  "evaluated_at": "2026-11-18T01:14:59Z",
+  "execution_mode": "Actual Copilot general-purpose subagents explicitly read the plugin writer role and skill; this harness cannot select newly authored plugin role names. Inherited subagent model IDs are unexposed; parent review gpt-6.1-sol.",
+  "baseline": {
+    "agent_id": "returned synchronously; no agent identifier surfaced",
+    "instructions": "Existing writer and skill before editing; supplied Notion dossier and existing Microsoft review/assessment. Requested two compact reports, about 300 words each; no architect checklist supplied.",
+    "actual_excerpts": [
+      "Trace one classification workflow: content sent, processor access, retention, and credential-revocation ownership.",
+      "Model simultaneous capacity loss, failover traffic, and accumulated backlog.",
+      "Learning judgment: relevance 4, detail 2, transferability 4, confidence 3"
+    ],
+    "observations": {
+      "normal_behavior_causal_chain_and_unknowns": "Present in both reports. The previous writer was not merely headline summarization.",
+      "specific_control_costs_and_residual_risk": "Controls and exercises were named, but no explicit comparison of alternatives, their costs, and residual risks.",
+      "design_invariant_and_needed_decision_evidence": "No explicit invariant/design question or evidence needed to select between architectural alternatives.",
+      "response_phase_distinction": "Copy removal versus key revocation was present for Notion; neither report consistently distinguished detection, containment, recovery and proposed prevention.",
+      "score_preservation": "Notion depth changed from 3 to 2 in baseline despite unchanged supplied source evidence; baseline instruction did not explicitly require preservation on prose-only refresh."
+    },
+    "limit": "One bounded qualitative baseline, not a statistical benchmark. Baseline had a shorter word budget than the improved report; observations identify missing explicit requirements, not proof the old role could never satisfy them."
+  },
+  "improved": {
+    "role": "agents/incident-writer.agent.md",
+    "artifact": "data/reviews/architect-reports.json",
+    "instructions": "Updated existing role and skill; same source-grounded local evidence; preserve existing score/rationale strings and source order. No browsing or commands by writer.",
+    "observations": {
+      "normal_flow_and_boundaries": "Notion application-to-processor and stored-content confidentiality boundaries; Microsoft shared-gateway responsibility without invented routing topology.",
+      "invariant": "Both explicitly label their invariants as inferred design questions, not undocumented vendor guarantees.",
+      "mechanism_and_feedback": "Notion keeps unknown intrusion-to-dataset mapping; Microsoft retains latent defect, triggering load/capacity combination and survivor-load feedback.",
+      "response_phases": "Both distinguish detection evidence or lack of it, containment, recovery and proposed prevention. Notion preserves containment before final scope confirmation.",
+      "architectural_alternatives": "Three per case, each tied to a validated numbered causal edge with mechanism, tradeoff and residual risk. Controls are explicitly proposed, not claims about vendor omissions.",
+      "validation": "Notion compares classification utility and sensitive content with synthetic data/mock issuer; Microsoft compares bounded transfer/backlog recovery with useful completions, queue age and failures.",
+      "score_preservation": "All four dimensions and rationale strings match original assessments exactly. Notion 87, depth 3/confidence 3; Microsoft 84, depth 3/confidence 2."
+    },
+    "parent_edits": "Published writer diagrams and architecture discussion; shortened duplicated exercise text, retained stronger existing Notion unknown/chronology qualifiers, changed Notion authority-restoration wording to the narrower reported key invalidation, and used ASCII transition wording.",
+    "evidence_check": "2026-11-18T01:14:27Z: ten allowlisted source bodies fetched successfully; all three target source hashes matched the previously reviewed evidence. No changed source evidence or new inference service claimed.",
+    "limit": "Writer consumed supplied dossiers/reviews rather than fresh source bodies. Parent freshness checks establish unchanged fetched text, not independent verification of publisher claims. Microsoft remains preliminary secondary attribution; Notion intrusion mapping remains unknown."
+  }
+}

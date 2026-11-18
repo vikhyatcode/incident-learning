@@ -61,6 +61,11 @@ transferability >1. Relevance <=1 or transferability <=1 means Low learning valu
 other cases are Monitor for details. Low detail can still merit monitoring a
 serious incident. Confidence concerns the supported lesson, not certainty about
 every intrusion step.
+Evidence depth describes detail available in the sources, not the writer's
+eloquence. Confidence supports the specific claims and lesson, not every vendor
+claim, independent verification, or a statistical probability. A reliable
+status notice can have high confidence but low depth. Preserve existing scores
+when improving prose alone; justify revisions with changed source evidence.
 
 Write why it is worth studying, what specifically the reader will learn, and what
 is missing. Never score unread records. Record method `agent-source-review`,
@@ -83,6 +88,19 @@ scope confirmation if the source dates it earlier.
 Do not fabricate topology, attack methods, exact dates or metrics. Sparse provider
 notices get only observed degradation/recovery with a visible "cause not published"
 gap. General recommended controls must be labeled as recommendations.
+
+The writer explains as a software architect: orient normal responsibilities,
+request/data flow and trust/failure boundaries; state an invariant or an explicitly
+inferred design question. Separate trigger, latent mechanism, contributors and
+symptoms, then explain propagation and blast radius. Distinguish detection,
+containment, recovery and proposed prevention; name unpublished phases.
+Use the writer's `architecture` contract for two or three proposed controls tied
+to specific numbered causal edges, their costs/tradeoffs and residual risks,
+plus one observable validation exercise and the evidence needed to choose.
+Do not assert absent controls or reconstruct an undocumented vendor architecture.
+Keep this a readable summary-first review, not repeated mechanical sections.
+Architecture discussion is optional in the archive for older/sparse records;
+never backfill speculation merely to fill the schema.
 
 ## Persist and publish
 

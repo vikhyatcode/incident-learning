@@ -864,6 +864,14 @@ footer p,footer>a:last-child {
   .analysis-detail dl,.causal-context {margin:16px 0}
   .analysis-detail dt,.causal-context dt {font-weight:650;margin-top:8px}
   .analysis-detail dd,.causal-context dd {margin:0 0 10px}
+  .score-guide {font-size:13px;line-height:1.75;border:1px solid var(--line);padding:12px 16px;margin:16px 0}
+  .score-guide summary {cursor:pointer;font-weight:650}
+  .score-guide dt {font-weight:650;margin-top:12px}
+  .score-guide dd {margin:4px 0 12px}
+  .architecture-review {border-top:1px solid var(--line);margin-top:22px;padding-top:10px}
+  .architecture-option {border-left:2px solid #8e9dae;padding-left:16px;margin:20px 0}
+  .architecture-option h5 {font-size:16px;line-height:1.5;margin:0 0 8px}
+  .architecture-option p {margin:8px 0}
   .causal-explanation {border-top:1px solid var(--line);margin-top:22px;padding-top:10px}
   .causal-map {display:flex;list-style:none;padding:0;gap:22px;align-items:stretch;margin:20px 0;counter-reset:none}
   .causal-map .causal-node {flex:1;min-width:0;position:relative;border:1px solid #8e9dae;background:#f6f8fa;padding:12px;font-size:13px;line-height:1.5}
