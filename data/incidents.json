@@ -198,7 +198,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -236,7 +236,7 @@
     "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -336,7 +336,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -386,7 +386,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -436,7 +436,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -486,7 +486,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -536,7 +536,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -586,7 +586,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -636,7 +636,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -686,7 +686,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -736,7 +736,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -750,20 +750,20 @@
     "historical": false,
     "incident_date": "2026-10-30T14:31:16Z",
     "published_at": "2026-10-30T14:31:16Z",
-    "source_updated_at": "2026-10-30T15:02:51Z",
+    "source_updated_at": "2026-11-18T21:49:12Z",
     "status": "resolved",
     "summary": "GitHub Status reported a critical-impact service incident: Disruption with GitHub services.",
     "impact": "We are investigating reports of impacted performance for some GitHub services.",
-    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "response": "On October 30, 2026, between 14:20 and 14:29 UTC, customers experienced errors across multiple GitHub services. Affected services include Git operations, GraphQL and REST API, Pull Requests, and Issues. At peak, about 3.5% of API requests failed. The incident was caused by slow database requests that held connections open longer than expected, which used...",
     "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
     "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
     "lessons": [
-      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
-      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+      "Draw the write path and the failover path separately. A healthy replica is not proof that an application can use the new topology.",
+      "Practice restoring data and reconciling divergent writes; measure recovery under realistic bandwidth and load."
     ],
     "questions": [
-      "What user-visible signal would alert you before support tickets arrive?",
-      "How would you keep serving a useful degraded experience while a dependency recovers?"
+      "Which data-integrity invariant would you refuse to break to restore availability?",
+      "How would you verify that a recovered replica contains every acknowledged write?"
     ],
     "evidence": [
       {
@@ -780,14 +780,40 @@
       },
       {
         "at": "2026-10-30T15:02:51Z",
-        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+        "text": "On October 30, 2026, between 14:20 and 14:29 UTC, customers experienced errors across multiple GitHub services. Affected services include Git operations, GraphQL and REST API, Pull Requests, and Issues. At peak, about 3.5% of API requests failed. The incident was caused by slow database requests that held connections open longer than expected, which used..."
       }
     ],
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
-    "revisions": []
+    "last_seen": "2026-11-19T08:41:46Z",
+    "revisions": [
+      {
+        "source_updated_at": "2026-10-30T15:02:51Z",
+        "title": "Disruption with GitHub services",
+        "status": "resolved",
+        "impact": "We are investigating reports of impacted performance for some GitHub services.",
+        "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+        "evidence": [
+          {
+            "at": "2026-10-30T14:31:16Z",
+            "text": "We are investigating reports of impacted performance for some GitHub services."
+          },
+          {
+            "at": "2026-10-30T14:48:00Z",
+            "text": "A temporarily overloaded component triggered a burst of errors between 14:21 and 14:30 UTC across numerous services. Component health has returned to normal and we continue to monitor while investigating the root cause."
+          },
+          {
+            "at": "2026-10-30T14:49:46Z",
+            "text": "The degradation affecting Pages has been mitigated. We are monitoring to ensure stability."
+          },
+          {
+            "at": "2026-10-30T15:02:51Z",
+            "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "github:l7ycmglmykgg",
@@ -836,7 +862,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -886,7 +912,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   },
   {
@@ -936,7 +962,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-18T08:41:34Z",
+    "last_seen": "2026-11-19T08:41:46Z",
     "revisions": []
   }
 ]

@@ -49,7 +49,7 @@
       "fingerprint": "a7245a2d5db9d7e9e440f765b6687aedda1ec2d985ac27a600ee65d77a335674",
       "source_hash": "5c0093f8a0b3bc97302bbadc801fe8ee59f7aa7dda6cec7f8469eb93d0f7f6a5",
       "explanation_revision": "312889e6ac6f7a74a535ec89bcb8baf2791bb400ba29b0fb68858e5a9b7dcb7d",
-      "checked_at": "2026-11-18T08:41:35Z",
+      "checked_at": "2026-11-19T08:41:47Z",
       "explanation": {
         "summary": "Microsoft's preliminary account links the Microsoft 365 outage to a latent gateway defect activated by changed traffic and reduced capacity. Routing around failed servers amplified the load on survivors; restoring processes alone did not remove the failure condition.",
         "what_happened": {
@@ -93,7 +93,7 @@
       "fingerprint": "b82f5f34f67fc97422fe5f375f3f020b6619a71776951abdca4a94818503730f",
       "source_hash": "2bdaaa64397b2365f9ae374ef510def566d8b5495b13379083faccd383b717f8",
       "explanation_revision": "ade05d667d70f71d4e503802b35e336cc5274d6a37ff6771244633f8c5d5fd3e",
-      "checked_at": "2026-11-18T08:41:35Z",
+      "checked_at": "2026-11-19T08:41:47Z",
       "explanation": {
         "summary": "Barracuda says a cloud key left active after a vendor project enabled intrusion into its cloud environment. The important engineering failure is the lifetime and reach of delegated credentials, not simply the reported use of an AI hacking tool.",
         "what_happened": {
@@ -137,7 +137,7 @@
       "fingerprint": "fa1ce272dfe95dcbdc3c58245a7298b47983f6d6d01d7a4723edcec9296def5d",
       "source_hash": "41aeca0116ca94c12136b7098194ba406e9787063974d9615f487f696f356068",
       "explanation_revision": "762a671b8033cc242acb13fcf30ede033d1369d44689e9957f0d22d817a8317f",
-      "checked_at": "2026-11-18T08:41:35Z",
+      "checked_at": "2026-11-19T08:41:47Z",
       "explanation": {
         "summary": "Fandango reported a checkout-page compromise that could expose payment data while a purchase was being entered. This illustrates why protecting stored payment data is not sufficient when the browser's live input path is compromised.",
         "what_happened": {
@@ -181,7 +181,7 @@
       "fingerprint": "b56645a92925ac455cc8a2d93e2e091abfa3f209537dc69a5af156bb2b5cb559",
       "source_hash": "dc1947f57ad3f8357826e79fc762889c4557f811bf0cb50f5836a2f8b154b4a8",
       "explanation_revision": "d819b1aaedf8dc5d7cf150d59e625b244609b55f797de7754b74c88b65791bd5",
-      "checked_at": "2026-11-18T08:41:35Z",
+      "checked_at": "2026-11-19T08:41:47Z",
       "explanation": {
         "summary": "The Hacker News reports an FBI account of cryptocurrency theft through impersonated video meetings and fake technical fixes. The trust boundary failed when a convincing meeting became a reason to run untrusted software, not merely when a fake face appeared.",
         "what_happened": {
@@ -223,16 +223,18 @@
     }
   },
   "health": {
-    "checked_at": "2026-11-18T08:41:35Z",
-    "status": "ok",
+    "checked_at": "2026-11-19T08:41:47Z",
+    "status": "partial",
     "attempted": 5,
-    "explained": 6,
-    "pending": 0,
+    "explained": 5,
+    "pending": 1,
     "total": 20,
     "timelines": 14,
     "unreviewed": 0
   },
-  "errors": {},
+  "errors": {
+    "report:b6e25351df538f83532c": "ValueError: Source article changed since review; explanation needs re-review."
+  },
   "reviewed_at": "2026-11-17T22:03:28Z",
   "reviewed_at_by_url": {
     "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/": "2026-11-17T22:03:28Z",
