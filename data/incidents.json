@@ -1,5 +1,127 @@
 [
   {
+    "id": "report:a1277bddeebe52e04d12",
+    "title": "Bell Canada says 'agentic' hacker stole enterprise customer data",
+    "url": "https://www.bleepingcomputer.com/news/security/bell-canada-says-agentic-hacker-stole-enterprise-customer-data/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-20T18:51:43Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: Bell Canada says 'agentic' hacker stole enterprise customer data.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map access to sensitive data, including backups and integration tokens. Minimize privileges and make unusual access observable.",
+      "Prepare a containment and credential-rotation checklist. A report of theft alone does not establish how access was obtained."
+    ],
+    "questions": [
+      "What evidence would confirm the scope of access rather than just the initial alert?",
+      "Which credentials and downstream systems would your containment plan need to examine?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-20T18:51:43Z",
+        "text": "Bell Canada has confirmed that an \"agentic\" threat actor breached its systems on November 17, 2026, and stole enterprise customer data, including information from a system used to order and provision telecommunications circuits. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-21T08:42:07Z",
+    "revisions": []
+  },
+  {
+    "id": "cloudflare:iysf3fasf7wn",
+    "title": "Cloudflare Dashboard and Cloudflare API service issues in EU region",
+    "url": "https://www.cloudflarestatus.com/incidents/iysf3fasf7wn",
+    "source_id": "cloudflare",
+    "source_name": "Cloudflare Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-20T18:24:29Z",
+    "published_at": "2026-11-20T18:24:29Z",
+    "source_updated_at": "2026-11-20T18:53:14Z",
+    "status": "resolved",
+    "summary": "Cloudflare Status reported a major-impact service incident: Cloudflare Dashboard and Cloudflare API service issues in EU region.",
+    "impact": "Cloudflare is investigating issues with Cloudflare Dashboard and related APIs in EU region. These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge. Customers using the Dashboard / Cloudflare APIs are impacted as requests might fail and/or errors may be displayed.",
+    "response": "Cloudflare has resolved API and dashboard issues in the EU region.",
+    "what_happened": "Cloudflare Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-20T18:24:29Z",
+        "text": "Cloudflare is investigating issues with Cloudflare Dashboard and related APIs in EU region. These issues do not affect the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge. Customers using the Dashboard / Cloudflare APIs are impacted as requests might fail and/or errors may be displayed."
+      },
+      {
+        "at": "2026-11-20T18:38:28Z",
+        "text": "A fix has been implemented and we are monitoring the results."
+      },
+      {
+        "at": "2026-11-20T18:53:14Z",
+        "text": "Cloudflare has resolved API and dashboard issues in the EU region."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-21T08:42:07Z",
+    "revisions": []
+  },
+  {
+    "id": "report:63176744cc4b38aa2228",
+    "title": "N-able says recent security breach led to major service outage",
+    "url": "https://www.bleepingcomputer.com/news/microsoft/n-able-says-recent-security-breach-led-to-major-service-outage/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-20T13:18:36Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: N-able says recent security breach led to major service outage.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-20T13:18:36Z",
+        "text": "N-able says attackers who breached one of its servers have caused a major outage affecting Mail Assure and SpamExperts Hosted Cloud services worldwide. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-21T08:42:07Z",
+    "revisions": []
+  },
+  {
     "id": "report:b6e25351df538f83532c",
     "title": "Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware",
     "url": "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/",
@@ -198,7 +320,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -300,11 +422,11 @@
     "historical": false,
     "incident_date": "2026-11-11T20:48:12Z",
     "published_at": "2026-11-11T20:48:12Z",
-    "source_updated_at": "2026-11-11T21:21:39Z",
+    "source_updated_at": "2026-11-20T18:14:41Z",
     "status": "resolved",
     "summary": "GitHub Status reported a critical-impact service incident: Impact across multiple GitHub products including Actions, Pages, and Copilot products..",
     "impact": "We are investigating reports of degraded availability for Pages",
-    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "response": "On November 11, 2026, from 20:05 to 21:02 UTC, customers experienced delayed or failed Actions workflow starts, webhook errors and delivery delays, slower GitHub Apps API requests, and reduced availability of Copilot features, including Code Review. GitHub Pages builds were also delayed. Nearly all GitHub Actions runs triggered between 20:18 and 20:55 UTC...",
     "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
     "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
     "lessons": [
@@ -330,14 +452,40 @@
       },
       {
         "at": "2026-11-11T21:21:39Z",
-        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+        "text": "On November 11, 2026, from 20:05 to 21:02 UTC, customers experienced delayed or failed Actions workflow starts, webhook errors and delivery delays, slower GitHub Apps API requests, and reduced availability of Copilot features, including Code Review. GitHub Pages builds were also delayed. Nearly all GitHub Actions runs triggered between 20:18 and 20:55 UTC..."
       }
     ],
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
-    "revisions": []
+    "last_seen": "2026-11-21T08:42:07Z",
+    "revisions": [
+      {
+        "source_updated_at": "2026-11-11T21:21:39Z",
+        "title": "Impact across multiple GitHub products including Actions, Pages, and Copilot products.",
+        "status": "resolved",
+        "impact": "We are investigating reports of degraded availability for Pages",
+        "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+        "evidence": [
+          {
+            "at": "2026-11-11T20:48:12Z",
+            "text": "We are investigating reports of degraded availability for Pages"
+          },
+          {
+            "at": "2026-11-11T21:07:26Z",
+            "text": "We\u2019re seeing recovery across all services and continuing to monitor. The backlog of Actions jobs are being processed. We\u2019ll update when we see full recovery."
+          },
+          {
+            "at": "2026-11-11T21:21:32Z",
+            "text": "The backlog of Actions jobs has been fully processed. We\u2019re observing full recovery across all impacted services."
+          },
+          {
+            "at": "2026-11-11T21:21:39Z",
+            "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "github:hnf21m9jkl3c",
@@ -386,7 +534,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -436,7 +584,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -486,7 +634,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -536,7 +684,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -586,7 +734,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -636,7 +784,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -686,7 +834,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -736,7 +884,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -786,7 +934,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": [
       {
         "source_updated_at": "2026-10-30T15:02:51Z",
@@ -862,7 +1010,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -912,7 +1060,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   },
   {
@@ -962,7 +1110,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-20T08:41:55Z",
+    "last_seen": "2026-11-21T08:42:07Z",
     "revisions": []
   }
 ]
