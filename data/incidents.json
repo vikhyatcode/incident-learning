@@ -34,7 +34,7 @@
     "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-21T08:42:07Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -80,7 +80,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-21T08:42:07Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -118,7 +118,7 @@
     "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-21T08:42:07Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -320,7 +320,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -458,7 +458,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": [
       {
         "source_updated_at": "2026-11-11T21:21:39Z",
@@ -534,7 +534,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -584,7 +584,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -634,7 +634,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -684,7 +684,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -734,7 +734,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -784,7 +784,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -834,7 +834,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -884,7 +884,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -934,7 +934,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": [
       {
         "source_updated_at": "2026-10-30T15:02:51Z",
@@ -1010,7 +1010,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -1060,7 +1060,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   },
   {
@@ -1110,7 +1110,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-21T08:42:07Z",
+    "last_seen": "2026-11-22T08:41:13Z",
     "revisions": []
   }
 ]
