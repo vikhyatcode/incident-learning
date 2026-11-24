@@ -1,53 +1,53 @@
 {
-  "checked_at": "2026-11-23T08:42:35Z",
+  "checked_at": "2026-11-24T08:41:39Z",
   "sources": {
     "https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "688ac0dfa83f2b3e79e1922000c7b7b00152fa1690932ffe51d326bfc4a8afdf"
     },
     "https://blog.lastpass.com/posts/security-incident-update-recommended-actions": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "702a8b28963a0dba0486d68f0ec62d7090ad4fd0c8d9b1f5840293d00dcea2ef"
     },
     "https://fireworks.ai/security-bulletins": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "ffe4275c20e1358196c80622bdd699e4483886b657914f959c38f40387b281cd"
     },
     "https://github.blog/news-insights/company-news/oct21-post-incident-analysis/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "fb0e2af6fd0796284047988382082094d5e76c0f9ce4ca375ae0babdb4bfe7e1"
     },
     "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "dc1947f57ad3f8357826e79fc762889c4557f811bf0cb50f5836a2f8b154b4a8"
     },
     "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "5c0093f8a0b3bc97302bbadc801fe8ee59f7aa7dda6cec7f8469eb93d0f7f6a5"
     },
     "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "2bdaaa64397b2365f9ae374ef510def566d8b5495b13379083faccd383b717f8"
     },
     "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
-      "sha256": "a059c7237db2865bf6e399e03c3786e58279e45ff10a696676fcb66db8f81752"
+      "sha256": "7b228d5384024258fc3630953150ff9a89a30647c2d5d9f9f477a950677d837d"
     },
     "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "4bf0e2a8f133a3c492f2b78f18ae397490dc74957744a0661ab2089a219245c6"
     },
     "https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor": {
-      "checked_at": "2026-11-23T08:42:35Z",
+      "checked_at": "2026-11-24T08:41:39Z",
       "status": "ok",
       "sha256": "b865c61727fd278882d7798287951dd54793b7afac75b46eff30a1fe59a4b020"
     }

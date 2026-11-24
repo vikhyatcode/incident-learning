@@ -1,5 +1,43 @@
 [
   {
+    "id": "report:957088ac58c071d1f397",
+    "title": "South Korea\u2019s power giant KEPCO confirms data breach impacting 1.5 million",
+    "url": "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/",
+    "source_id": "bleepingcomputer",
+    "source_name": "BleepingComputer",
+    "type": "security",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": null,
+    "published_at": "2026-11-23T20:54:51Z",
+    "source_updated_at": null,
+    "status": "reported",
+    "summary": "Selected reporting from BleepingComputer: South Korea\u2019s power giant KEPCO confirms data breach impacting 1.5 million.",
+    "impact": "The full scope is not independently established here. See the attributed feed extract and original report.",
+    "response": "Recovery or containment is not established by this feed extract. Consult the original report for updates.",
+    "what_happened": "BleepingComputer published this selected report. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map access to sensitive data, including backups and integration tokens. Minimize privileges and make unusual access observable.",
+      "Prepare a containment and credential-rotation checklist. A report of theft alone does not establish how access was obtained."
+    ],
+    "questions": [
+      "What evidence would confirm the scope of access rather than just the initial alert?",
+      "Which credentials and downstream systems would your containment plan need to examine?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-23T20:54:51Z",
+        "text": "A threat actor breached the internal network of Korea Electric Power Corporation (KEPCO) and accessed two systems containing customer, employee, and contractor data. [...]"
+      }
+    ],
+    "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-24T08:41:36Z",
+    "revisions": []
+  },
+  {
     "id": "report:c75a4d0a4b580d8c6208",
     "title": "Cleverbridge warns hackers stole credit card numbers, CVVs in data breach",
     "url": "https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/",
@@ -34,7 +72,7 @@
     "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-23T08:42:32Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -118,7 +156,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-21T08:42:07Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -322,11 +360,11 @@
     "historical": false,
     "incident_date": "2026-11-13T15:47:12Z",
     "published_at": "2026-11-13T15:47:12Z",
-    "source_updated_at": "2026-11-13T18:29:31Z",
+    "source_updated_at": "2026-11-23T21:45:51Z",
     "status": "resolved",
     "summary": "GitHub Status reported a major-impact service incident: Incident with Pull Requests.",
     "impact": "We are investigating reports of degraded availability for Pull Requests",
-    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "response": "On November 16, 2026, between 09:30 and 15:55 UTC, some pull request merges on GitHub timed out. On average, 2.9% of merge attempts timed out, with a peak of 7.1% at 15:17 UTC. Some GitHub Actions workflow runs triggered by pull requests were also delayed. Git operations such as push and fetch stayed available, with higher latency. This was a repeat of a...",
     "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
     "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
     "lessons": [
@@ -352,14 +390,40 @@
       },
       {
         "at": "2026-11-13T18:29:31Z",
-        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+        "text": "On November 16, 2026, between 09:30 and 15:55 UTC, some pull request merges on GitHub timed out. On average, 2.9% of merge attempts timed out, with a peak of 7.1% at 15:17 UTC. Some GitHub Actions workflow runs triggered by pull requests were also delayed. Git operations such as push and fetch stayed available, with higher latency. This was a repeat of a..."
       }
     ],
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
-    "revisions": []
+    "last_seen": "2026-11-24T08:41:36Z",
+    "revisions": [
+      {
+        "source_updated_at": "2026-11-13T18:29:31Z",
+        "title": "Incident with Pull Requests",
+        "status": "resolved",
+        "impact": "We are investigating reports of degraded availability for Pull Requests",
+        "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+        "evidence": [
+          {
+            "at": "2026-11-13T15:47:12Z",
+            "text": "We are investigating reports of degraded availability for Pull Requests"
+          },
+          {
+            "at": "2026-11-13T17:28:01Z",
+            "text": "The degradation affecting Pull Requests has been mitigated. We are monitoring to ensure stability."
+          },
+          {
+            "at": "2026-11-13T17:46:11Z",
+            "text": "We continue to monitor the stability of merge requests."
+          },
+          {
+            "at": "2026-11-13T18:29:31Z",
+            "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "report:d32b5f97fc676bf8272f",
@@ -496,7 +560,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": [
       {
         "source_updated_at": "2026-11-11T21:21:39Z",
@@ -572,7 +636,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -622,7 +686,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -672,7 +736,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -722,7 +786,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -772,7 +836,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -822,7 +886,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -872,7 +936,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -922,7 +986,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -972,7 +1036,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": [
       {
         "source_updated_at": "2026-10-30T15:02:51Z",
@@ -1048,7 +1112,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -1098,7 +1162,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   },
   {
@@ -1148,7 +1212,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-23T08:42:32Z",
+    "last_seen": "2026-11-24T08:41:36Z",
     "revisions": []
   }
 ]
