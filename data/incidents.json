@@ -1,5 +1,101 @@
 [
   {
+    "id": "github:m0wx9qml7yjh",
+    "title": "Disruption with Code Completions and Next Edit Suggestions",
+    "url": "https://stspg.io/bk5200jsb13k",
+    "source_id": "github",
+    "source_name": "GitHub Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-25T00:08:17Z",
+    "published_at": "2026-11-25T00:08:17Z",
+    "source_updated_at": "2026-11-25T01:15:18Z",
+    "status": "resolved",
+    "summary": "GitHub Status reported a critical-impact service incident: Disruption with Code Completions and Next Edit Suggestions.",
+    "impact": "We are investigating reports of impacted performance for some GitHub services.",
+    "response": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available.",
+    "what_happened": "GitHub Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-25T00:08:18Z",
+        "text": "We are investigating reports of impacted performance for some GitHub services."
+      },
+      {
+        "at": "2026-11-25T00:41:09Z",
+        "text": "We are investigating reports of issues with Code Completions and Next Edit Suggestions. We will continue to keep users updated on progress towards mitigation."
+      },
+      {
+        "at": "2026-11-25T01:05:35Z",
+        "text": "We've applied a mitigation to fix the issues with Code Completion and Next Edit Suggestions. We are seeing improvements in telemetry and are monitoring for full recovery."
+      },
+      {
+        "at": "2026-11-25T01:15:18Z",
+        "text": "This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available."
+      }
+    ],
+    "selection_reason": "Provider classified impact as critical.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-25T08:41:59Z",
+    "last_seen": "2026-11-25T08:41:59Z",
+    "revisions": []
+  },
+  {
+    "id": "cloudflare:no721jcnlrbh",
+    "title": "Magic Transit Degraded Performance",
+    "url": "https://www.cloudflarestatus.com/incidents/no721jcnlrbh",
+    "source_id": "cloudflare",
+    "source_name": "Cloudflare Status",
+    "type": "outage",
+    "cause": "unknown",
+    "historical": false,
+    "incident_date": "2026-11-24T11:29:22Z",
+    "published_at": "2026-11-24T11:29:22Z",
+    "source_updated_at": "2026-11-25T08:16:26Z",
+    "status": "resolved",
+    "summary": "Cloudflare Status reported a major-impact service incident: Magic Transit Degraded Performance.",
+    "impact": "Cloudflare is currently investigating issues related to Magic Transit. A subset of Magic Transit customers have a Cloudflare-managed setting enabled that clears the Don't Fragment (DF) flag. For these customers, the setting is not currently taking effect. As a result, packets with the DF flag set and larger than the tunnel MTU may be dropped. We advise...",
+    "response": "This incident has been resolved.",
+    "what_happened": "Cloudflare Status published this selected service incident. The attributed extracts below are the available evidence, not an independently verified investigation.",
+    "known_cause": "Not yet known in this library. A cause is not inferred from a headline or keyword. Check the linked source for confirmed findings.",
+    "lessons": [
+      "Map user-visible dependencies and test partial failure, not just complete downtime. Separate detection, mitigation, and full recovery.",
+      "Practice a rollback or isolation decision using an external health signal. Do not assume the provider's recovery means your own backlog has cleared."
+    ],
+    "questions": [
+      "What user-visible signal would alert you before support tickets arrive?",
+      "How would you keep serving a useful degraded experience while a dependency recovers?"
+    ],
+    "evidence": [
+      {
+        "at": "2026-11-24T11:29:22Z",
+        "text": "Cloudflare is currently investigating issues related to Magic Transit. A subset of Magic Transit customers have a Cloudflare-managed setting enabled that clears the Don't Fragment (DF) flag. For these customers, the setting is not currently taking effect. As a result, packets with the DF flag set and larger than the tunnel MTU may be dropped. We advise..."
+      },
+      {
+        "at": "2026-11-24T12:58:11Z",
+        "text": "The issue has been identified and a fix is being implemented."
+      },
+      {
+        "at": "2026-11-25T08:16:26Z",
+        "text": "This incident has been resolved."
+      }
+    ],
+    "selection_reason": "Provider classified impact as major.",
+    "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
+    "first_seen": "2026-11-25T08:41:59Z",
+    "last_seen": "2026-11-25T08:41:59Z",
+    "revisions": []
+  },
+  {
     "id": "report:957088ac58c071d1f397",
     "title": "South Korea\u2019s power giant KEPCO confirms data breach impacting 1.5 million",
     "url": "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/",
@@ -34,7 +130,7 @@
     "selection_reason": "Event headline plus a significant-impact keyword; automated candidate selection, not a verified severity rating.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-24T08:41:36Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -156,7 +252,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-21T08:42:07Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -396,7 +492,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": [
       {
         "source_updated_at": "2026-11-13T18:29:31Z",
@@ -560,7 +656,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": [
       {
         "source_updated_at": "2026-11-11T21:21:39Z",
@@ -636,7 +732,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -686,7 +782,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -736,7 +832,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -786,7 +882,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -836,7 +932,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -886,7 +982,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -936,7 +1032,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -986,7 +1082,7 @@
     "selection_reason": "Provider classified impact as major.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -1036,7 +1132,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": [
       {
         "source_updated_at": "2026-10-30T15:02:51Z",
@@ -1112,7 +1208,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -1162,7 +1258,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   },
   {
@@ -1212,7 +1308,7 @@
     "selection_reason": "Provider classified impact as critical.",
     "explanation_note": "Automated detailed explanation unavailable: this entry uses feed evidence only. General lessons are study prompts, not findings about this incident.",
     "first_seen": "2026-11-17T08:31:04Z",
-    "last_seen": "2026-11-24T08:41:36Z",
+    "last_seen": "2026-11-25T08:41:59Z",
     "revisions": []
   }
 ]
