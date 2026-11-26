@@ -49,7 +49,7 @@
       "fingerprint": "a7245a2d5db9d7e9e440f765b6687aedda1ec2d985ac27a600ee65d77a335674",
       "source_hash": "5c0093f8a0b3bc97302bbadc801fe8ee59f7aa7dda6cec7f8469eb93d0f7f6a5",
       "explanation_revision": "312889e6ac6f7a74a535ec89bcb8baf2791bb400ba29b0fb68858e5a9b7dcb7d",
-      "checked_at": "2026-11-25T08:42:01Z",
+      "checked_at": "2026-11-26T08:42:20Z",
       "explanation": {
         "summary": "Microsoft's preliminary account links the Microsoft 365 outage to a latent gateway defect activated by changed traffic and reduced capacity. Routing around failed servers amplified the load on survivors; restoring processes alone did not remove the failure condition.",
         "what_happened": {
@@ -181,7 +181,7 @@
       "fingerprint": "b56645a92925ac455cc8a2d93e2e091abfa3f209537dc69a5af156bb2b5cb559",
       "source_hash": "dc1947f57ad3f8357826e79fc762889c4557f811bf0cb50f5836a2f8b154b4a8",
       "explanation_revision": "d819b1aaedf8dc5d7cf150d59e625b244609b55f797de7754b74c88b65791bd5",
-      "checked_at": "2026-11-25T08:42:01Z",
+      "checked_at": "2026-11-26T08:42:20Z",
       "explanation": {
         "summary": "The Hacker News reports an FBI account of cryptocurrency theft through impersonated video meetings and fake technical fixes. The trust boundary failed when a convincing meeting became a reason to run untrusted software, not merely when a fake face appeared.",
         "what_happened": {
@@ -223,17 +223,18 @@
     }
   },
   "health": {
-    "checked_at": "2026-11-25T08:42:01Z",
+    "checked_at": "2026-11-26T08:42:20Z",
     "status": "partial",
     "attempted": 5,
-    "explained": 4,
-    "pending": 2,
-    "total": 27,
-    "timelines": 17,
-    "unreviewed": 4
+    "explained": 3,
+    "pending": 3,
+    "total": 30,
+    "timelines": 18,
+    "unreviewed": 6
   },
   "errors": {
     "report:b6e25351df538f83532c": "ValueError: Source article changed since review; explanation needs re-review.",
+    "report:ac17c0218f3e057f3e39": "ValueError: Source article changed since review; explanation needs re-review.",
     "report:0d946a07bc289f653805": "ValueError: Source article changed since review; explanation needs re-review."
   },
   "reviewed_at": "2026-11-17T22:03:28Z",
